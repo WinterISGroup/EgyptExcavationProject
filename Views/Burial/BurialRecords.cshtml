@@ -1,3 +1,28 @@
 ﻿@{
-    ViewData["Title"] = "Burial Summary";
+    ViewData["Title"] = "Burial Records Summary";
 }
+
+<div class="row">
+    <div class="col-2">
+        <div class="filter-bkg filter-main p-2">
+            <p class="filter-header">Select Filter:</p>
+        </div>
+    </div>
+    <div class="row col">
+        @for (int i = 0; i < 12; i++)
+        {
+            <div class="card m-1 p-3 card-bkg" style="width:32.25%">
+                <img class="card-img-top" src="~/mummy.jpg" />
+                <div class="card-body card-text-bkg mt-2">
+                    <p class="card-text text-white">
+                        Burial Summary: @i<br />
+                        Location:<br />
+                        Age:<br />
+                        Gender:<br />
+                        Burial Items:
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

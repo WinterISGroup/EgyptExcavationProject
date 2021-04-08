@@ -2,6 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="inline-b">
 
+<div class="row">
+    <div class="card card-homepage-img" style="">
+        <img class="homepage-img" src="~/mummy.jpg" />
+    </div>
+    <div style="width:5%">
+        <!--spacer-->
+    </div>
+    <div class="card card-homepage-desc">
+        <div class="card-body">
+            The efforts of BYU's excavation efforts since 1990 have been mainly concentrated in Fag el-Gamous cemetery.<br /><br />
+
+            Located on the eastern edge of the Fayoum Depression, approximately 90 km south of Cairo, Egypt, 
+            the cemetery is one component of the BYU concession that also includes a Graeco-Roman township (Philadelphia), 
+            some Middle Kingdom tombs, and a small Old Kingdom pyramid that dates to Pharaoh Snefru (circa 2613–2589 BCE). <br /><br />
+
+            Over a thousand documented burials exhumed over twenty-five years of excavations, yet that represents only a small fraction of the estimated total buried at Fag el-Gamous cemetery.
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    @Html.ActionLink("Start Viewing Burial Records", "BurialRecords", "Burial", null, new { @class= "btn btn-blackolive mt-5" })
 </div>
