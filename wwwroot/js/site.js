@@ -6,3 +6,12 @@
 function ViewRecord(url) {
     location.href = url;
 }
+
+function ExpandFilter() {
+    if ($("#filter-main").hasClass("filter-main-expanded")) {
+        $("#filter-main").removeClass("filter-main-expanded");
+    }
+    else {
+        $("#filter-main").addClass("filter-main-expanded");
+    }
+}

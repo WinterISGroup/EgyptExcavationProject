@@ -38,6 +38,11 @@ namespace EgyptExcavationProject.Controllers
             return View();
         }
 
+        public IActionResult ViewUser()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

@@ -89,9 +89,14 @@ body {
     --antique-brass-light: #cb997e;
     --antique-brass-dark: #b98b73;
 }
-a:hover {
-    text-decoration: none;
+a {
+    color: inherit;
 }
+    a:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+
 
 /*navbar styling*/
 .navbar-buffalo {
@@ -167,7 +172,7 @@ a:hover {
     font-size: 20px;
     line-height: 25px;
     letter-spacing: 0px;
-    padding: 0px 15px 0px 15px !important;
+    padding: 0px 0px 0px 15px !important;
 }
 @media (max-width: 1200px) {
     .navbar-buffalo {
@@ -199,6 +204,9 @@ a:hover {
         padding-top: 10px;
         border-top: 2px solid var(--champagne-pink);
         margin-bottom: 10px;
+    }
+    .nav-link{
+        padding-right: 15px !important;
     }
 }
 
@@ -234,18 +242,17 @@ a:hover {
     right:0;
     background-color:var(--ebony);
 }
-
-a{
-    color:inherit;
-}
-a:hover{
-    color:inherit;
-}
-
 .footer {
     background: rgba(212, 199, 176, 0.8); /*--bone*/
     color:var(--black-olive);
     font-weight:bold;
+}
+
+.homepage-main{
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-between;
 }
 
 .homepage-img {
@@ -256,13 +263,13 @@ a:hover{
 
 .card-homepage-img {
     background-color: var(--ash-grey);
-    width: 57.5% !important;
+    width: 58% !important;
     border:none;
     border-radius:inherit;
 }
 
 .card-homepage-desc {
-    width: 37.5% !important;
+    width: 38% !important;
     height: 80% !important;
     margin-top: auto;
     margin-bottom: auto;
@@ -270,6 +277,68 @@ a:hover{
     color: var(--champagne-pink);
     border: none;
     border-radius: inherit;
+}
+
+@media (max-width: 1200px) {
+    .homepage-main {
+        align-items: center;
+        flex-direction: column;
+    }
+    .card-homepage-img{
+        width:100% !important;
+    }
+    .card-homepage-desc{
+        width: 100% !important;
+    }
+}
+.item-holder {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.card-holder{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.card-burial{
+    width:32% !important;
+}
+.filter-bkg {
+    background-color: var(--antique-brass-dark);
+}
+
+.filter-main {
+    height: 150px;
+    width:98%;
+    color: var(--champagne-pink);
+}
+.filter-main-expanded {
+    height: 300px !important;
+    /*display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    height: auto !important;
+    width: 25% !important;
+    align-items:center;*/
+}
+.filter-header {
+    font-size: 16pt;
+}
+
+@media (max-width: 990px){
+    .card-burial {
+        width: 48% !important;
+    }
+}
+@media (max-width: 500px) {
+    .card-burial {
+        width: 96% !important;
+    }
 }
 
 .btn-blackolive {
@@ -301,16 +370,7 @@ a:hover{
     background-color:var(--black-olive);
 }
 
-.filter-bkg{
-    background-color:var(--antique-brass-dark);
-}
-.filter-main {
-    height: 600px;
-    color:var(--champagne-pink);
-}
-.filter-header{
-    font-size:16pt;
-}
+
 
 .hover-pointer:hover{
     cursor:pointer;
@@ -321,4 +381,56 @@ a:hover{
 }
 .table-striped tbody tr:nth-of-type(even) {
     background-color: var(--desert-sand) !important;
+}
+
+@media (max-width: 900px) {
+    .table-scroll {
+        display:block;
+        min-width: 400px;
+        width: 100%;
+        overflow-x: auto;
+        /*-webkit-overflow-scrolling: touch;*/
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+}
+
+.details{
+    font-size:16pt;
+}
+.table-account {
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.btn-group-account{
+    margin-top:20px;
+    margin:auto;
+    display: flex;
+    flex-direction:row;
+    width:40%;
+    justify-content:center;
+}
+
+    .btn-group-account * {
+        margin-left:5px;
+        margin-right:5px;
+    }
+
+@media (max-width: 1000px){
+    .table-account{
+        width:60%;
+    }
+    .btn-group-account {
+        width: 60%;
+    }
+}
+@media (max-width: 550px) {
+    .table-account {
+        width: 80%;
+    }
+
+    .btn-group-account {
+        width: 80%;
+    }
 }

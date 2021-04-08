@@ -2,16 +2,14 @@
     ViewData["Title"] = "Burial Records Summary";
 }
 
-<div class="row">
-    <div class="col-2">
-        <div class="filter-bkg filter-main p-2">
-            <p class="filter-header">Select Filter:</p>
-        </div>
+<div class="item-holder">
+    <div id="filter-main" class="filter-main filter-main-collapsed filter-bkg p-2">
+        <span class="filter-header">Select Filter:</span><button class="btn btn-blackolive float-right" onclick="ExpandFilter();">Expand</button>
     </div>
-    <div class="row col">
+    <div class="card-holder">
         @for (int i = 0; i < 12; i++)
         {
-            <div class="card m-1 p-3 card-bkg hover-pointer" style="width:305px" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { id=i })');">
+            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { id=i })');">
                 <img class="card-img-top" src="~/mummy.jpg" />
                 <div class="card-body card-text-bkg mt-2">
                     <p class="card-text text-white">
