@@ -8,12 +8,12 @@ namespace EgyptExcavationProject.Controllers
 {
     public class BurialController : Controller
     {
-        public IActionResult BurialSummary()
+        public IActionResult BurialRecords()
         {
             return View();
         }
 
-        public IActionResult BurialRecord()
+        public IActionResult ViewRecord()
         {
             return View();
         }

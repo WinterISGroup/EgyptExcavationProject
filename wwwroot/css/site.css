@@ -54,13 +54,21 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    font-family: Sen;
+    
+    
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: Sen;
+    
+    
+    /*background-color: var(--champagne-pink);*/
+    background: rgba(255, 232, 214, 0.75);
 }
 .footer {
   position: absolute;
@@ -68,4 +76,85 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+:root {
+    --black-olive: #3f4238;
+    --ebony: #6b705c;
+    --artichoke: #a5a58d;
+    --ash-grey: #b7b7a4;
+    --bone: #d4c7b0;
+    --champagne-pink: #ffe8d6;
+    --desert-sand: #ddbea9;
+    --antique-brass-light: #cb997e;
+    --antique-brass-dark: #b98b73;
+}
+
+.navbar-buffalo{
+    /*color: var(--champagne-pink) !important;*/
+    background-color: var(--ebony);
+}
+
+.navbar, .navbar div, .navbar-header {
+    min-height: 100px;
+    max-height: 100px;
+    height: 100px;
+}
+
+a.navbar-brand {
+    display:block;
+    color: var(--champagne-pink);
+    text-align: left;
+    font-size: 36px;
+    font-weight:600;
+    line-height: 43px;
+    letter-spacing:1.5px;
+}
+    .navbar-brand:hover {
+        color: var(--champagne-pink);
+    }
+.navbar-brand-at {
+    display:block;
+    font-size: 24px;
+    font-weight:100;
+    line-height: 29px;
+    letter-spacing:0px;
+    /*text-indent:30px;*/
+}
+
+.nav-link {
+    color: var(--champagne-pink);
+    font-family: Sen;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0px;
+    padding:15px !important;
+}
+
+.navbar-collapse{
+    
+}
+
+.buffalo-img {
+    width: 140px;
+    height: 111px;
+    position: absolute;
+    bottom:0;
+    right:0;
+    background-color:var(--ebony);
+}
+
+a{
+    color:inherit;
+}
+a:hover{
+    color:inherit;
+}
+
+.footer {
+    background: rgba(212, 199, 176, 0.8); /*--bone*/
+    color:var(--black-olive);
+    font-weight:bold;
 }
