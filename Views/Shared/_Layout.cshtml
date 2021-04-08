@@ -10,27 +10,30 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 navbar-buffalo">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <span class="">BYU Egypt Excavation Project</span>
-                    <span class="navbar-brand-at">Fag el-Gamous Cemetery Database</span>
+        <nav class="navbar-buffalo border-bottom box-shadow mb-3">@*navbar navbar-expand-sm*@
+            <div class="container nav-container justify-content-between">
+                <a class="navbar-logo" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="navbar-logo-main">BYU Egypt Excavation Project</span>
+                    <span class="navbar-logo-subitem">Fag el-Gamous Cemetery Database</span>
                 </a>
-                
+
                 @*<img class="buffalo-img" src="~/waterbuffalo.png" />*@
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse align-items-end">
+                </button>*@
+                <div class="navbar-navitems align-items-end">@*navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse*@
                     @*<partial name="_LoginPartial" />*@ @*ASP.NET built in partial view for login/authentication*@
-                    <ul class="navbar-nav">
+                    <ul class="navbar-navlist">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Burial" asp-action="BurialRecords">Burial Records</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Researcher Tools</a>
                         </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ManageUsers">Admin Tools</a>
+                        </li>*@
                     </ul>
                 </div>
             </div>

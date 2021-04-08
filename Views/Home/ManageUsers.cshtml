@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<div>
+    <h2>User Management System:</h2>
+    <br />
+    <table class="table table-bordered table-striped">
+        <thead class="buffalo-table-header">
+            <tr>
+                <th>Name:</th>
+                <th>Email:</th>
+                <th>Net ID:</th>
+                <th>Account Creation Date:</th>
+                <th>Needs Approval?</th>
+                <th>Approve:</th>
+                <th>View Details:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jackson Secrist</td>
+                <td>jacksecrist@gmail.com</td>
+                <td>js311</td>
+                <td>4/7/2021</td>
+                <td>Yes</td>
+                <td><button class="btn btn-brassdark">Approve</button></td>
+                <td>@Html.ActionLink("Details ->", "ViewUser", "Home", null, new { @class = "btn btn-blackolive" })</td>
+            </tr>
+            <tr>
+                <td>Noah Johnson</td>
+                <td>test@gmail.com</td>
+                <td>netid</td>
+                <td>4/7/2021</td>
+                <td>No</td>
+                <td><button class="btn btn-brassdark" hidden>Approve</button></td>
+                <td><button class="btn btn-blackolive">View -></button></td>
+            </tr>
+            <tr>
+                <td>Courtney Ellis</td>
+                <td>test@gmail.com</td>
+                <td>netid</td>
+                <td>4/7/2021</td>
+                <td>Yes</td>
+                <td><button class="btn btn-brassdark">Approve</button></td>
+                <td><button class="btn btn-blackolive">View -></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -13,7 +13,7 @@ namespace EgyptExcavationProject.Controllers
             return View();
         }
 
-        public IActionResult ViewRecord()
+        public IActionResult ViewRecord(int id)
         {
             return View();
         }
@@ -30,7 +30,7 @@ namespace EgyptExcavationProject.Controllers
 
         public IActionResult DeleteRecord()
         {
-            return View();
+            return RedirectToAction("BurialRecords");
         }
     }
 }

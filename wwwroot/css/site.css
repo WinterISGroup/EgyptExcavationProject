@@ -1,16 +1,16 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+/*a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-}
+}*/
 
 /* Provide sufficient contrast against white background */
-a {
+/*a {
   color: #0366d6;
-}
+}*/
 
 .btn-primary {
   color: #fff;
@@ -89,52 +89,141 @@ body {
     --antique-brass-light: #cb997e;
     --antique-brass-dark: #b98b73;
 }
-
-.navbar-buffalo{
-    /*color: var(--champagne-pink) !important;*/
-    background-color: var(--ebony);
+a:hover {
+    text-decoration: none;
 }
 
-.navbar, .navbar div, .navbar-header {
+/*navbar styling*/
+.navbar-buffalo {
+    color: var(--champagne-pink);
+    background-color: var(--ebony);
     min-height: 100px;
     max-height: 100px;
     height: 100px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    /*display: -ms-flexbox;*/
+    /*-ms-flex-wrap: wrap;*/
+    /*-ms-flex-align: center;*/
+    /*-ms-flex-pack: justify;*/
+}
+@media (max-width: 1200px) {
+    
 }
 
-a.navbar-brand {
-    display:block;
-    color: var(--champagne-pink);
+/*navbar spacing*/
+.nav-container {
+    display: flex;
+    flex-direction:row;
+    padding: 0;
+    align-items:flex-end;
+   /* margin-left: auto;
+    margin-right:auto;*/
+}
+
+
+
+.navbar-logo {
+    display:flex;
     text-align: left;
     font-size: 36px;
     font-weight:600;
     line-height: 43px;
     letter-spacing:1.5px;
+    flex-direction:column;
 }
-    .navbar-brand:hover {
+    .navbar-logo:hover {
         color: var(--champagne-pink);
     }
-.navbar-brand-at {
-    display:block;
+.navbar-logo-subitem {
+    /*display:block;*/
     font-size: 24px;
-    font-weight:100;
+    font-weight: 100;
     line-height: 29px;
-    letter-spacing:0px;
+    letter-spacing: 0px;
     /*text-indent:30px;*/
 }
 
+.navbar-navitems {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    margin-right:0;
+    margin-bottom: 0;
+    
+}
+.navbar-navlist {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
 .nav-link {
-    color: var(--champagne-pink);
-    font-family: Sen;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 20px;
+    line-height: 25px;
     letter-spacing: 0px;
-    padding:15px !important;
+    padding: 0px 15px 0px 15px !important;
+}
+@media (max-width: 1200px) {
+    .navbar-buffalo {
+        min-height: 200px;
+        max-height: initial;
+        height: 200px;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-logo-main {
+        text-align: center;
+    }
+
+    .navbar-logo-subitem {
+        text-align: center;
+    }
+
+    .navbar-logo {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .navbar-navitems {
+        margin-top: 0px;
+        padding-top: 10px;
+        border-top: 2px solid var(--champagne-pink);
+        margin-bottom: 10px;
+    }
 }
 
-.navbar-collapse{
-    
+@media (max-width: 525px) {
+    .navbar-buffalo {
+        min-height: 200px;
+        max-height: initial;
+        height: auto;
+        align-items: initial;
+    }
+    .nav-container {
+        align-items: center;
+    }
+    .navbar-logo {
+        font-size: 24pt;
+    }
+    .navbar-logo-subitem{
+        font-size: 16pt;
+    }
+    .navbar-navitems {
+        
+    }
+    .nav-link{
+        text-align:center;
+    }
 }
 
 .buffalo-img {
@@ -193,6 +282,17 @@ a:hover{
         background-color: #20211c;
         border-color: #20211c;
     }
+.btn-brassdark {
+    color: #000000;
+    background-color: var(--antique-brass-dark);
+    border-color: var(--antique-brass-dark);
+}
+
+    .btn-brassdark:hover {
+        color: #000000;
+        background-color: #a36e52;
+        border-color: #a36e52;
+    }
 
 .card-bkg {
     background: rgba(183, 183, 164, 0.7);
@@ -210,4 +310,15 @@ a:hover{
 }
 .filter-header{
     font-size:16pt;
+}
+
+.hover-pointer:hover{
+    cursor:pointer;
+}
+
+.buffalo-table-header{
+    background-color:var(--artichoke);
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: var(--desert-sand) !important;
 }
