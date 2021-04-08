@@ -1,0 +1,55 @@
+﻿.item-holder {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-holder {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-burial {
+    width: 32% !important;
+}
+
+.filter-bkg {
+    background-color: var(--antique-brass-dark);
+}
+
+.filter-main {
+    height: 150px;
+    width: 98%;
+    color: var(--champagne-pink);
+}
+
+.filter-main-expanded {
+    height: 300px !important;
+}
+
+.filter-header {
+    font-size: 16pt;
+}
+
+@media (max-width: 990px) {
+    .card-burial {
+        width: 48% !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .card-burial {
+        width: 96% !important;
+    }
+}
+.card-bkg {
+    background: rgba(183, 183, 164, 0.7);
+}
+
+.card-text-bkg {
+    background-color: var(--black-olive);
+}
