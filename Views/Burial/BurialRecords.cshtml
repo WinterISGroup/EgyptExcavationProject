@@ -7,8 +7,21 @@
     <div id="filter-main" class="filter-main filter-main-collapsed filter-bkg p-2">
         <span class="filter-header">Select Filter:</span><button class="btn btn-blackolive float-right" onclick="ExpandFilter();">Expand</button>
         <form asp-action="BurialRecords" method="post" id="filterForm">
-            <label>Gender</label>
-            
+            <label name="gender">Gender</label>
+            <br />
+            <label for="male">Male</label>
+            <input type="radio" id="male" name="gender" value="male" />
+            <br />
+            <label for="female">Female</label>
+            <input type="radio" id="female" name="gender" value="female" />
+            <br />
+            <label for="subadult">Subadult</label>
+            <input type="radio" id="subadult" name="gender" value="subadult" />
+            <br />
+            <label for="undetermined">Undetermined</label>
+            <input type="radio" id="undetermined" name="gender" value="undetermined" />
+            <br />
+            <br />
             <label>Hair Color</label>
             <select name="hair-filter">
                 <option value="">Select One</option>
