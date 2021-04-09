@@ -172,7 +172,7 @@ a {
     font-size: 20px;
     line-height: 25px;
     letter-spacing: 0px;
-    padding: 0px 0px 0px 15px !important;
+    padding: 0px 7.5px 0px 7.5px !important;
 }
 @media (max-width: 1200px) {
     .navbar-buffalo {
@@ -206,7 +206,7 @@ a {
         margin-bottom: 10px;
     }
     .nav-link{
-        padding-right: 15px !important;
+        /*padding-right: 15px !important;*/
     }
 }
 
@@ -234,13 +234,17 @@ a {
     }
 }
 
+.nav-item:not(:first-child){
+    border-left: 2px solid var(--champagne-pink);
+}
+
 .buffalo-img {
     width: 140px;
     height: 111px;
     position: absolute;
-    bottom:0;
-    right:0;
-    background-color:var(--ebony);
+    bottom: 0;
+    right: 0;
+    background-color: var(--ebony);
 }
 .footer {
     background: rgba(212, 199, 176, 0.8); /*--bone*/
@@ -270,4 +274,32 @@ a {
     }
 .hover-pointer:hover{
     cursor:pointer;
+}
+
+.text-ebony{
+    color:var(--ebony);
+}
+.text-brass-dark {
+    color: var(--antique-brass-dark);
+}
+.text-brass-light {
+    color: var(--antique-brass-light);
+}
+.text-black-olive {
+    color: var(--black-olive);
+}
+.text-desert-sand {
+    color: var(--desert-sand);
+}
+.text-champagne-pink {
+    color: var(--champagne-pink);
+}
+.text-bone {
+    color: var(--bone);
+}
+.text-ash-grey {
+    color: var(--ash-grey);
+}
+.text-artichoke {
+    color: var(--artichoke);
 }

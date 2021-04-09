@@ -1,3 +1,123 @@
 ﻿@{
     ViewData["Title"] = "Add Record";
 }
+<h2 class="text-center">Add New Burial Record</h2>
+<div class="form-top-holder">
+    <div class="">
+        <label for="date-created" class="text-ebony">Date:</label>
+        <input name="date-created" class="form-control" type="datetime-local"/>
+    </div>
+    <div class="">
+        <label for="researcher" class="text-ebony">Researcher:</label>
+        <input name="researcher" class="form-control" type="text" />
+    </div>
+</div>
+<div class="form-main text-ebony">
+    <div class="form-location">
+        <span class="form-section-header">Location:</span>
+        <span>Square:</span><br />
+        <div class="subsection-indent">
+            <label>North</label>
+            <input class="form-radio" name="square-ns" type="radio" value="North" />
+            <label>South</label>
+            <input class="form-radio" name="square-ns" type="radio" value="South" />
+            <br />
+
+            <label>High/Low Pair:</label>
+            <input name="sq-ns-high" type="text" class="form-control form-control-sm form-short" />/<input name="sq-ns-low" type="text" class="form-control form-control-sm form-short" />
+            <br />
+
+            <label>East</label>
+            <input class="form-radio" name="square-ew" type="radio" value="East" />
+            <label>West</label>
+            <input class="form-radio" name="square-ew" type="radio" value="West" />
+            <br />
+
+            <label>High/Low Pair:</label>
+            <input name="sq-ew-high" type="text" class="form-control form-control-sm form-short" />/<input name="sq-ew-low" type="text" class="form-control form-control-sm form-short" />
+            <br />
+        </div>
+        <span>Area: </span>
+        <label>NW</label>
+        <input type="radio" name="area" class="form-radio" value="NW" />
+        <label>NE</label>
+        <input type="radio" name="area" class="form-radio" value="NE" />
+        <label>SW</label>
+        <input type="radio" name="area" class="form-radio" value="SW" />
+        <label>SE</label>
+        <input type="radio" name="area" class="form-radio" value="SE" />
+        <br />
+        <label>Burial #: </label>
+        <input type="text" name="burial-num" class="form-control form-control-sm form-short"/>
+    </div>
+    <div class="form-burial-specs">
+        <span class="form-section-header">Burial Specifications:</span>
+        <table class="w-100">
+            <tr>
+                <td><label>Head Direction: </label></td>
+                <td class="text-right"><input type="text" name="head-dir" class="form-control form-control-sm form-short" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><label>Burial Depth: </label></td>
+                <td class="text-right"><input type="text" name="head-dir" class="form-control form-control-sm form-short" /></td>
+                <td>cm</td>
+            </tr>
+            <tr>
+                <td><label>South to Head: </label></td>
+                <td class="text-right"><input type="text" name="head-dir" class="form-control form-control-sm form-short" /></td>
+                <td>cm</td>
+            </tr>
+            <tr>
+                <td><label>South to Feet: </label></td>
+                <td class="text-right"><input type="text" name="head-dir" class="form-control form-control-sm form-short" /></td>
+                <td>cm</td>
+            </tr>
+            <tr>
+                <td><label>West to Head: </label></td>
+                <td class="text-right"><input type="text" name="head-dir" class="form-control form-control-sm form-short" /></td>
+                <td>cm</td>
+            </tr>
+            <tr>
+                <td><label>West to Feet: </label></td>
+                <td class="text-right"><input type="text" name="head-dir" class="form-control form-control-sm form-short" /></td>
+                <td>cm</td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-overal-imp">
+        <span class="form-section-header">Overall Impression:</span>
+        <span>Preservation Index:</span>
+        <div class="subsection-indent">
+            <table style="width:100%">
+                <tr>
+                    <td><label>I - only bones</label></td>
+                    <td><input name="preservation" type="radio" class="form-radio" /></td>
+                </tr>
+                <tr>
+                    <td><label>II - 5-25%</label></td>
+                    <td><input name="preservation" type="radio" class="form-radio" /></td>
+                </tr>
+                <tr>
+                    <td><label>III - 25-50%</label></td>
+                    <td><input name="preservation" type="radio" class="form-radio" /></td>
+                </tr>
+                <tr>
+                    <td><label>IV - 50-75%</label></td>
+                    <td><input name="preservation" type="radio" class="form-radio" /></td>
+                </tr>
+                <tr>
+                    <td><label>V - 75-100%</label></td>
+                    <td><input name="preservation" type="radio" class="form-radio" /></td>
+                </tr>
+            </table>
+        </div>
+        <label>Hair Color: </label>
+        <input type="text" name="hair-color" class="form-control form-control-sm form-medium" />
+    </div>
+</div>
+<hr class="form-divide" />
+<div class="form-main-2">
+    <span class="font-weight-bold">Burial Observations:</span><br />
+    <textarea class="form-control form-textarea"></textarea>
+</div>

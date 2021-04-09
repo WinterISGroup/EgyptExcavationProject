@@ -1,0 +1,46 @@
+﻿.form-control {
+    display: inline-block;
+    width: auto !important;
+}
+.form-textarea{
+    width: 100% !important;
+}
+.form-short{
+    width: 50px !important;
+}
+.form-medium {
+    width: 100px !important;
+}
+.form-top-holder{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    margin: 20px 0px 20px 0px;
+}
+.form-section-header{
+    color:var(--black-olive);
+    display:block;
+    font-size:1.5rem;
+    font-weight:bold;
+    text-decoration:underline;
+}
+.form-main{
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.form-location{
+
+}
+.form-radio{
+    margin:0px 10px 0px 0px;
+}
+.subsection-indent{
+    padding-left:20px;
+}
+
+hr.form-divide {
+    border-width: 2px;
+    border-color: var(--black-olive);
+}

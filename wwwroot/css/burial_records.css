@@ -25,6 +25,7 @@
     height: 150px;
     width: 98%;
     color: var(--champagne-pink);
+    border-radius:0.25rem;
 }
 
 .filter-main-expanded {
