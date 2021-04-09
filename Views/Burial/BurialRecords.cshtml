@@ -6,6 +6,19 @@
 <div class="item-holder">
     <div id="filter-main" class="filter-main filter-main-collapsed filter-bkg p-2">
         <span class="filter-header">Select Filter:</span><button class="btn btn-blackolive float-right" onclick="ExpandFilter();">Expand</button>
+        <form asp-action="BurialRecords" method="post" id="filterForm">
+            <label>Gender</label>
+            
+            <label>Hair Color</label>
+            <select>
+                <option value="">Select One</option>
+                <option value="blonde">Blonde</option>
+                <option value="black">Black</option>
+                <option value="brown">Brown</option>
+                <option value="red">Red</option>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
     </div>
     <div class="card-holder">
         @for (int i = 0; i < 12; i++)

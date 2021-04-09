@@ -28,7 +28,6 @@ namespace EgyptExcavationProject.Controllers
 
         public IActionResult AddRecord()
         {
-            _recordService.AddRecord("hello");
             return View();
         }
 
