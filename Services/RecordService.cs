@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EgyptExcavationProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,33 +8,42 @@ namespace EgyptExcavationProject.Services
 {
     public class RecordService : IRecordService
     {
-        public RecordService(/*bring in DB Context*/)
+        private ExcavationProjectContext _context;
+        public RecordService(ExcavationProjectContext context)
         {
-            //bring in DB Context
+            _context = context;
         }
 
         //FIXME: return type change to BurialModel
-        public void GetRecord(/*int burialID*/)
+        public Burial GetRecord(Guid burialID)
         {
-            //return DBContext.Burials.Where(b => b.burialID == burialID).FirstOrDefault();
+            return _context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault();
         }
 
-        public void AddRecord(/*BurialModel newBurial*/)
+        public void AddRecord(Burial newBurial)
         {
-            //DBContext.Add(newBurial)
-            //DBContext.SaveChanges()
+            try
+            {
+                _context.Burial.Add(newBurial);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Error in adding new burial record");
+            }
+            
         }
 
-        public void UpdateRecord(/*BurialModel updatedBurial*/)
+        public void UpdateRecord(Burial updatedBurial)
         {
-            //DBContext.Update(updatedBurial)
-            //DBContext.SaveChanges()
+            _context.Burial.Update(updatedBurial);
+            _context.SaveChanges();
         }
 
-        public void DeleteRecord(/*int burialID*/)
+        public void DeleteRecord(Guid burialID)
         {
-            //DBContext.Remove(DBContext.Burials.Where(x => x.burialID == burialID).FirstOrDefault())
-            //DBContext.SaveChanges();
+            _context.Remove(_context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault());
+            _context.SaveChanges();
         }
     }
 }
