@@ -30,6 +30,43 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.form-main-2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+}
+/*.form-main-2 *{
+    margin-right:30px;
+}*/
+.form-bottom{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+@media (max-width: 990px){
+    .form-main{
+        flex-direction: column;
+        justify-content:center;
+        align-items:center;
+    }
+    .form-child{
+        margin-bottom: 20px;
+    } 
+    .form-main-2 {
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+    }
+    .form-section-header{
+        text-align:center;
+    }
+    .form-top-holder{
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+}
 .form-location{
 
 }
