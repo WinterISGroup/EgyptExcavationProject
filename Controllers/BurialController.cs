@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EgyptExcavationProject.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,13 @@ namespace EgyptExcavationProject.Controllers
 {
     public class BurialController : Controller
     {
+        private IRecordService _recordService;
+        private IFilterService _filterService;
+        public BurialController(IRecordService recordService, IFilterService filterService)
+        {
+            _recordService = recordService;
+            _filterService = filterService;
+        }
         public IActionResult BurialRecords()
         {
             return View();
@@ -20,6 +28,7 @@ namespace EgyptExcavationProject.Controllers
 
         public IActionResult AddRecord()
         {
+            _recordService.AddRecord("hello");
             return View();
         }
 

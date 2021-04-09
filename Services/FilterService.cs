@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EgyptExcavationProject.Services
 {
-    public class FilterService
+    public class FilterService : IFilterService
     {
     }
 }
