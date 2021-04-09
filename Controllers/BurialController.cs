@@ -1,4 +1,5 @@
 ﻿using EgyptExcavationProject.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,13 @@ namespace EgyptExcavationProject.Controllers
         }
         public IActionResult BurialRecords()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult BurialRecords(FormCollection form)
+        {
+            string hairFilterSelected = form["hair-filter"];
             return View();
         }
 
