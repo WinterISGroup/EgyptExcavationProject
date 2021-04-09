@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EgyptExcavationProject.Services
 {
-    interface IBurialService
+    interface IRecordService
     {
     }
 }
