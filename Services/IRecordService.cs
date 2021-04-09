@@ -7,9 +7,6 @@ namespace EgyptExcavationProject.Services
 {
     public interface IRecordService
     {
-        void GetRecord(/*int burialID*/);
-        void AddRecord(/*BurialModel newBurial*/);
-        void UpdateRecord(/*BurialModel updatedBurial*/);
-        void DeleteRecord(/*int burialID*/);
+
     }
 }
