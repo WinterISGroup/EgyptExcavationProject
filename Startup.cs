@@ -36,7 +36,7 @@ namespace EgyptExcavationProject
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddDbContext<ExcavationProjectContext>(options =>
             {
-                
+
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
