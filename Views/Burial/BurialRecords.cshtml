@@ -291,7 +291,7 @@
     <div class="card-holder">
         @foreach (Burial burial in Model)
         {
-            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial")');">
+            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new {burialID = burial.BurialId })');">
                 <img class="card-img-top" src="~/mummy.jpg" />
                 <div class="card-body card-text-bkg mt-2">
                     <p class="card-text text-white">
@@ -301,7 +301,7 @@
                         Gender: @burial.GenderGe<br />
                     </p>
                     @Html.ActionLink("Remove", "DeleteRecord", "Burial", null, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick="confirm('Are you sure you want to delete this record?');"})
-                    @Html.ActionLink("Edit", "EditRecord", "Burial", null, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })
+                    @Html.ActionLink("Edit", "EditRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })
                 </div>
             </div>
         }
