@@ -1,4 +1,6 @@
 using EgyptExcavationProject.Data;
+using EgyptExcavationProject.Models;
+using EgyptExcavationProject.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,8 +34,15 @@ namespace EgyptExcavationProject
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<ExcavationProjectContext>(options =>
+            {
+                
+            });
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<IRecordService, RecordService>();
+            services.AddTransient<IFilterService, FilterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

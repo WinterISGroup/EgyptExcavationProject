@@ -22,14 +22,14 @@
 }
 
 .filter-main {
-    height: 150px;
+    height: 350px;
     width: 98%;
     color: var(--champagne-pink);
     border-radius:0.25rem;
 }
 
 .filter-main-expanded {
-    height: 300px !important;
+    height: 700px !important;
 }
 
 .filter-header {

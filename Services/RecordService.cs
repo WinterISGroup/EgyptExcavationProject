@@ -31,7 +31,7 @@ namespace EgyptExcavationProject.Services
             {
                 throw new Exception("Error in adding new burial record");
             }
-            
+
         }
 
         public void UpdateRecord(Burial updatedBurial)

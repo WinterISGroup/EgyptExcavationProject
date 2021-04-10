@@ -1,4 +1,7 @@
-﻿using EgyptExcavationProject.Services;
+﻿using EgyptExcavationProject.Models;
+using EgyptExcavationProject.Models.ViewModels;
+using EgyptExcavationProject.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,14 +24,28 @@ namespace EgyptExcavationProject.Controllers
             return View();
         }
 
-        public IActionResult ViewRecord(int id)
+        [HttpPost]
+        public IActionResult BurialRecords(FormCollection form)
+        {
+            string hairFilterSelected = form["hair-filter"];
+            return View();
+        }
+
+        public IActionResult ViewRecord(Guid burialID)
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult AddRecord()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddRecord(AddRecordModel newRecord)
+        {
+            return View(newRecord);
         }
 
         public IActionResult EditRecord()
