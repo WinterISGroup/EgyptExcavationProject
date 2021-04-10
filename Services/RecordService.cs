@@ -25,18 +25,32 @@ namespace EgyptExcavationProject.Services
             return _context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault();
         }
 
-        public void AddRecord(Burial newBurial)
+        public void AddBurial(Burial newBurial)
+        {
+            //try
+            //{
+                
+            //}
+            //catch
+            //{
+            //    throw new Exception("Error in adding new burial record");
+            //}
+            _context.Burial.Add(newBurial);
+            _context.SaveChanges();
+
+        }
+
+        public void AddLocation(Location location)
         {
             try
             {
-                _context.Burial.Add(newBurial);
+                _context.Location.Add(location);
                 _context.SaveChanges();
             }
             catch
             {
-                throw new Exception("Error in adding new burial record");
+                throw new Exception("Error in adding new location record");
             }
-
         }
 
         public void UpdateRecord(Burial updatedBurial)
