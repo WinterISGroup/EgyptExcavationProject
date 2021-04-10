@@ -58,29 +58,29 @@ namespace EgyptExcavationProject.Services
 
         public IEnumerable<Burial> FilterHeight(IEnumerable<Burial> list, string height)
         {
-            var results;
+            IEnumerable<Burial> results = new IEnumerable<Burial>();
 
             if (height == "0-.5")
             {
                 results = list.Where(b => b.EstimateLivingStature > 0 && b.EstimateLivingStature <= 0.59);
             }
-            if else (height == ".6-1")
+            else if (height == ".6-1")
             {
                 results = list.Where(b => b.EstimateLivingStature > 0.59 && b.EstimateLivingStature <= 1.09);
             }
-            if else (height == "1.1-1.5")
+            else if (height == "1.1-1.5")
             {
                 results = list.Where(b => b.EstimateLivingStature > 1.09 && b.EstimateLivingStature <= 1.59);
             }
-            if else (height == "1.6-2.0")
+            else if (height == "1.6-2.0")
             {
                 results = list.Where(b => b.EstimateLivingStature > 1.59 && b.EstimateLivingStature <= 2.09);
             }
-            if else (height == "2.1-2.5")
+            else if (height == "2.1-2.5")
             {
                 results = list.Where(b => b.EstimateLivingStature > 2.09 && b.EstimateLivingStature <= 2.59);
             }
-            if else (height == "2.6-3")
+            else if (height == "2.6-3")
             {
                 results = list.Where(b => b.EstimateLivingStature > 2.59 && b.EstimateLivingStature <= 3.09);
             }
