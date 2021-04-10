@@ -16,7 +16,6 @@ namespace EgyptExcavationProject.Models
 
         public Guid SampleId { get; set; }
         public Guid? BurialId { get; set; }
-        public DateTime? YearFound { get; set; }
         public int? ClusterNum { get; set; }
         public bool PreviouslySampled { get; set; }
         public string Notes { get; set; }
@@ -24,9 +23,10 @@ namespace EgyptExcavationProject.Models
         public int? BurialNumber { get; set; }
         public int? SampleNumber { get; set; }
         public string BurialSubplot { get; set; }
-        public int? RackNum { get; set; }
-        public int? BagNum { get; set; }
+        public string RackNum { get; set; }
+        public string BagNum { get; set; }
         public string Initials { get; set; }
+        public int? YearFound { get; set; }
 
         public virtual Burial Burial { get; set; }
         public virtual ICollection<CarbonDatingAnalysis> CarbonDatingAnalysis { get; set; }

@@ -15,7 +15,7 @@ namespace EgyptExcavationProject.Models
         }
 
         public Guid SkullId { get; set; }
-        public string BasiilarSuture { get; set; }
+        public string BasilarSuture { get; set; }
         public int? Robust { get; set; }
         public int? SupraorbitalRidges { get; set; }
         public int? OrbitalEdge { get; set; }
@@ -23,7 +23,7 @@ namespace EgyptExcavationProject.Models
         public int? Gonion { get; set; }
         public int? ZygomaticCrest { get; set; }
         public int? NuchalCrest { get; set; }
-        public int? CranialSuture { get; set; }
+        public string CranialSuture { get; set; }
         public double? MaximumCranialLength { get; set; }
         public double? MaximumCranialBreadth { get; set; }
         public double? BasionBregmaHeight { get; set; }
@@ -31,7 +31,7 @@ namespace EgyptExcavationProject.Models
         public double? NasionProsthion { get; set; }
         public double? MaximumNasalBreadth { get; set; }
         public double? InterorbitalBreadth { get; set; }
-        public int? ToothAttrition { get; set; }
+        public string ToothAttrition { get; set; }
         public string ToothEruption { get; set; }
         public Guid? BurialId { get; set; }
         public string SkullSex { get; set; }

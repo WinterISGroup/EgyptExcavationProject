@@ -16,7 +16,7 @@ namespace EgyptExcavationProject.Models
 
         public Guid HumerusId { get; set; }
         public double? HumerusHead { get; set; }
-        public double? EpiphysealUnion { get; set; }
+        public string EpiphysealUnion { get; set; }
         public double? HumerusLength { get; set; }
         public Guid? BurialId { get; set; }
 

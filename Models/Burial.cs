@@ -20,7 +20,7 @@ namespace EgyptExcavationProject.Models
         }
 
         public Guid BurialId { get; set; }
-        public char? HeadDirection { get; set; }
+        public string HeadDirection { get; set; }
         public double? BurialDepth { get; set; }
         public double? SouthToHead { get; set; }
         public double? SouthToFeet { get; set; }
@@ -83,6 +83,7 @@ namespace EgyptExcavationProject.Models
         public double? CalculatedLengthOfRemains { get; set; }
         public string BurialMaterials { get; set; }
         public string Photo { get; set; }
+        public string HairPresent { get; set; }
 
         public virtual Femur Femur { get; set; }
         public virtual Humerus Humerus { get; set; }

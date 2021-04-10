@@ -15,12 +15,12 @@ namespace EgyptExcavationProject.Models
         }
 
         public Guid LocationId { get; set; }
-        public char LocationNs { get; set; }
-        public char LocationEw { get; set; }
-        public int LowPairNs { get; set; }
-        public int HighPairNs { get; set; }
-        public int LowPairEw { get; set; }
-        public int HighPairEw { get; set; }
+        public char? LocationNs { get; set; }
+        public char? LocationEw { get; set; }
+        public int? LowPairNs { get; set; }
+        public int? HighPairNs { get; set; }
+        public int? LowPairEw { get; set; }
+        public int? HighPairEw { get; set; }
         public string BurialSubplot { get; set; }
 
         public virtual ICollection<Burial> Burial { get; set; }
