@@ -84,6 +84,7 @@ namespace EgyptExcavationProject.Models
         public string BurialMaterials { get; set; }
         public string Photo { get; set; }
         public string HairPresent { get; set; }
+        public string RelatedBurialNumbers { get; set; }
 
         public virtual Femur Femur { get; set; }
         public virtual Humerus Humerus { get; set; }

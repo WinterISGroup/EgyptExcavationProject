@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Burial Records Summary";
 }
+
+@model IEnumerable<Burial>
+
 <h2 class="text-center">Burial Records List</h2>
 <br />
 <div class="item-holder">
@@ -230,16 +233,16 @@
         </form>
     </div>
     <div class="card-holder">
-        @for (int i = 0; i < 12; i++)
+        @foreach (Burial burial in Model)
         {
-            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { id=i })');">
+            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial")');">
                 <img class="card-img-top" src="~/mummy.jpg" />
                 <div class="card-body card-text-bkg mt-2">
                     <p class="card-text text-white">
-                        Burial Summary: @i<br />
-                        Location:<br />
-                        Age: <br />
-                        Gender: <br />
+                        Burial Number: @burial.BurialNumber<br />
+                        Burial ID: @burial.BurialId<br />
+                        Age: @burial.AgeCode<br />
+                        Gender: @burial.GenderGe<br />
                     </p>
                     @Html.ActionLink("Remove", "DeleteRecord", "Burial", null, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick="confirm('Are you sure you want to delete this record?');"})
                     @Html.ActionLink("Edit", "EditRecord", "Burial", null, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })

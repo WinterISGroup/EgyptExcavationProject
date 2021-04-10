@@ -21,7 +21,7 @@ namespace EgyptExcavationProject.Controllers
         }
         public IActionResult BurialRecords()
         {
-            return View();
+            return View(_recordService.GetAllBurials());
         }
 
         [HttpPost]

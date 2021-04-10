@@ -8,6 +8,7 @@ namespace EgyptExcavationProject.Services
 {
     public interface IRecordService
     {
+        IEnumerable<Burial> GetAllBurials();
         Burial GetRecord(Guid burialID);
         void AddRecord(Burial newBurial);
         void UpdateRecord(Burial updatedBurial);
