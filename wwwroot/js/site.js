@@ -15,3 +15,24 @@ function ExpandFilter() {
         $("#filter-main").addClass("filter-main-expanded");
     }
 }
+
+function ShowOrHideShafts(selected) {
+    if (selected == "Y") {
+        $("#shaft_nums").show();
+    }
+    else if (selected == "N") {
+        $("#shaft_nums").hide();
+    }
+    else {
+        $("#shaft_nums").hide();
+    }
+}
+
+function ShowOrHideClusters(selected) {
+    if (selected == "Y") {
+        $("#cluster_data").show();
+    }
+    else {
+        $("#cluster_data").hide();
+    }
+}

@@ -1,4 +1,5 @@
 ﻿using EgyptExcavationProject.Models;
+using EgyptExcavationProject.Models.ViewModels;
 using EgyptExcavationProject.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,24 +43,9 @@ namespace EgyptExcavationProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRecord(FormCollection form)
-        {   
-            Burial burial = new Burial();
-            Location loc = new Location();
-
-            burial.DateFound = form["date-found"].ToString() != null ? Convert.ToDateTime(form["date-found"].ToString()) : Convert.ToDateTime(null);
-            string excavationRecorder = form["exca-recorder"].ToString() != "" ? form["exca-recorder"].ToString() : ""; //FIX ME: Add to model
-            loc.LocationNs = form["location-ns"].ToString() != "" ? Convert.ToChar(form["location-ns"].ToString()) : 'z'; //FIX ME: 
-
-            if (ModelState.IsValid)
-            {
-                //_recordService.AddRecord(burial);
-                return RedirectToAction("ViewRecord", new { burialID = burial.BurialId });
-            }
-            else
-            {
-                return View(burial);
-            }
+        public IActionResult AddRecord(AddRecordModel newRecord)
+        {
+            return View(newRecord);
         }
 
         public IActionResult EditRecord()
