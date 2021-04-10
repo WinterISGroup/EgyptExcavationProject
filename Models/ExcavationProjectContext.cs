@@ -33,8 +33,7 @@ namespace EgyptExcavationProject.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=192.168.50.208;Database=ExcavationProject;Username=postgres;Password=konojo");
+                optionsBuilder.UseNpgsql("Host=byu-egypt-excavation.cetfe812kvky.us-east-1.rds.amazonaws.com;Database=postgres;Username=postgres;Password=g4rexUU3I6FVeLq60iZYyY");
             }
         }
 
