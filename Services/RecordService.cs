@@ -22,7 +22,9 @@ namespace EgyptExcavationProject.Services
         //FIXME: return type change to BurialModel
         public Burial GetRecord(Guid burialID)
         {
-            return _context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault();
+            Burial burial = _context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault();
+            burial.Location = _context.Location.Where(x => x.LocationId == burial.BurialId).FirstOrDefault();
+            return burial;
         }
 
         public void AddBurial(Burial newBurial)
@@ -55,7 +57,12 @@ namespace EgyptExcavationProject.Services
 
         public void UpdateRecord(Burial updatedBurial)
         {
-            _context.Burial.Update(updatedBurial);
+            Burial burialToUpdate = _context.Burial.Where(b => b.BurialId == updatedBurial.BurialId).FirstOrDefault();
+
+            if(burialToUpdate != null)
+            {
+                _context.Entry(burialToUpdate).CurrentValues.SetValues(updatedBurial);
+            }
             _context.SaveChanges();
         }
 

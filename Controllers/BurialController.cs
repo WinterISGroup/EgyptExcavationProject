@@ -61,8 +61,22 @@ namespace EgyptExcavationProject.Controllers
 
         public IActionResult EditRecord(Guid burialID)
         {
+            Burial burial = _recordService.GetRecord(burialID);
+            return View(burial);
+        }
 
-            return View();
+        [HttpPost]
+        public IActionResult EditRecord(Burial burial)
+        {
+            if (ModelState.IsValid)
+            {
+                _recordService.UpdateRecord(burial);
+                return RedirectToAction("BurialRecords");
+            }
+            else
+            {
+                return View(burial);
+            }
         }
 
         public IActionResult DeleteRecord()
