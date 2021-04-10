@@ -8,11 +8,30 @@ function ViewRecord(url) {
 }
 
 function ExpandFilter() {
-    if ($("#filter-main").hasClass("filter-main-expanded")) {
-        $("#filter-main").removeClass("filter-main-expanded");
+    var filterBox = $("#filter-main");
+
+    if (!filterBox.hasClass("filter-main-expanded")) {
+        filterBox.addClass("filter-main-expanded");
+        
+        var lastRow = $("#lastrow");
+        var middleRow = $("#middlerow");
+
+        lastRow.toggle();
+        middleRow.toggle();
     }
-    else {
-        $("#filter-main").addClass("filter-main-expanded");
+}
+
+function ShrinkFilter() {
+    var filterBox = $("#filter-main");
+
+    if (filterBox.hasClass("filter-main-expanded")) {
+        filterBox.removeClass("filter-main-expanded");
+
+        var lastRow = $("#lastrow");
+        var middleRow = $("#middlerow");
+
+        lastRow.toggle();
+        middleRow.toggle();
     }
 }
 
