@@ -50,6 +50,11 @@ function ShowOrHideShafts(selected) {
 function ShowOrHideClusters(selected) {
     if (selected == "Y") {
         $("#cluster_data").show();
+        document.getElementById("radio1").required = true;
+        document.getElementById("radio2").required = true;
+        document.getElementById("radio3").required = true;
+        document.getElementById("radio4").required = true;
+        document.getElementById("radio5").required = true;
     }
     else {
         $("#cluster_data").hide();
