@@ -37,41 +37,41 @@ namespace EgyptExcavationProject.Services
 
         //Age is first filter. Starts the initial filter from the context
         //Need to somehow filter the age from the string data
-        public IEnumerable<Burial> FilterAge(IEnumerable<Burial> list, string age)
-        {
-            if (age == "0-10")
-            {
-                return list.Where(b => b.EstimateAge > 0 && b.EstimateAge <= 10);
-            }
-            else if (age == "11-20")
-            {
-                return list.Where(b => b.EstimateAge > 10 && b.EstimateAge <= 20);
-            }
-            else if (age == "21-30")
-            {
-                return list.Where(b => b.EstimateAge > 20 && b.EstimateAge <= 30);
-            }
-            else if (age == "31-40")
-            {
-                return list.Where(b => b.EstimateAge > 30 && b.EstimateAge <= 40);
-            }
-            else if (age == "41-50")
-            {
-                return list.Where(b => b.EstimateAge > 40 && b.EstimateAge <= 50);
-            }
-            else if (age == "51-60")
-            {
-                return list.Where(b => b.EstimateAge > 50 && b.EstimateAge <= 60);
-            }
-            else if (age == "61-70")
-            {
-                return list.Where(b => b.EstimateAge > 60 && b.EstimateAge <= 70);
-            }
-            else
-            {
-                return list;
-            }
-        }
+        //public IEnumerable<Burial> FilterAge(IEnumerable<Burial> list, string age)
+        //{
+        //    if (age == "0-10")
+        //    {
+        //        return list.Where(b => b.EstimateAge > 0 && b.EstimateAge <= 10);
+        //    }
+        //    else if (age == "11-20")
+        //    {
+        //        return list.Where(b => b.EstimateAge > 10 && b.EstimateAge <= 20);
+        //    }
+        //    else if (age == "21-30")
+        //    {
+        //        return list.Where(b => b.EstimateAge > 20 && b.EstimateAge <= 30);
+        //    }
+        //    else if (age == "31-40")
+        //    {
+        //        return list.Where(b => b.EstimateAge > 30 && b.EstimateAge <= 40);
+        //    }
+        //    else if (age == "41-50")
+        //    {
+        //        return list.Where(b => b.EstimateAge > 40 && b.EstimateAge <= 50);
+        //    }
+        //    else if (age == "51-60")
+        //    {
+        //        return list.Where(b => b.EstimateAge > 50 && b.EstimateAge <= 60);
+        //    }
+        //    else if (age == "61-70")
+        //    {
+        //        return list.Where(b => b.EstimateAge > 60 && b.EstimateAge <= 70);
+        //    }
+        //    else
+        //    {
+        //        return list;
+        //    }
+        //}
 
         public IEnumerable<Burial> FilterHeight(IEnumerable<Burial> list, string height)
         {
@@ -232,76 +232,76 @@ namespace EgyptExcavationProject.Services
         }
 
         //Uses carbon dating analyses. May need to loop if multiple biosamples or 
-        public IEnumerable<Burial> FilterTimeOfBurial(IEnumerable<Burial> list, string burial)
-        {
-            return list.Where(b => b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate == 
-        }
+        //public IEnumerable<Burial> FilterTimeOfBurial(IEnumerable<Burial> list, string burial)
+        //{
+        //    return list.Where(b => b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate == 
+        //}
 
         //Main function to utilize all the individual functions. Will be called in controller
-        public IEnumerable<Burial> FilterAllData (string gender ="", string hair ="", string age ="", string height="", 
-                                                  string depth = "", int year = 0, int month = 0, string item ="", string length ="",
-                                                  bool? textile = null, char? NS = null, int? NSlow = null, char? EW = null,
-                                                  int? EWlow = null, string area = "", string hDirection = "", string burialTime = "")
-        {
-            IEnumerable<Burial> results;
+        //public IEnumerable<Burial> FilterAllData (string gender ="", string hair ="", string age ="", string height="", 
+        //                                          string depth = "", int year = 0, int month = 0, string item ="", string length ="",
+        //                                          bool? textile = null, char? NS = null, int? NSlow = null, char? EW = null,
+        //                                          int? EWlow = null, string area = "", string hDirection = "", string burialTime = "")
+        //{
+        //    IEnumerable<Burial> results;
 
-            results = FilterGender(gender);
+        //    results = FilterGender(gender);
 
-            if(hair != "")
-            {
-                results = FilterHairColor(results, hair);
-            }
-            if(age != "")
-            {
-                results = FilterAge(results, age);
-            }
-            if(height != "")
-            {
-                results = FilterHeight(results, height);
-            }
-            if(depth != "")
-            {
-                results = FilterBurialDepth(results, depth);
-            }
-            if(year != 0)
-            {
-                results = FilterFoundYear(results, year);
-            }
-            if(month != 0)
-            {
-                results = FilterFoundMonth(results, month);
-            }
-            if(item != "")
-            {
-                results = FilterItemFound(results, item);
-            }
-            if(length != "")
-            {
-                results = FilterRemainLength(results, length);
-            }
-            if(textile != null)
-            {
-                results = FilterTextile(results, textile);
-            }
-            if(NS != null && NSlow != null && EW != null && EWlow != null)
-            {
-                results = FilterSquare(results, NS, NSlow, EW, EWlow);
-            }
-            if(area != "")
-            {
-                results = FilterArea(results, area);
-            }
-            if(hDirection != "")
-            {
-                results = FilterHeadDirection(results, hDirection);
-            }
-            if (burialTime != "")
-            {
-                results = FilterTimeOfBurial(results, burialTime);
-            }
+        //    if(hair != "")
+        //    {
+        //        results = FilterHairColor(results, hair);
+        //    }
+        //    if(age != "")
+        //    {
+        //        results = FilterAge(results, age);
+        //    }
+        //    if(height != "")
+        //    {
+        //        results = FilterHeight(results, height);
+        //    }
+        //    if(depth != "")
+        //    {
+        //        results = FilterBurialDepth(results, depth);
+        //    }
+        //    if(year != 0)
+        //    {
+        //        results = FilterFoundYear(results, year);
+        //    }
+        //    if(month != 0)
+        //    {
+        //        results = FilterFoundMonth(results, month);
+        //    }
+        //    if(item != "")
+        //    {
+        //        results = FilterItemFound(results, item);
+        //    }
+        //    if(length != "")
+        //    {
+        //        results = FilterRemainLength(results, length);
+        //    }
+        //    if(textile != null)
+        //    {
+        //        results = FilterTextile(results, textile);
+        //    }
+        //    if(NS != null && NSlow != null && EW != null && EWlow != null)
+        //    {
+        //        results = FilterSquare(results, NS, NSlow, EW, EWlow);
+        //    }
+        //    if(area != "")
+        //    {
+        //        results = FilterArea(results, area);
+        //    }
+        //    if(hDirection != "")
+        //    {
+        //        results = FilterHeadDirection(results, hDirection);
+        //    }
+        //    if (burialTime != "")
+        //    {
+        //        results = FilterTimeOfBurial(results, burialTime);
+        //    }
 
 
-            return results;
-        }
+        //    return results;
+        //}
     }
 }
