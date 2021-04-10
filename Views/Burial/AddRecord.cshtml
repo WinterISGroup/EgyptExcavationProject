@@ -60,51 +60,51 @@
 
     <div class="shafts-clusters form-child">
         <span class="form-section-header">Shafts / Clusters</span>
-        
+
         <label>Shaft Number:</label>
-        <input type="text" name="shaft-num" class="form-control form-control-sm form-short" /><br />
+        <input asp-for="Burial.Shaft" class="form-control form-control-sm form-short" /><br />
         <label>Shared Shaft:</label>
         <label>Y</label>
-        <input type="radio" name="shared-shaft" class="form-radio" value="Y" onchange="ShowOrHideShafts('Y')" />
+        @Html.RadioButtonFor(m => m.Burial.SharedShaft, "Y", new { @class = "form-radio", @onchange = "ShowOrHideShafts('Y')" })
         <label>N</label>
-        <input type="radio" name="shared-shaft" class="form-radio" value="N" onchange="ShowOrHideShafts('N')"/>
+        @Html.RadioButtonFor(m => m.Burial.SharedShaft, "N", new { @class = "form-radio", @onchange = "ShowOrHideShafts('N')" })
         <label>P</label>
-        <input type="radio" name="shared-shaft" class="form-radio" value="P" onchange="ShowOrHideShafts('P')"/>
+        @Html.RadioButtonFor(m => m.Burial.SharedShaft, "P", new { @class = "form-radio", @onchange = "ShowOrHideShafts('P')" })
         <br />
         <div id="shaft_nums" style="display:none;">
             <label>Shared Shaft Numbers:</label>
-            <input type="text" class="form-control form-control-sm form-medium" name="shared-shaft-nums" />
+            <input asp-for="Burial.SharedShaft" class="form-control form-control-sm form-medium" />
         </div>
-        
+
         <label>Cluster:</label>
         <label>Y</label>
-        <input type="radio" name="cluster" class="form-radio" value="Y" onchange="ShowOrHideClusters('Y')"/>
+        @Html.RadioButtonFor(m => m.Burial.Cluster, "Y", new { @class = "form-radio", @onchange = "ShowOrHideClusters('Y')" })
         <label>N</label>
-        <input type="radio" name="cluster" class="form-radio" value="N" onchange="ShowOrHideClusters('N')"/>
+        @Html.RadioButtonFor(m => m.Burial.Cluster, "N", new { @class = "form-radio", @onchange = "ShowOrHideClusters('N')" })
         <br />
         <div id="cluster_data" style="display:none;">
             <label>Other Burial Numbers For Cluster:</label><br />
-            <input type="text" class="form-control form-control-sm form-medium" name="cluster-burial-nums" />
+            <input type="text" class="form-control form-control-sm form-medium"/>
             <br />
             <div class="form-cluster-outer" style="display:flex; flex-direction:row; justify-content:space-between;">
                 <label>Cluster Number:</label>
                 <div class="form-cluster-inner">
                     <label>I</label>
-                    <input type="radio" name="cluster-num" class="form-radio" value="1" />
+                    @Html.RadioButtonFor(m => m.Burial.ClusterNumber, "1", new { @class = "form-radio" })
                     <label>II</label>
-                    <input type="radio" name="cluster-num" class="form-radio" value="2" />
+                    @Html.RadioButtonFor(m => m.Burial.ClusterNumber, "2", new { @class = "form-radio" })
                     <label>III</label>
-                    <input type="radio" name="cluster-num" class="form-radio" value="3" />
+                    @Html.RadioButtonFor(m => m.Burial.ClusterNumber, "3", new { @class = "form-radio" })
                     <br />
                     <label>IV</label>
-                    <input type="radio" name="cluster-num" class="form-radio" value="4" />
+                    @Html.RadioButtonFor(m => m.Burial.ClusterNumber, "4", new { @class = "form-radio" })
                     <label>V</label>
-                    <input type="radio" name="cluster-num" class="form-radio" value="5" />
+                    @Html.RadioButtonFor(m => m.Burial.ClusterNumber, "5", new { @class = "form-radio" })
                 </div>
             </div>
         </div>
-        
-        
+
+
     </div>
 
     <div class="form-burial-specs form-child">
@@ -211,15 +211,17 @@
 
         <span>Burial Materials: </span>
         <label>Yes</label>
-        <input name="burial-materials" class="form-radio" type="radio" value="Yes" />
+        @Html.RadioButtonFor(m => m.Burial.BurialMaterials, "Yes", new { @class = "form-radio" })
         <label>No</label>
-        <input name="burial-materials" class="form-radio" type="radio" value="No" /><br />
+        @Html.RadioButtonFor(m => m.Burial.BurialMaterials, "No", new { @class = "form-radio" })
+        <br />
 
         <span>Photo: </span>
         <label>Yes</label>
-        <input name="burial-materials" class="form-radio" type="radio" value="Yes" />
+        @Html.RadioButtonFor(m => m.Burial.Photo, "Yes", new { @class = "form-radio" })
         <label>No</label>
-        <input name="burial-materials" class="form-radio" type="radio" value="No" /><br />
+        @Html.RadioButtonFor(m => m.Burial.Photo, "No", new { @class = "form-radio" })
+        <br />
     </div>
 </div>
 <div class="form-main-3">
