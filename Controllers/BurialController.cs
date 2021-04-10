@@ -79,8 +79,10 @@ namespace EgyptExcavationProject.Controllers
             }
         }
 
-        public IActionResult DeleteRecord()
+        public IActionResult DeleteRecord(Guid burialID)
         {
+            _recordService.DeleteLocation(_recordService.GetRecord(burialID).LocationId.Value);
+            _recordService.DeleteRecord(burialID);
             return RedirectToAction("BurialRecords");
         }
     }
