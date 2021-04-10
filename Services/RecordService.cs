@@ -16,13 +16,17 @@ namespace EgyptExcavationProject.Services
 
         public IEnumerable<Burial> GetAllBurials()
         {
-            return _context.Burial.OrderBy(b => b.BurialId);
+            DateTime jan01 = new DateTime(2021, 01, 01);
+            return _context.Burial.Where(b => b.DateFound > jan01 ).OrderBy(b => b.BurialId);
+            //return _context.Burial.OrderBy(b => b.BurialId);
         }
 
         //FIXME: return type change to BurialModel
         public Burial GetRecord(Guid burialID)
         {
-            return _context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault();
+            Burial burial = _context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault();
+            burial.Location = _context.Location.Where(x => x.LocationId == burial.LocationId).FirstOrDefault();
+            return burial;
         }
 
         public void AddBurial(Burial newBurial)
@@ -55,7 +59,26 @@ namespace EgyptExcavationProject.Services
 
         public void UpdateRecord(Burial updatedBurial)
         {
-            _context.Burial.Update(updatedBurial);
+            Burial burialToUpdate = _context.Burial.Where(b => b.BurialId == updatedBurial.BurialId).FirstOrDefault();
+            
+            if(updatedBurial.LocationId == null)
+            {
+                if(burialToUpdate.LocationId != null)
+                {
+                    updatedBurial.LocationId = burialToUpdate.LocationId;
+                }
+                else
+                {
+                    _context.Location.Add(updatedBurial.Location);
+                    _context.SaveChanges();
+                    updatedBurial.LocationId = updatedBurial.Location.LocationId;
+                }
+            }
+
+            if(burialToUpdate != null)
+            {
+                _context.Entry(burialToUpdate).CurrentValues.SetValues(updatedBurial);
+            }
             _context.SaveChanges();
         }
 
