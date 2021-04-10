@@ -1,5 +1,7 @@
-﻿using EgyptExcavationProject.Models;
+﻿using EgyptExcavationProject.Data;
+using EgyptExcavationProject.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,10 +15,16 @@ namespace EgyptExcavationProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
         {
             _logger = logger;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -37,7 +45,14 @@ namespace EgyptExcavationProject.Controllers
         [Authorize(Roles ="Admin")]
         public IActionResult ManageUsers()
         {
-            return View();
+            IQueryable<IdentityUser> users = _userManager.Users.ToList().AsQueryable();
+
+            return View(users);
+        }
+
+        public IActionResult ApproveResearcher()
+        {
+            return RedirectToAction("ManageUsers");
         }
 
         public IActionResult ViewUser()

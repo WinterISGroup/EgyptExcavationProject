@@ -14,6 +14,7 @@ namespace EgyptExcavationProject.Controllers
     {
         private IRecordService _recordService;
         private IFilterService _filterService;
+       
         public BurialController(IRecordService recordService, IFilterService filterService)
         {
             _recordService = recordService;

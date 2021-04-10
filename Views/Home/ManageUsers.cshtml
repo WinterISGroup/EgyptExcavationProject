@@ -2,6 +2,14 @@
     ViewData["Title"] = "Manage Users";
 }
 
+@model IQueryable<IdentityUser>
+
+<div>
+    @foreach (var user in Model)
+    {
+        <p>@user.Email</p>
+    }
+</div>
 <div>
     <h2>User Management System:</h2>
     <br />
