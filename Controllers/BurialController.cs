@@ -33,7 +33,7 @@ namespace EgyptExcavationProject.Controllers
 
         public IActionResult ViewRecord(Guid burialID)
         {
-            return View();
+            return View(_recordService.GetRecord(burialID));
         }
 
         [HttpGet]
@@ -50,7 +50,7 @@ namespace EgyptExcavationProject.Controllers
                 //_recordService.AddLocation(newRecord.Location);
                 //newRecord.Burial.Location = newRecord.Location;
                 _recordService.AddBurial(burial);
-                return RedirectToAction("BurialRecords");
+                return RedirectToAction("ViewRecord", new { burialID = burial.BurialId });
             }
             else
             {
@@ -71,7 +71,7 @@ namespace EgyptExcavationProject.Controllers
             if (ModelState.IsValid)
             {
                 _recordService.UpdateRecord(burial);
-                return RedirectToAction("BurialRecords");
+                return RedirectToAction("ViewRecord", new { burialID = burial.BurialId });
             }
             else
             {
