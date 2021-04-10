@@ -23,17 +23,21 @@ namespace EgyptExcavationProject.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -79,6 +83,19 @@ namespace EgyptExcavationProject.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    //// Create new user role
+                    //bool hasRole = await _roleManager.RoleExistsAsync("Researcher");
+                    //if (!hasRole)
+                    //{
+                    //    // Create a role
+                    //    var role = new IdentityRole();
+                    //    role.Name = "Researcher";
+                    //    await _roleManager.CreateAsync(role);
+                    //}
+
+                    //// Add user to role
+                    //await _userManager.AddToRoleAsync(user, "Researcher");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

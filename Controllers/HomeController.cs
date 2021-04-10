@@ -34,7 +34,7 @@ namespace EgyptExcavationProject.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public IActionResult ManageUsers()
         {
             return View();
