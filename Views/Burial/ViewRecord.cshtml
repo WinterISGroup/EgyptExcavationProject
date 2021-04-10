@@ -1,3 +1,323 @@
 ﻿@{
     ViewData["Title"] = "View Record";
 }
+
+@model AddRecordModel
+
+<h2 class="text-center text-brass-dark">Burial Record</h2>
+
+    <div class="form-top-holder">
+        <div class="">
+            <div class="text-ebony">Date Found:</div>
+            <div>@Html.DisplayFor(m => m.Burial.DateFound)</div>
+        </div>
+        <div class="">
+            <label for="exca-recorder" class="text-ebony">Excavation Recorder:</label>
+            <div>@Html.DisplayFor(m => m.Burial.ExcavationRecorder)</div>
+        </div>
+    </div>
+    <div class="form-main text-ebony">
+        <div class="form-location form-child">
+            <span class="form-section-header">Location Specifications</span>
+            <span>Burial ID:</span>
+            <div>@Html.DisplayFor(m => m.Location.LocationNs)</div>
+            <div>
+                @*@Model.location_ns @Model.low_pair_ns / @Model.high_pair_ns @Model.location_ew @Model.low_pair_ew /
+                @Model.high_pair_ew @Model.burial_subplot @Model.shaft_num @Model.cluster_num @Model.burial_number*@
+            </div>
+            <div class="subsection-indent">
+                <label>Shaft Number:</label>
+                <input type="text" name="shaft-num" class="form-control form-control-sm form-short" /><br />
+                <label>Shared Shaft:</label>
+                <label>Y</label>
+                <input type="radio" name="shared-shaft" class="form-radio" value="Y" />
+                <label>N</label>
+                <input type="radio" name="shared-shaft" class="form-radio" value="N" />
+                <label>P</label>
+                <input type="radio" name="shared-shaft" class="form-radio" value="P" />
+                <br />
+                <label>Shared Shaft Numbers:</label>
+                <input type="text" class="form-control form-control-sm form-medium" name="shared-shaft-nums" />
+                <br />
+            </div>
+
+            <label>Cluster:</label>
+            <label>Y</label>
+            @*<input type="radio" name="cluster" class="form-radio" value="Y" />*@
+            <label>N</label>
+            <input type="radio" name="cluster" class="form-radio" value="N" />
+            <br />
+            <label>Other Burial Numbers For Cluster:</label><br />
+            <input type="text" class="form-control form-control-sm form-medium" name="cluster-burial-nums" />
+            <br />
+            <div class="form-cluster-outer" style="display:flex; flex-direction:row; justify-content:space-between;">
+                <label>Cluster Number:</label>
+                <div class="form-cluster-inner">
+                    <label>I</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="1" />
+                    <label>II</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="2" />
+                    <label>III</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="3" />
+                    <br />
+                    <label>IV</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="4" />
+                    <label>V</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="5" />
+                </div>
+            </div>
+                <div class="shafts-clusters form-child">
+                    <table class="w-100">
+                        <tr>
+                            <td><label>Head Direction: </label></td>
+                            <td class="text-right">@Html.DisplayFor(m => m.Burial.HeadDirection)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><label>Burial Depth: </label></td>
+                            <td class="text-right">@*@Model.burial_depth*@</td>
+                            <td>m</td>
+                        </tr>
+                        <tr>
+                            <td><label>South to Head: </label></td>
+                            <td class="text-right">@*@Model.south_to_head*@</td>
+                            <td>m</td>
+                        </tr>
+                        <tr>
+                            <td><label>South to Feet: </label></td>
+                            <td class="text-right">@*@Model.south_to_feet*@</td>
+                            <td>m</td>
+                        </tr>
+                        <tr>
+                            <td><label>West to Head: </label></td>
+                            <td class="text-right">@*@Model.west_to_head*@</td>
+                            <td>m</td>
+                        </tr>
+                        <tr>
+                            <td><label>West to Feet: </label></td>
+                            <td class="text-right">@*@Model.west_to_feet*@</td>
+                            <td>m</td>
+                        </tr>
+                        <tr>
+                            <td><label>Measured Length: </label></td>
+                            <td class="text-right">@*@Model.measured_length*@</td>
+                            <td>m</td>
+                        </tr>
+                        <tr>
+                            <td><label>Calculated Length: </label></td>
+                            <td class="text-right">@*@Model.calculated_length*@</td>
+                            <td>m</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*<span>Square:</span><br />
+        <div class="subsection-indent">
+            <label>North</label>
+            <input class="form-radio" name="location-ns" type="radio" value="N" />
+            <label>South</label>
+            <input class="form-radio" name="location-ns" type="radio" value="S" />
+            <br />
+
+            <label>High/Low Pair:</label>
+            <input name="high-pair-ns" type="text" class="form-control form-control-sm form-short" />/<input name="sq-ns-low" type="text" class="form-control form-control-sm form-short" />
+            <br />
+
+            <label>East</label>
+            <input class="form-radio" name="location-ew" type="radio" value="E" />
+            <label>West</label>
+            <input class="form-radio" name="location-ew" type="radio" value="W" />
+            <br />
+
+            <label>High/Low Pair:</label>
+            <input name="high-pair-ew" type="text" class="form-control form-control-sm form-short" />/<input name="sq-ew-low" type="text" class="form-control form-control-sm form-short" />
+            <br />
+        </div>
+        <span>Area: </span>
+        <label>NW</label>
+        <input type="radio" name="area" class="form-radio" value="NW" />
+        <label>NE</label>
+        <input type="radio" name="area" class="form-radio" value="NE" />
+        <label>SW</label>
+        <input type="radio" name="area" class="form-radio" value="SW" />
+        <label>SE</label>
+        <input type="radio" name="area" class="form-radio" value="SE" />
+        <br />
+        <label>Burial #: </label>
+        <input type="text" name="burial-num" class="form-control form-control-sm form-short" /><br />*@
+
+
+        <!--<div class="shafts-clusters form-child">
+            <span class="form-section-header">Shafts / Clusters</span>
+
+            <label>Shaft Number:</label>
+            <input type="text" name="shaft-num" class="form-control form-control-sm form-short" /><br />
+            <label>Shared Shaft:</label>
+            <label>Y</label>
+            <input type="radio" name="shared-shaft" class="form-radio" value="Y" />
+            <label>N</label>
+            <input type="radio" name="shared-shaft" class="form-radio" value="N" />
+            <label>P</label>
+            <input type="radio" name="shared-shaft" class="form-radio" value="P" />
+            <br />
+            <label>Shared Shaft Numbers:</label>
+            <input type="text" class="form-control form-control-sm form-medium" name="shared-shaft-nums" />
+            <br />
+
+            <label>Cluster:</label>
+            <label>Y</label>-->
+            @*<input type="radio" name="cluster" class="form-radio" value="Y" />*@
+            <!--<label>N</label>
+            <input type="radio" name="cluster" class="form-radio" value="N" />
+            <br />
+            <label>Other Burial Numbers For Cluster:</label><br />
+            <input type="text" class="form-control form-control-sm form-medium" name="cluster-burial-nums" />
+            <br />
+            <div class="form-cluster-outer" style="display:flex; flex-direction:row; justify-content:space-between;">
+                <label>Cluster Number:</label>
+                <div class="form-cluster-inner">
+                    <label>I</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="1" />
+                    <label>II</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="2" />
+                    <label>III</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="3" />
+                    <br />
+                    <label>IV</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="4" />
+                    <label>V</label>
+                    <input type="radio" name="cluster-num" class="form-radio" value="5" />
+                </div>
+            </div>-->
+
+        <div class="form-burial-specs form-child">
+            <!--<span class="form-section-header">Burial Specifications</span>
+        <table class="w-100">
+            <tr>
+                <td><label>Head Direction: </label></td>
+                <td class="text-right">-->
+            @*@Model.head_direction*@
+            <!--</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label>Burial Depth: </label></td>
+            <td class="text-right">-->
+            @*@Model.burial_depth*@
+            <!--</td>
+            <td>m</td>
+        </tr>
+        <tr>
+            <td><label>South to Head: </label></td>
+            <td class="text-right">-->
+            @*@Model.south_to_head*@
+            <!--</td>
+            <td>m</td>
+        </tr>
+        <tr>
+            <td><label>South to Feet: </label></td>
+            <td class="text-right">-->
+            @*@Model.south_to_feet*@
+            <!--</td>
+            <td>m</td>
+        </tr>
+        <tr>
+            <td><label>West to Head: </label></td>
+            <td class="text-right">-->
+            @*@Model.west_to_head*@
+            <!--</td>
+            <td>m</td>
+        </tr>
+        <tr>
+            <td><label>West to Feet: </label></td>
+            <td class="text-right">-->
+            @*@Model.west_to_feet*@
+            <!--</td>
+            <td>m</td>
+        </tr>
+        <tr>
+            <td><label>Measured Length: </label></td>
+            <td class="text-right">-->
+            @*@Model.measured_length*@
+            <!--</td>
+            <td>m</td>
+        </tr>
+        <tr>
+            <td><label>Calculated Length: </label></td>
+            <td class="text-right">-->
+            @*@Model.calculated_length*@
+            <!--</td>
+                <td>m</td>
+            </tr>
+        </table>-->
+        </div>
+
+    <hr class="form-divide" />
+    <div class="form-main-2 text-ebony">
+        <div class="form-overall-imp form-child">
+            <span class="form-section-header">Preservation Details</span>
+            <span>Preservation Index:</span>
+            <div class="subsection-indent">
+                <table style="width:100%">
+                    <tr>
+                        <td><label>I - only bones</label></td>
+                        <td><input name="preservation" type="radio" class="form-radio" value="1" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>II - 5-25%</label></td>
+                        <td><input name="preservation" type="radio" class="form-radio" value="2" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>III - 25-50%</label></td>
+                        <td><input name="preservation" type="radio" class="form-radio" value="3" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>IV - 50-75%</label></td>
+                        <td><input name="preservation" type="radio" class="form-radio" value="4" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>V - 75-100%</label></td>
+                        <td><input name="preservation" type="radio" class="form-radio" value="5" /></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <div class="form-burial-observe form-child">
+            <span class="form-section-header">Burial Observations</span>
+            <label>Hair Color: </label>
+            <input type="text" name="hair-color" class="form-control form-control-sm form-medium" /><br />
+            <label>Age: </label>
+            <input type="text" name="age" class="form-control form-control-sm form-short" /><br />
+            <span>Burial Goods: </span>
+            <label>Yes</label>
+            <input name="burial-goods" class="form-radio" type="radio" value="Yes" />
+            <label>No</label>
+            <input name="burial-goods" class="form-radio" type="radio" value="No" /><br />
+
+            <span>Burial Materials: </span>
+            <label>Yes</label>
+            <input name="burial-materials" class="form-radio" type="radio" value="Yes" />
+            <label>No</label>
+            <input name="burial-materials" class="form-radio" type="radio" value="No" /><br />
+
+            <span>Photo: </span>
+            <label>Yes</label>
+            <input name="burial-materials" class="form-radio" type="radio" value="Yes" />
+            <label>No</label>
+            <input name="burial-materials" class="form-radio" type="radio" value="No" />
+            <input type="button" value="Upload Photo" class="btn btn-sm btn-brassdark" /><br />
+        </div>
+    </div>
+    <div class="form-main-3">
+        <div class="form-burial-notes">
+            <span class="font-weight-bold">Burial Observation Notes:</span><br />
+            <textarea class="form-control form-textarea"></textarea>
+        </div>
+    </div>
+    <div class="form-bottom">
+        <input type="submit" class="btn btn-blackolive mx-auto" name="submitBurialForm" value="Save Record" />
+    </div>
+    <hr class="form-divide" />
