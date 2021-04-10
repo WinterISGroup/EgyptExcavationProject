@@ -27,15 +27,16 @@ namespace EgyptExcavationProject.Services
 
         public void AddBurial(Burial newBurial)
         {
-            try
-            {
-                _context.Burial.Add(newBurial);
-                _context.SaveChanges();
-            }
-            catch
-            {
-                throw new Exception("Error in adding new burial record");
-            }
+            //try
+            //{
+                
+            //}
+            //catch
+            //{
+            //    throw new Exception("Error in adding new burial record");
+            //}
+            _context.Burial.Add(newBurial);
+            _context.SaveChanges();
 
         }
 
