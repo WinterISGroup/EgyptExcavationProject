@@ -1,4 +1,5 @@
 using EgyptExcavationProject.Data;
+using EgyptExcavationProject.Models;
 using EgyptExcavationProject.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,10 @@ namespace EgyptExcavationProject
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<ExcavationProjectContext>(options =>
+            {
+                
+            });
             services.AddControllersWithViews();
             services.AddRazorPages();
 
