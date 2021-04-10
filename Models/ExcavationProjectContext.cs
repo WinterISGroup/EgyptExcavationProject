@@ -33,7 +33,8 @@ namespace EgyptExcavationProject.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=byu-egypt-excavation.cetfe812kvky.us-east-1.rds.amazonaws.com;Database=postgres;Username=postgres;Password=g4rexUU3I6FVeLq60iZYyY");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseNpgsql("Host=192.168.50.208;Database=ExcavationProject;Username=postgres;Password=konojo");
             }
         }
 
@@ -217,6 +218,8 @@ namespace EgyptExcavationProject.Models
                     .HasDefaultValueSql("'NULL'::text");
 
                 entity.Property(e => e.RackShelf).HasColumnName("rack_shelf");
+
+                entity.Property(e => e.RelatedBurialNumbers).HasColumnName("related_burial_numbers");
 
                 entity.Property(e => e.SampleNumber).HasColumnName("sample_number");
 
