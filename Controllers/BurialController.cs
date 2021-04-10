@@ -45,7 +45,18 @@ namespace EgyptExcavationProject.Controllers
         [HttpPost]
         public IActionResult AddRecord(AddRecordModel newRecord)
         {
-            return View(newRecord);
+            if (ModelState.IsValid)
+            {
+                _recordService.AddLocation(newRecord.Location);
+                newRecord.Burial.Location = newRecord.Location;
+                _recordService.AddBurial(newRecord.Burial);
+                return RedirectToAction("BurialRecords");
+            }
+            else
+            {
+                return View(newRecord);
+            }
+            
         }
 
         public IActionResult EditRecord()
