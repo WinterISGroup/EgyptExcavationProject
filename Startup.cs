@@ -29,15 +29,17 @@ namespace EgyptExcavationProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            // Setup context for the excavation project data
             services.AddDbContext<ExcavationProjectContext>(options =>
             {
 
             });
+
+            // Setup a context for the authentication
+            services.AddDbContext<ApplicationDbContext>(options => {
+                options.UseNpgsql(Configuration["ConnectionStrings:PostgresConnection"]);
+            });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
