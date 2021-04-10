@@ -6,7 +6,7 @@
     width: 100% !important;
 }
 .form-short{
-    width: 50px !important;
+    width: 75px !important;
 }
 .form-medium {
     width: 100px !important;
@@ -80,4 +80,8 @@
 hr.form-divide {
     border-width: 2px;
     border-color: var(--black-olive);
+}
+
+.shafts-clusters{
+    width: 280px !important;
 }

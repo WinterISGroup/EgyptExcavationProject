@@ -39,6 +39,8 @@ namespace EgyptExcavationProject.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasPostgresExtension("uuid-ossp");
+
             modelBuilder.Entity<BioSample>(entity =>
             {
                 entity.HasKey(e => e.SampleId)
@@ -48,7 +50,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.SampleId)
                     .HasColumnName("sample_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.BagNum).HasColumnName("bag_num");
 
@@ -90,7 +92,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.BurialId)
                     .HasColumnName("burial_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.AgeCode).HasColumnName("age_code");
 
@@ -218,6 +220,8 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.RackShelf).HasColumnName("rack_shelf");
 
+                entity.Property(e => e.RelatedBurialNumbers).HasColumnName("related_burial_numbers");
+
                 entity.Property(e => e.SampleNumber).HasColumnName("sample_number");
 
                 entity.Property(e => e.Shaft).HasColumnName("shaft");
@@ -288,7 +292,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.Carbon14Id)
                     .HasColumnName("carbon14_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.AgeBp).HasColumnName("age_bp");
 
@@ -354,7 +358,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.FemurId)
                     .HasColumnName("femur_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.BurialId).HasColumnName("burial_id");
 
@@ -378,7 +382,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.HumerusId)
                     .HasColumnName("humerus_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.BurialId).HasColumnName("burial_id");
 
@@ -400,7 +404,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.LocationId)
                     .HasColumnName("location_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.BurialSubplot)
                     .HasColumnName("burial_subplot")
@@ -437,7 +441,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.PelvisId)
                     .HasColumnName("pelvis_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.BurialId).HasColumnName("burial_id");
 
@@ -471,7 +475,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.SkullId)
                     .HasColumnName("skull_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.BasilarSuture)
                     .HasColumnName("basilar_suture")
@@ -559,7 +563,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.TibiaId)
                     .HasColumnName("tibia_id")
-                    .ValueGeneratedNever();
+                    .HasDefaultValueSql("uuid_generate_v1()");
 
                 entity.Property(e => e.BurialId).HasColumnName("burial_id");
 

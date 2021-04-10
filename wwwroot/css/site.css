@@ -261,6 +261,28 @@ a {
         background-color: #20211c;
         border-color: #20211c;
     }
+.btn-ebony {
+    color: #fff;
+    background-color: var(--ebony);
+    border-color: var(--ebony);
+}
+
+    .btn-ebony:hover {
+        color: #f5f6f4;
+        background-color: #889178;
+        border-color: #889178;
+    }
+.btn-artichoke {
+    color: #fff;
+    background-color: var(--artichoke);
+    border-color: var(--artichoke);
+}
+
+    .btn-artichoke:hover {
+        color: #f5f6f4;
+        background-color: #89896C;
+        border-color: #89896C;
+    }
 .btn-brassdark {
     color: #000000;
     background-color: var(--antique-brass-dark);
