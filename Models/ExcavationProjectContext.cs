@@ -77,9 +77,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.SampleNumber).HasColumnName("sample_number");
 
-                entity.Property(e => e.YearFound)
-                    .HasColumnName("year_found")
-                    .HasColumnType("date");
+                entity.Property(e => e.YearFound).HasColumnName("year_found");
 
                 entity.HasOne(d => d.Burial)
                     .WithMany(p => p.BioSample)
@@ -119,11 +117,19 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.BurialGenderMethod).HasColumnName("burial_gender_method");
 
+                entity.Property(e => e.BurialMaterials).HasColumnName("burial_materials");
+
                 entity.Property(e => e.BurialNumber).HasColumnName("burial_number");
 
                 entity.Property(e => e.BurialSampleTaken).HasColumnName("burial_sample_taken");
 
                 entity.Property(e => e.BurialWrapping).HasColumnName("burial_wrapping");
+
+                entity.Property(e => e.CalculatedLengthOfRemains).HasColumnName("calculated_length_of_remains");
+
+                entity.Property(e => e.Cluster).HasColumnName("cluster");
+
+                entity.Property(e => e.ClusterNumber).HasColumnName("cluster_number");
 
                 entity.Property(e => e.DateFound)
                     .HasColumnName("date_found")
@@ -136,6 +142,8 @@ namespace EgyptExcavationProject.Models
                 entity.Property(e => e.EstimateAge).HasColumnName("estimate_age");
 
                 entity.Property(e => e.EstimateLivingStature).HasColumnName("estimate_living_stature");
+
+                entity.Property(e => e.ExcavationRecorder).HasColumnName("excavation_recorder");
 
                 entity.Property(e => e.FaceBundle).HasColumnName("face_bundle");
 
@@ -157,6 +165,8 @@ namespace EgyptExcavationProject.Models
                     .HasColumnName("hair_color")
                     .HasDefaultValueSql("'NULL'::text");
 
+                entity.Property(e => e.HairPresent).HasColumnName("hair_present");
+
                 entity.Property(e => e.HairTaken)
                     .HasColumnName("hair_taken")
                     .HasDefaultValueSql("false");
@@ -165,7 +175,7 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.HeadDirection)
                     .HasColumnName("head_direction")
-                    .HasDefaultValueSql("'U'::bpchar");
+                    .HasDefaultValueSql("'''U'''::text");
 
                 entity.Property(e => e.HillArea).HasColumnName("hill_area");
 
@@ -195,6 +205,8 @@ namespace EgyptExcavationProject.Models
 
                 entity.Property(e => e.PelvisId).HasColumnName("pelvis_id");
 
+                entity.Property(e => e.Photo).HasColumnName("photo");
+
                 entity.Property(e => e.PostcraniaAtMagazine).HasColumnName("postcrania_at_magazine");
 
                 entity.Property(e => e.PostcraniaTrauma).HasColumnName("postcrania_trauma");
@@ -208,6 +220,10 @@ namespace EgyptExcavationProject.Models
                 entity.Property(e => e.RackShelf).HasColumnName("rack_shelf");
 
                 entity.Property(e => e.SampleNumber).HasColumnName("sample_number");
+
+                entity.Property(e => e.Shaft).HasColumnName("shaft");
+
+                entity.Property(e => e.SharedShaft).HasColumnName("shared_shaft");
 
                 entity.Property(e => e.SkullId).HasColumnName("skull_id");
 
@@ -388,13 +404,16 @@ namespace EgyptExcavationProject.Models
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.BurialSubplot)
-                    .IsRequired()
                     .HasColumnName("burial_subplot")
                     .HasDefaultValueSql("'U'::text");
 
-                entity.Property(e => e.HighPairEw).HasColumnName("high_pair_EW");
+                entity.Property(e => e.HighPairEw)
+                    .HasColumnName("high_pair_EW")
+                    .HasDefaultValueSql("0");
 
-                entity.Property(e => e.HighPairNs).HasColumnName("high_pair_NS");
+                entity.Property(e => e.HighPairNs)
+                    .HasColumnName("high_pair_NS")
+                    .HasDefaultValueSql("0");
 
                 entity.Property(e => e.LocationEw)
                     .HasColumnName("location_EW")
@@ -404,9 +423,13 @@ namespace EgyptExcavationProject.Models
                     .HasColumnName("location_NS")
                     .HasDefaultValueSql("'U'::bpchar");
 
-                entity.Property(e => e.LowPairEw).HasColumnName("low_pair_EW");
+                entity.Property(e => e.LowPairEw)
+                    .HasColumnName("low_pair_EW")
+                    .HasDefaultValueSql("0");
 
-                entity.Property(e => e.LowPairNs).HasColumnName("low_pair_NS");
+                entity.Property(e => e.LowPairNs)
+                    .HasColumnName("low_pair_NS")
+                    .HasDefaultValueSql("0");
             });
 
             modelBuilder.Entity<Pelvis>(entity =>
@@ -451,8 +474,8 @@ namespace EgyptExcavationProject.Models
                     .HasColumnName("skull_id")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.BasiilarSuture)
-                    .HasColumnName("basiilar_suture")
+                entity.Property(e => e.BasilarSuture)
+                    .HasColumnName("basilar_suture")
                     .HasDefaultValueSql("'NULL'::text");
 
                 entity.Property(e => e.BasionBregmaHeight).HasColumnName("basion_bregma_height");
