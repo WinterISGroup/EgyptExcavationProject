@@ -8,7 +8,7 @@ namespace EgyptExcavationProject.Areas.Identity.Data
 {
     public class ApplicationUser : IdentityUser
     {
-        // Custom user
+        // Custom user properties
         [PersonalData]
         public string FullName { get; set; }
         [PersonalData]

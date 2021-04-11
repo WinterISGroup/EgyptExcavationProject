@@ -20,24 +20,36 @@
                     <span class="navbar-logo-main">BYU Egypt Excavation Project</span>
                     <span class="navbar-logo-subitem">Fag el-Gamous Cemetery Database</span>
                 </a>
-
-                @*<img class="buffalo-img" src="~/waterbuffalo.png" />*@
-                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>*@
-                <div class="navbar-navitems align-items-end">@*navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse*@
-                    @*<partial name="_LoginPartial" />*@ @*ASP.NET built in partial view for login/authentication*@
+                <div class="navbar-navitems">
                     <ul class="navbar-navlist">
+                        <partial name="_LoginPartial" />
+                    </ul>
+                    <br />
+                    @*<partial name="_LoginPartial" />*@ @*ASP.NET built in partial view for login/authentication*@
+                    <ul class="navbar-navlist mt-auto">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Burial" asp-action="BurialRecords">Burial Records</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Burial" asp-action="AddRecord">Add Burial Record</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ManageUsers">Admin Tools</a>
-                        </li>
+                        @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <input type="hidden" value="Researcher: @User.IsInRole("Researcher")" />
+                                <a class="nav-link" asp-area="" asp-controller="Burial" asp-action="AddRecord">Add Burial Record</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <input type="hidden" value="Admin: @User.IsInRole("Admin")" />
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ManageUsers">Admin Tools</a>
+                            </li>
+                        }
+                        @*@if (!User.IsInRole("Researcher") && !User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>
+                        }*@
                     </ul>
                 </div>
             </div>

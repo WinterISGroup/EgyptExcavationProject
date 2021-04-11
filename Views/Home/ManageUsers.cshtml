@@ -1,15 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Manage Users";
 }
+@inject UserManager<ApplicationUser> _userManager
 
 @model IQueryable<ApplicationUser>
 
-<div>
-    @foreach (var user in Model)
-    {
-        <p>@user.Email</p>
-    }
-</div>
 <div>
     <h2>User Management System:</h2>
     <br />
@@ -18,26 +13,62 @@
             <tr>
                 <th>Name:</th>
                 <th>Email:</th>
-                <th>Phone Number:</th>
+                <th>NetID:</th>
                 <th>Account Creation Date:</th>
-                <th>Needs Approval?</th>
+                <th>Current Roles:</th>
                 <th>Approve:</th>
-                <th>View Details:</th>
+                <th>Revoke:</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model)
             {
+                var rolesList = await _userManager.GetRolesAsync(user);
+                string rolesDisplay = "";
+                if(rolesList.Count != 0)
+                {
+                    foreach(var role in rolesList)
+                    {
+                        rolesDisplay += role + ", ";
+                    }
+                    rolesDisplay = rolesDisplay.Substring(0, rolesDisplay.Length - 2);
+                }
+                else
+                {
+                    rolesDisplay = "None.";
+                }
+                if (rolesList.Contains("Researcher"))
+                {
+
+                }    
             <tr>
-                <td>@user.UserName</td>
+                <td>@user.FullName</td>
                 <td>@user.Email</td>
-                <td>@user.PhoneNumber</td>
-                <td>@user.PhoneNumber</td>
-                <td>Yes</td>
-                <td><button class="btn btn-brassdark">Approve</button></td>
-                <td>@Html.ActionLink("Details ->", "ViewUser", "Home", new { userID = user.Id }, new { @class = "btn btn-blackolive" })</td>
+                <td>@user.NetId</td>
+                <td>@user.CreationDateTime</td>
+                <td>@rolesDisplay</td>
+                <td>
+                @if (rolesList.Contains("Pending"))
+                {
+                    @Html.ActionLink("Approve", "ApproveResearcher", "Home", new {userId = user.Id}, new {@class="btn btn-blackolive" })
+                }
+                else
+                {
+                    <span>No Approval Needed</span>
+                }
+                </td>
+                <td>
+                @if (rolesList.Contains("Researcher"))
+                {
+                    @Html.ActionLink("Revoke", "RevokeResearcherPermissions", "Home", new { userId = user.Id }, new { @class = "btn btn-blackolive" })
+                }
+                else
+                {
+                    <span>No Permissions to Revoke</span>
+                }
+                </td>
             </tr>
-            }
+        }
         </tbody>
     </table>
 </div>
