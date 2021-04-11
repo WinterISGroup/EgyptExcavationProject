@@ -81,6 +81,8 @@ namespace EgyptExcavationProject
                 options.SlidingExpiration = true;
             });
 
+            // Add identity services
+            // This uses the Application User instead of the identity user
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
