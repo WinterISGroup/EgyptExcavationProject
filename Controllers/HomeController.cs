@@ -58,6 +58,11 @@ namespace EgyptExcavationProject.Controllers
             return RedirectToAction("ManageUsers");
         }
 
+        public IActionResult RevokeResearcherPermissions()
+        {
+            return RedirectToAction("ManageUsers");
+        }
+
         public IActionResult ViewUser(string userID)
         {
             return View(_userManager.Users.Where(u => u.Id == userID).FirstOrDefault());
