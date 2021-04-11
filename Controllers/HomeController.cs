@@ -53,13 +53,21 @@ namespace EgyptExcavationProject.Controllers
             return View(users);
         }
 
-        public IActionResult ApproveResearcher()
+        public async Task<IActionResult> ApproveResearcher(string userId)
         {
+            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+            await _userManager.AddToRoleAsync(user, "Researcher");
+            await _userManager.RemoveFromRoleAsync(user, "Pending");
+
             return RedirectToAction("ManageUsers");
         }
 
-        public IActionResult RevokeResearcherPermissions()
+        public async Task<IActionResult> RevokeResearcherPermissions(string userId)
         {
+            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+            await _userManager.AddToRoleAsync(user, "Pending");
+            await _userManager.RemoveFromRoleAsync(user, "Researcher");
+
             return RedirectToAction("ManageUsers");
         }
 
