@@ -25,10 +25,9 @@ namespace EgyptExcavationProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult BurialRecords(FormCollection form)
+        public IActionResult BurialRecords(IFormCollection form)
         {
-            string hairFilterSelected = form["hair-filter"];
-            return View();
+            return View(_filterService.FilterAllData(form));
         }
 
         public IActionResult ViewRecord(Guid burialID)
