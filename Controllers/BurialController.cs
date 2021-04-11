@@ -1,6 +1,7 @@
 ﻿using EgyptExcavationProject.Models;
 using EgyptExcavationProject.Models.ViewModels;
 using EgyptExcavationProject.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +15,7 @@ namespace EgyptExcavationProject.Controllers
     {
         private IRecordService _recordService;
         private IFilterService _filterService;
+       
         public BurialController(IRecordService recordService, IFilterService filterService)
         {
             _recordService = recordService;
@@ -51,12 +53,14 @@ namespace EgyptExcavationProject.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Researcher")]
         public IActionResult AddRecord()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Researcher")]
         public IActionResult AddRecord(Burial burial)
         {
             if (ModelState.IsValid)
@@ -73,6 +77,8 @@ namespace EgyptExcavationProject.Controllers
             
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin, Researcher")]
         public IActionResult EditRecord(Guid burialID)
         {
             Burial burial = _recordService.GetRecord(burialID);
@@ -80,6 +86,7 @@ namespace EgyptExcavationProject.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Researcher")]
         public IActionResult EditRecord(Burial burial)
         {
             if (ModelState.IsValid)
@@ -93,6 +100,7 @@ namespace EgyptExcavationProject.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteRecord(Guid burialID)
         {
             _recordService.DeleteLocation(_recordService.GetRecord(burialID).LocationId.Value);
