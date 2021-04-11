@@ -29,6 +29,8 @@ namespace EgyptExcavationProject.Controllers
 
         public IActionResult Index()
         {
+            var user = User;
+            var hasRole = user.IsInRole("Admin");
             return View();
         }
 
