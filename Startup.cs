@@ -115,6 +115,12 @@ namespace EgyptExcavationProject
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute("pagenum",
+                    "All/{pageNum}",
+                    new { Controller = "Burials", action = "BurialRecords" }
+                    );
+
                 endpoints.MapRazorPages();
             });
         }

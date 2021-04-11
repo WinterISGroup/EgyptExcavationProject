@@ -290,6 +290,11 @@ a {
         background-color: #89896C;
         border-color: #89896C;
     }
+
+.btn-pag-artichoke {
+    background-color: var(--artichoke);
+}
+
 .btn-brassdark {
     color: #000000;
     background-color: var(--antique-brass-dark);

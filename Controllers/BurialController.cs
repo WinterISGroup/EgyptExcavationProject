@@ -21,9 +21,23 @@ namespace EgyptExcavationProject.Controllers
             _recordService = recordService;
             _filterService = filterService;
         }
-        public IActionResult BurialRecords()
+        public IActionResult BurialRecords(int pageNum = 1)
         {
-            return View(_recordService.GetAllBurials());
+            int pageSize = 12;
+
+            BurialViewModel bvm = new BurialViewModel
+            {
+                Burials = _recordService.GetAllBurials().Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(),
+
+                PageNumInfo = new PageNumInfo
+                {
+                    NumItemsPerPage = pageSize,
+                    CurrentPage = pageNum,
+                    TotalNumItems = _recordService.GetAllBurials().Count()
+                }
+            };
+
+            return View(bvm);
         }
 
         [HttpPost]
