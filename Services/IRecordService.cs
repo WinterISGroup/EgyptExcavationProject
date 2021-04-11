@@ -14,5 +14,6 @@ namespace EgyptExcavationProject.Services
         void AddLocation(Location location);
         void UpdateRecord(Burial updatedBurial);
         void DeleteRecord(Guid burialID);
+        void DeleteLocation(Guid locationID);
     }
 }

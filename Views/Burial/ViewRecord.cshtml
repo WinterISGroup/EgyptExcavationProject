@@ -5,10 +5,7 @@
 @model Burial
 
 <h2 class="text-center text-brass-dark font-weight-bold">Burial Record</h2>
-
-<div class="btn btn-group btn-brassdark float-left mr-1 ml-1">
-    @Html.ActionLink("Back to Burial Records", "BurialRecords", "Burial")
-</div>
+<a class="btn btn-brassdark" href="@Url.Action("BurialRecords", "Burial")">@Html.Raw("&larr;") Back to Burial Records</a>
 <br />
 <br />
 <hr class="form-divide" />
@@ -30,7 +27,7 @@
         </table>
     </div>
 </div>
-<div class="form-main text-ebony">
+<div class="form-main form-main-modifier text-ebony">
     <div class="form-location form-child">
         <span class="form-section-header">Location</span>
         <div class="text-black-olive" style="font-size:large;">
@@ -136,77 +133,84 @@
         </div>
     </div>
 
-    <div class="form-burial-observe form-child">
-        <span class="form-section-header">Burial Observations</span>
-        <span>Hair Present: </span>
-        <label>Yes</label>
-        @Html.RadioButtonFor(m => m.HairColor, "Y", new { @class = "form-radio", disabled = "disabled" })
-        <label>No</label>
-        @Html.RadioButtonFor(m => m.HairColor, "N", new { @class = "form-radio", disabled = "disabled" })
-        <label>Pending</label>
-        @Html.RadioButtonFor(m => m.HairColor, "P", new { @class = "form-radio", disabled = "disabled" })<br />
+    <div class="form-sub-outer">
+        <div class="form-sub-main form-child">
 
-        <span>Age: </span>
-        <label>Adult</label>
-        @Html.RadioButtonFor(m => m.AgeCode, "A", new { @class = "form-radio", disabled = "disabled" })
-        <label>Child</label>
-        @Html.RadioButtonFor(m => m.AgeCode, "C", new { @class = "form-radio", disabled = "disabled" })
-        <label>Neonatal/Infant</label>
-        @Html.RadioButtonFor(m => m.AgeCode, "N/I", new { @class = "form-radio", disabled = "disabled" })<br />
+            <div class="form-burial-observe">
+                <span class="form-section-header">Burial Observations</span>
+                <span>Hair Present: </span>
+                <label>Yes</label>
+                @Html.RadioButtonFor(m => m.HairColor, "Y", new { @class = "form-radio", disabled = "disabled" })
+                <label>No</label>
+                @Html.RadioButtonFor(m => m.HairColor, "N", new { @class = "form-radio", disabled = "disabled" })
+                <label>Pending</label>
+                @Html.RadioButtonFor(m => m.HairColor, "P", new { @class = "form-radio", disabled = "disabled" })<br />
 
-        <span>Burial Goods Present: </span>
-        <label>Yes</label>
-        @Html.RadioButtonFor(m => m.Goods, "Yes", new { @class = "form-radio", disabled = "disabled" })
-        <label>No</label>
-        @Html.RadioButtonFor(m => m.Goods, "No", new { @class = "form-radio", disabled = "disabled" })<br />
+                <span>Age: </span>
+                <label>Adult</label>
+                @Html.RadioButtonFor(m => m.AgeCode, "A", new { @class = "form-radio", disabled = "disabled" })
+                <label>Child</label>
+                @Html.RadioButtonFor(m => m.AgeCode, "C", new { @class = "form-radio", disabled = "disabled" })
+                <label>Neonatal/Infant</label>
+                @Html.RadioButtonFor(m => m.AgeCode, "N/I", new { @class = "form-radio", disabled = "disabled" })<br />
 
-        <span>Burial Materials: </span>
-        <label>Yes</label>
-        @Html.RadioButtonFor(m => m.BurialMaterials, "Yes", new { @class = "form-radio", disabled = "disabled" })
-        <label>No</label>
-        @Html.RadioButtonFor(m => m.BurialMaterials, "No", new { @class = "form-radio", disabled = "disabled" })
-        <br />
+                <span>Burial Goods Present: </span>
+                <label>Yes</label>
+                @Html.RadioButtonFor(m => m.Goods, "Yes", new { @class = "form-radio", disabled = "disabled" })
+                <label>No</label>
+                @Html.RadioButtonFor(m => m.Goods, "No", new { @class = "form-radio", disabled = "disabled" })<br />
 
-        <span>Photo Available: </span>
-        <label>Yes</label>
-        @Html.RadioButtonFor(m => m.Photo, "Yes", new { @class = "form-radio", disabled = "disabled" })
-        <label>No</label>
-        @Html.RadioButtonFor(m => m.Photo, "No", new { @class = "form-radio", disabled = "disabled" })
-        <br />
+                <span>Burial Materials: </span>
+                <label>Yes</label>
+                @Html.RadioButtonFor(m => m.BurialMaterials, "Yes", new { @class = "form-radio", disabled = "disabled" })
+                <label>No</label>
+                @Html.RadioButtonFor(m => m.BurialMaterials, "No", new { @class = "form-radio", disabled = "disabled" })
+                <br />
 
-        <span class="form-section-header">Preservation Details</span>
-        <span>Preservation Index:</span>
-        <div class="subsection-indent">
-            <table style="width:100%">
-                <tr>
-                    <td><label>I - only bones</label></td>
-                    <td>@Html.RadioButtonFor(m => m.PreservationIndex, "I", new { @class = "form-radio", disabled = "disabled" })</td>
-                </tr>
-                <tr>
-                    <td><label>II - 5-25%</label></td>
-                    <td>@Html.RadioButtonFor(m => m.PreservationIndex, "II", new { @class = "form-radio", disabled = "disabled" })</td>
-                </tr>
-                <tr>
-                    <td><label>III - 25-50%</label></td>
-                    <td>@Html.RadioButtonFor(m => m.PreservationIndex, "III", new { @class = "form-radio", disabled = "disabled" })</td>
-                </tr>
-                <tr>
-                    <td><label>IV - 50-75%</label></td>
-                    <td>@Html.RadioButtonFor(m => m.PreservationIndex, "IV", new { @class = "form-radio", disabled = "disabled" })</td>
-                </tr>
-                <tr>
-                    <td><label>V - 75-100%</label></td>
-                    <td>@Html.RadioButtonFor(m => m.PreservationIndex, "V", new { @class = "form-radio", disabled = "disabled" })</td>
-                </tr>
-            </table>
+                <span>Photo Available: </span>
+                <label>Yes</label>
+                @Html.RadioButtonFor(m => m.Photo, "Yes", new { @class = "form-radio", disabled = "disabled" })
+                <label>No</label>
+                @Html.RadioButtonFor(m => m.Photo, "No", new { @class = "form-radio", disabled = "disabled" })
+                <br />
+            </div>
+
+            <div>
+                <span class="form-section-header">Preservation Details</span>
+                <span>Preservation Index:</span>
+                <div class="subsection-indent">
+                    <table style="width:100%">
+                        <tr>
+                            <td><label>I - only bones</label></td>
+                            <td>@Html.RadioButtonFor(m => m.PreservationIndex, "I", new { @class = "form-radio", disabled = "disabled" })</td>
+                        </tr>
+                        <tr>
+                            <td><label>II - 5-25%</label></td>
+                            <td>@Html.RadioButtonFor(m => m.PreservationIndex, "II", new { @class = "form-radio", disabled = "disabled" })</td>
+                        </tr>
+                        <tr>
+                            <td><label>III - 25-50%</label></td>
+                            <td>@Html.RadioButtonFor(m => m.PreservationIndex, "III", new { @class = "form-radio", disabled = "disabled" })</td>
+                        </tr>
+                        <tr>
+                            <td><label>IV - 50-75%</label></td>
+                            <td>@Html.RadioButtonFor(m => m.PreservationIndex, "IV", new { @class = "form-radio", disabled = "disabled" })</td>
+                        </tr>
+                        <tr>
+                            <td><label>V - 75-100%</label></td>
+                            <td>@Html.RadioButtonFor(m => m.PreservationIndex, "V", new { @class = "form-radio", disabled = "disabled" })</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
         </div>
-
+        <div class="form-burial-notes">
+            <span class="font-weight-bold">Burial Observation Notes:</span><br />
+            <textarea asp-for="Notes" class="form-control form-textarea" disabled></textarea>
+        </div>
     </div>
 
-    <div class="form-burial-notes">
-        <span class="font-weight-bold">Burial Observation Notes:</span><br />
-        <textarea asp-for="Notes" class="form-control form-textarea" disabled></textarea>
-    </div>
 </div>
 
 <hr class="form-divide" />

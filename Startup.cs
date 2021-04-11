@@ -1,3 +1,4 @@
+using EgyptExcavationProject.Areas.Identity.Data;
 using EgyptExcavationProject.Data;
 using EgyptExcavationProject.Models;
 using EgyptExcavationProject.Services;
@@ -80,7 +81,7 @@ namespace EgyptExcavationProject
                 options.SlidingExpiration = true;
             });
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
         }

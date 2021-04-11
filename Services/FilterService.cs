@@ -241,82 +241,71 @@ namespace EgyptExcavationProject.Services
         //    return list.Where(b => b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate ==
         //}
 
-        //Main function to utilize all the individual functions.Will be called in controller
-        //string gender = "", string hair = "", string age = "", string height = "",
-        //string depth = "", int year = 0, int month = 0, string item = "", string length = "",
-        //bool? textile = null, char? NS = null, int? NSlow = null, char? EW = null,
-        //int? EWlow = null, string area = "", string hDirection = "", string burialTime = ""
-        public IEnumerable<Burial> FilterAllData(IFormCollection form)
+        //Main function to utilize all the individual functions. Will be called in controller
+        public IEnumerable<Burial> FilterAllData (string gender ="", string hair ="", string age ="", string height="", 
+                                                  string depth = "", int year = 0, int month = 0, string item ="", string length ="",
+                                                  bool? textile = null, char? NS = null, int? NSlow = null, char? EW = null,
+                                                  int? EWlow = null, string area = "", string hDirection = "", string burialTime = "")
         {
-            List<Burial> results = new List<Burial>();
+            IEnumerable<Burial> results;
 
-            results = FilterGender(form["gender-filter"]);
+            results = FilterGender(gender);
 
-            if (form["hair-filter"] != "")
+            if(hair != "")
             {
-                List<Burial> newFilter = FilterHairColor(form["hair-filter"]);
-
-                foreach(Burial b in newFilter)
-                {
-                    results.Add(b);
-                }
-                
+                results = FilterHairColor(results, hair);
             }
-            ////if (form["age-filter"] != "")
-            ////{
-            ////    results = FilterAge(results, form["age-filter"]);
-            ////}
-            if (form["height-filter"] != "")
+            if(age != "")
             {
-                List<Burial> newFilter = FilterHeight(form["heigh-filter"]);
-
-                foreach(Burial b in newFilter)
-                {
-                    results.Add(b);
-                }
+                results = FilterAge(results, age);
             }
-            //if (form["burial-depth-filter"] != "")
-            //{
-            //    results = FilterBurialDepth(results, form["burial-depth-filter"]);
-            //}
-            //if (form["date-found-year-filter"] != 0)
-            //{
-            //    results = FilterFoundYear(results, Int32.Parse(form["date-found-year-filter"].ToString()));
-            //}
-            //if (form["date-found-month-filter"] != 0)
-            //{
-            //    results = FilterFoundMonth(results, Int32.Parse(form["date-found-month-filter"].ToString()));
-            //}
-            //if (form["item-found-filter"] != "")
-            //{
-            //    results = FilterItemFound(results, form["item-found-filter"]);
-            //}
-            //if (form["remain-length-filter"] != "")
-            //{
-            //    results = FilterRemainLength(results, form["remain-length-filter"]);
-            //}
-            //if (form["textile-taken-filter"].ToString() != null)
-            //{
-            //    results = FilterTextile(results, Boolean.Parse(form["textile-taken-filter"].ToString()));
-            //}
-            //if (form["NS-square-filter"].ToString() != null && form["low-pair-NS-filter"].ToString() != null && form["EW-square-filter"].ToString() != null && form["low-pair-EW-filter"].ToString() != null)
-            //{
-            //    results = FilterSquare(results, Convert.ToChar(form["NS-square-filter"]), Int32.Parse(form["low-pair-NS-filter"].ToString()), Convert.ToChar(form["EW-square-filter"]), Int32.Parse(form["low-pair-EW-filter"].ToString()));
-            //}
-            //if (form["area-filter"] != "")
-            //{
-            //    results = FilterArea(results, form["area-filter"]);
-            //}
-            //if (form["head-dir-filter"] != "")
-            //{
-            //    results = FilterHeadDirection(results, form["head-dir-filter"]);
-            //}
-            //if (form["burial-time-filter"] != "")
-            //{
-            //    results = FilterTimeOfBurial(results, form["burial-tim-filter"]);
-            //}
+            if(height != "")
+            {
+                results = FilterHeight(results, height);
+            }
+            if(depth != "")
+            {
+                results = FilterBurialDepth(results, depth);
+            }
+            if(year != 0)
+            {
+                results = FilterFoundYear(results, year);
+            }
+            if(month != 0)
+            {
+                results = FilterFoundMonth(results, month);
+            }
+            if(item != "")
+            {
+                results = FilterItemFound(results, item);
+            }
+            if(length != "")
+            {
+                results = FilterRemainLength(results, length);
+            }
+            if(textile != null)
+            {
+                results = FilterTextile(results, textile);
+            }
+            if(NS != null && NSlow != null && EW != null && EWlow != null)
+            {
+                results = FilterSquare(results, NS, NSlow, EW, EWlow);
+            }
+            if(area != "")
+            {
+                results = FilterArea(results, area);
+            }
+            if(hDirection != "")
+            {
+                results = FilterHeadDirection(results, hDirection);
+            }
+            if (burialTime != "")
+            {
+                results = FilterTimeOfBurial(results, burialTime);
+            }
 
-            return results;
-        }
+
+        //    return results;
+        //}
     }
 }

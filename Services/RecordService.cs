@@ -86,5 +86,11 @@ namespace EgyptExcavationProject.Services
             _context.Remove(_context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault());
             _context.SaveChanges();
         }
+
+        public void DeleteLocation(Guid locationID)
+        {
+            _context.Remove(_context.Location.Where(l => l.LocationId == locationID).FirstOrDefault());
+            _context.SaveChanges();
+        }
     }
 }

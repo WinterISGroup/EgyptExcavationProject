@@ -17,7 +17,7 @@
 .form-top-holder{
     display:flex;
     flex-direction:row;
-    justify-content:space-between;
+    justify-content:space-evenly;
     margin: 20px 0px 20px 0px;
 }
 .form-section-header{
@@ -87,4 +87,24 @@ hr.form-divide {
 
 .shafts-clusters{
     width: 280px !important;
+}
+
+.form-sub-main{
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+.form-sub-outer{
+    display:flex;
+    flex-direction:column;
+    
+}
+.form-main-modifier{
+    justify-content:space-evenly !important;
+}
+
+@media (max-width: 550px){
+    .form-sub-main{
+        justify-content: center !important;
+    }
 }
