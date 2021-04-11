@@ -2,7 +2,7 @@
     ViewData["Title"] = "Burial Records Summary";
 }
 
-@model IEnumerable<Burial>
+@model BurialViewModel
 
 <h2 class="text-center">Burial Records List</h2>
 <br />
@@ -15,7 +15,7 @@
                     <div class="col">
                         <label name="gender">Gender</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="male" name="gender" value="male"/>
+                            <input class="form-check-input" type="radio" id="male" name="gender" value="male" />
                             <label class="form-check-label" for="male">Male</label>
                         </div>
                         <div class="form-check">
@@ -56,7 +56,7 @@
                                     <option class="dropdown-item" value="0-10">0-10</option>
                                     <option class="dropdown-item" value="11-20">11-20</option>
                                     <option class="dropdown-item" value="21-30">21-30</option>
-                                    <option  class="dropdown-item" value="31-40">31-40</option>
+                                    <option class="dropdown-item" value="31-40">31-40</option>
                                     <option class="dropdown-item" value="41-50">41-50</option>
                                     <option class="dropdown-item" value="51-60">51-60</option>
                                     <option class="dropdown-item" value="61-70">61-70</option>
@@ -169,7 +169,7 @@
                         <div class="form-check">
                             <div class="form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="bead" value="bead" name="bead" />
-                                <label  class="form-check-label" for="bead">Beads</label>
+                                <label class="form-check-label" for="bead">Beads</label>
                             </div>
                             <div class="form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="bracelet" value="bracelet" name="bracelet" />
@@ -229,7 +229,7 @@
                         <input class="form-radio" name="location-ns" type="radio" value="S" />
                         <br />
                         <label>High/Low Pair:</label>
-                        <input name="high-pair-ns" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;"/>/<input name="sq-ns-low" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;"/>
+                        <input name="high-pair-ns" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;" />/<input name="sq-ns-low" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;" />
                         <br />
                         <label>East</label>
                         <input class="form-radio" name="location-ew" type="radio" value="E" />
@@ -237,7 +237,7 @@
                         <input class="form-radio" name="location-ew" type="radio" value="W" />
                         <br />
                         <label>High/Low Pair:</label>
-                        <input name="high-pair-ew" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;"/>/<input name="sq-ew-low" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;"/>
+                        <input name="high-pair-ew" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;" />/<input name="sq-ew-low" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;" />
                         <br /><br />
                         <span>Area: </span>
                         <br />
@@ -254,7 +254,7 @@
                         <label>Head Direction</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="dir" id="dirEast" value="East" />
-                            <label  class="form-check-label" for="dir">East</label>
+                            <label class="form-check-label" for="dir">East</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="dir" id="dirWest" value="West" />
@@ -288,8 +288,15 @@
         <button class="btn btn-sm" style="float:right;" onclick="ExpandFilter()">More</button>
         <button class="btn btn-sm" style="float:right;" onclick="ShrinkFilter()">Less</button>
     </div>
+
+    <div class="d-flex align-items-center justify-content-end w-100">
+        <div page-info="@Model.PageNumInfo" page-classes-enabled="true" page-class="btn"
+             page-class-normal="btn-outline-light btn-pag-artichoke" page-class-selected="btn-blackolive" class="btn-group m-1">
+
+        </div>
+    </div>
     <div class="card-holder">
-        @foreach (Burial burial in Model)
+        @foreach (Burial burial in Model.Burials)
         {
             <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new {burialID = burial.BurialId })');">
                 <img class="card-img-top" src="~/mummy.jpg" />
@@ -300,10 +307,17 @@
                         Age: @burial.AgeCode<br />
                         Gender: @burial.GenderGe<br />
                     </p>
-                    @Html.ActionLink("Remove", "DeleteRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick= "var result = confirm('Are you sure you want to delete this record?'); if(!result){event.stopPropagation(); return false;}" })
+                    @Html.ActionLink("Remove", "DeleteRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick = "var result = confirm('Are you sure you want to delete this record?'); if(!result){event.stopPropagation(); return false;}" })
                     @Html.ActionLink("Edit", "EditRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })
                 </div>
             </div>
         }
+    </div>
+</div>
+
+<div class="d-flex align-items-center justify-content-end w-100">
+    <div page-info="@Model.PageNumInfo" page-classes-enabled="true" page-class="btn"
+         page-class-normal="btn-outline-light btn-pag-artichoke" page-class-selected="btn-blackolive" class="btn-group m-1">
+
     </div>
 </div>

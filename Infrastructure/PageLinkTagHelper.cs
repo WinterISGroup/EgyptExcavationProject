@@ -44,26 +44,45 @@ namespace EgyptExcavationProject.Infrastructure
 
             for (int i = 1; i <= pageInfo.NumPages; i++)
             {
+                int pageNow = pageInfo.CurrentPage;
+                int numsShown = 4;
+
+
                 IUrlHelper urlHelp = urlInfo.GetUrlHelper(viewContext);
 
-                TagBuilder individualTag = new TagBuilder("a"); //build an new a tag each time for each page number
-
-                KeyValuePairs["pageNum"] = i;
-
-                //Set up info for each a tag
-                individualTag.Attributes["href"] = urlHelp.Action("Index", KeyValuePairs);
-
-                //Highlighting the page numbers
-                if (PageClassesEnabled)
+                if ((i <= (pageNow + numsShown) && i >= pageNow) || (i < numsShown) || (i > (pageInfo.NumPages - 3)))
                 {
-                    individualTag.AddCssClass(PageClass);
-                    individualTag.AddCssClass(i == pageInfo.CurrentPage ? PageClassSelected : PageClassNormal);
+                    TagBuilder individualTag = new TagBuilder("a"); //build an new a tag each time for each page number
+
+                    KeyValuePairs["pageNum"] = i;
+
+                    //Set up info for each a tag
+                    individualTag.Attributes["href"] = urlHelp.Action("BurialRecords", KeyValuePairs);
+
+                    //Highlighting the page numbers
+                    if (PageClassesEnabled)
+                    {
+                        individualTag.AddCssClass(PageClass);
+                        individualTag.AddCssClass(i == pageInfo.CurrentPage ? PageClassSelected : PageClassNormal);
+                    }
+
+                    individualTag.InnerHtml.Append(i.ToString());
+                    //Put the a tag to the div
+                    finishedTag.InnerHtml.AppendHtml(individualTag);
+
+                    if ((i == numsShown - 1) || (i == (pageNow + numsShown)))
+                    {
+                        TagBuilder spaceTag = new TagBuilder("span");
+
+                        spaceTag.InnerHtml.Append("...");
+
+                        spaceTag.AddCssClass(PageClass);
+                        spaceTag.AddCssClass(PageClassNormal);
+
+                        finishedTag.InnerHtml.AppendHtml(spaceTag);
+                    }
                 }
 
-                individualTag.InnerHtml.Append(i.ToString());
-
-                //Put the a tag to the div
-                finishedTag.InnerHtml.AppendHtml(individualTag);
             }
 
             output.Content.AppendHtml(finishedTag.InnerHtml);
