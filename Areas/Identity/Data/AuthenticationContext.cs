@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EgyptExcavationProject.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EgyptExcavationProject.Data
 {
-    public class AuthenticationContext : IdentityDbContext<IdentityUser>
+    public class AuthenticationContext : IdentityDbContext<ApplicationUser>
     {
         public AuthenticationContext(DbContextOptions<AuthenticationContext> options)
             : base(options)

@@ -81,7 +81,7 @@ namespace EgyptExcavationProject
                 options.SlidingExpiration = true;
             });
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
         }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace EgyptExcavationProject.Areas.Identity.Data
 {
-    public class EgyptExcavationUser : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
+        // Custom user
         [PersonalData]
         public string FullName { get; set; }
         [PersonalData]
