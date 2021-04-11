@@ -98,18 +98,18 @@ namespace EgyptExcavationProject.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    //// Create new user role
-                    //bool hasRole = await _roleManager.RoleExistsAsync("Researcher");
-                    //if (!hasRole)
-                    //{
-                    //    // Create a role
-                    //    var role = new IdentityRole();
-                    //    role.Name = "Researcher";
-                    //    await _roleManager.CreateAsync(role);
-                    //}
+                    // Create new user role
+                    bool hasRole = await _roleManager.RoleExistsAsync("Pending");
+                    if (!hasRole)
+                    {
+                        // Create a role
+                        var role = new IdentityRole();
+                        role.Name = "Pending";
+                        await _roleManager.CreateAsync(role);
+                    }
 
-                    //// Add user to role
-                    //await _userManager.AddToRoleAsync(user, "Researcher");
+                    // Add user to role
+                    await _userManager.AddToRoleAsync(user, "Pending");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
