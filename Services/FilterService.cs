@@ -1,5 +1,4 @@
 ﻿using EgyptExcavationProject.Models;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,96 +16,93 @@ namespace EgyptExcavationProject.Services
         }
         
         //Ask about the gender columns.
-        public List<Burial> FilterGender(string gender)
+        public IEnumerable<Burial> FilterGender( string gender)
         {
-            List<Burial> listFilter = new List<Burial>();
+            gender = gender.ToUpper();
 
-            if (gender == null)
+            if (gender == "")
             {
-                return listFilter;
+                return _context.Burial;
             }
             else
             {
-                listFilter = (_context.Burial.Where(b => b.GenderGe == gender)).ToList();
-                return listFilter;
+                return _context.Burial.Where(b => b.GenderGe == gender);
             }
         }
 
-        public List<Burial> FilterHairColor(string color)
+        public IEnumerable<Burial> FilterHairColor(IEnumerable<Burial> list, string color)
         {
-            List<Burial> listFilter = (_context.Burial.Where(b => b.HairColor.Contains(color))).ToList();
-
-            return listFilter;
+            return list.Where(b => b.HairColor.Contains(color));
         }
 
-        //Age is first filter.Starts the initial filter from the context
+        //Age is first filter. Starts the initial filter from the context
         //Need to somehow filter the age from the string data
-        //public IEnumerable<Burial> FilterAge(IEnumerable<Burial> list, string age)
-        //{
-        //    if (age == "0-10")
-        //    {
-        //        return list.Where(b => b.EstimateAge > 0 && b.EstimateAge <= 10);
-        //    }
-        //    else if (age == "11-20")
-        //    {
-        //        return list.Where(b => b.EstimateAge > 10 && b.EstimateAge <= 20);
-        //    }
-        //    else if (age == "21-30")
-        //    {
-        //        return list.Where(b => b.EstimateAge > 20 && b.EstimateAge <= 30);
-        //    }
-        //    else if (age == "31-40")
-        //    {
-        //        return list.Where(b => b.EstimateAge > 30 && b.EstimateAge <= 40);
-        //    }
-        //    else if (age == "41-50")
-        //    {
-        //        return list.Where(b => b.EstimateAge > 40 && b.EstimateAge <= 50);
-        //    }
-        //    else if (age == "51-60")
-        //    {
-        //        return list.Where(b => b.EstimateAge > 50 && b.EstimateAge <= 60);
-        //    }
-        //    else if (age == "61-70")
-        //    {
-        //        return list.Where(b => b.EstimateAge > 60 && b.EstimateAge <= 70);
-        //    }
-        //    else
-        //    {
-        //        return list;
-        //    }
-        //}
-
-        public List<Burial> FilterHeight(string height)
+        public IEnumerable<Burial> FilterAge(IEnumerable<Burial> list, string age)
         {
-            List<Burial> listFilter = new List<Burial>();
+            if (age == "0-10")
+            {
+                return list.Where(b => b.EstimateAge > 0 && b.EstimateAge <= 10);
+            }
+            else if (age == "11-20")
+            {
+                return list.Where(b => b.EstimateAge > 10 && b.EstimateAge <= 20);
+            }
+            else if (age == "21-30")
+            {
+                return list.Where(b => b.EstimateAge > 20 && b.EstimateAge <= 30);
+            }
+            else if (age == "31-40")
+            {
+                return list.Where(b => b.EstimateAge > 30 && b.EstimateAge <= 40);
+            }
+            else if (age == "41-50")
+            {
+                return list.Where(b => b.EstimateAge > 40 && b.EstimateAge <= 50);
+            }
+            else if (age == "51-60")
+            {
+                return list.Where(b => b.EstimateAge > 50 && b.EstimateAge <= 60);
+            }
+            else if (age == "61-70")
+            {
+                return list.Where(b => b.EstimateAge > 60 && b.EstimateAge <= 70);
+            }
+            else
+            {
+                return list;
+            }
+        }
 
+        public IEnumerable<Burial> FilterHeight(IEnumerable<Burial> list, string height)
+        {
             if (height == "0-.5")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 0 && b.EstimateLivingStature <= 0.59)).ToList();
+                return list.Where(b => b.EstimateLivingStature > 0 && b.EstimateLivingStature <= 0.59);
             }
             else if (height == ".6-1")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 0.59 && b.EstimateLivingStature <= 1.09)).ToList();
+                return list.Where(b => b.EstimateLivingStature > 0.59 && b.EstimateLivingStature <= 1.09);
             }
             else if (height == "1.1-1.5")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 1.09 && b.EstimateLivingStature <= 1.59)).ToList();
+                return list.Where(b => b.EstimateLivingStature > 1.09 && b.EstimateLivingStature <= 1.59);
             }
             else if (height == "1.6-2.0")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 1.59 && b.EstimateLivingStature <= 2.09)).ToList();
+                return list.Where(b => b.EstimateLivingStature > 1.59 && b.EstimateLivingStature <= 2.09);
             }
             else if (height == "2.1-2.5")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 2.09 && b.EstimateLivingStature <= 2.59)).ToList();
+                return list.Where(b => b.EstimateLivingStature > 2.09 && b.EstimateLivingStature <= 2.59);
             }
             else if (height == "2.6-3")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 2.59 && b.EstimateLivingStature <= 3.09)).ToList();
+                return list.Where(b => b.EstimateLivingStature > 2.59 && b.EstimateLivingStature <= 3.09);
             }
-
-            return listFilter;
+            else
+            {
+                return list;
+            }
         }
 
         public IEnumerable<Burial> FilterBurialDepth(IEnumerable<Burial> list, string depth) 
@@ -236,10 +232,10 @@ namespace EgyptExcavationProject.Services
         }
 
         //Uses carbon dating analyses. May need to loop if multiple biosamples or 
-        //public IEnumerable<Burial> FilterTimeOfBurial(IEnumerable<Burial> list, string burial)
-        //{
-        //    return list.Where(b => b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate ==
-        //}
+        public IEnumerable<Burial> FilterTimeOfBurial(IEnumerable<Burial> list, string burial)
+        {
+            return list.Where(b => b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate == 
+        }
 
         //Main function to utilize all the individual functions. Will be called in controller
         public IEnumerable<Burial> FilterAllData (string gender ="", string hair ="", string age ="", string height="", 
