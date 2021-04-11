@@ -55,9 +55,9 @@ namespace EgyptExcavationProject.Controllers
             return RedirectToAction("ManageUsers");
         }
 
-        public IActionResult ViewUser()
+        public IActionResult ViewUser(string userID)
         {
-            return View();
+            return View(_userManager.Users.Where(u => u.Id == userID).FirstOrDefault());
         }
 
         public IActionResult Privacy()

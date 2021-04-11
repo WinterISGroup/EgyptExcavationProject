@@ -1,13 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Manage Users";
 }
+
+@model IdentityUser
 <div>
-    <h2 class="text-center">Account Details:</h2>
+    <div>
+        <a href="@Url.Action("ManageUsers","Home")" class="btn btn-brassdark float-left">&larr; Back</a>
+        <h2 class="text-center" style="margin-right:90px;margin-left:90px;">Account Details:</h2>
+    </div>
     <table class="table-account">
         <tbody class="details">
             <tr>
                 <td class="font-weight-bold">User:</td>
-                <td class="text-right">Jackson Secrist</td>
+                <td class="text-right">@Model.UserName</td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Account Type: </td>
@@ -19,7 +24,7 @@
             </tr>
             <tr>
                 <td class="font-weight-bold">Email: </td>
-                <td class="text-right">test@gmail.com</td>
+                <td class="text-right">@Model.Email</td>
             </tr>
             <tr>
                 <td class="font-weight-bold">BYU NetID:</td>
