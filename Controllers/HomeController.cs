@@ -15,6 +15,7 @@ namespace EgyptExcavationProject.Controllers
 {
     public class HomeController : Controller
     {
+        // User, role, and sign in managers come from the services in startup (ASP.NET Core Identity)
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -30,8 +31,6 @@ namespace EgyptExcavationProject.Controllers
 
         public IActionResult Index()
         {
-            var user = User;
-            var hasRole = user.IsInRole("Admin");
             return View();
         }
 
@@ -45,16 +44,21 @@ namespace EgyptExcavationProject.Controllers
             return View();
         }
 
-        [Authorize(Roles ="Admin")]
+        // Check if the user is an admin
+
+        [Authorize(Roles = "Admin")]
         public IActionResult ManageUsers()
         {
+            // Generate list of users adn pass to the view
             IQueryable<ApplicationUser> users = _userManager.Users.ToList().AsQueryable();
 
             return View(users);
         }
 
+        // Action to approve researcher - can only be used by admin
         public async Task<IActionResult> ApproveResearcher(string userId)
         {
+            // Find the user and then remove their pending status and add researcher status
             ApplicationUser user = await _userManager.FindByIdAsync(userId);
             await _userManager.AddToRoleAsync(user, "Researcher");
             await _userManager.RemoveFromRoleAsync(user, "Pending");
@@ -62,8 +66,10 @@ namespace EgyptExcavationProject.Controllers
             return RedirectToAction("ManageUsers");
         }
 
+        // Revoke researcher permissions - only used by admin
         public async Task<IActionResult> RevokeResearcherPermissions(string userId)
         {
+            // Find user and then add pending to role and remove researcher role
             ApplicationUser user = await _userManager.FindByIdAsync(userId);
             await _userManager.AddToRoleAsync(user, "Pending");
             await _userManager.RemoveFromRoleAsync(user, "Researcher");
@@ -73,6 +79,7 @@ namespace EgyptExcavationProject.Controllers
 
         public IActionResult ViewUser(string userID)
         {
+            // Find the user with the id and pass it to the view
             return View(_userManager.Users.Where(u => u.Id == userID).FirstOrDefault());
         }
 

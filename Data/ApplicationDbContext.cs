@@ -10,6 +10,7 @@ using EgyptExcavationProject.Areas.Identity.Data;
 
 namespace EgyptExcavationProject.Data
 {
+    // Getting identity context from Application User
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
