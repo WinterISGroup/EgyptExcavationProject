@@ -18,7 +18,7 @@
             <tr>
                 <th>Name:</th>
                 <th>Email:</th>
-                <th>Net ID:</th>
+                <th>Phone Number:</th>
                 <th>Account Creation Date:</th>
                 <th>Needs Approval?</th>
                 <th>Approve:</th>
@@ -26,33 +26,18 @@
             </tr>
         </thead>
         <tbody>
+            @foreach (var user in Model)
+            {
             <tr>
-                <td>Jackson Secrist</td>
-                <td>jacksecrist@gmail.com</td>
-                <td>js311</td>
-                <td>4/7/2021</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.PhoneNumber</td>
                 <td>Yes</td>
                 <td><button class="btn btn-brassdark">Approve</button></td>
-                <td>@Html.ActionLink("Details ->", "ViewUser", "Home", null, new { @class = "btn btn-blackolive" })</td>
+                <td>@Html.ActionLink("Details ->", "ViewUser", "Home", new { userID = user.Id }, new { @class = "btn btn-blackolive" })</td>
             </tr>
-            <tr>
-                <td>Noah Johnson</td>
-                <td>test@gmail.com</td>
-                <td>netid</td>
-                <td>4/7/2021</td>
-                <td>No</td>
-                <td><button class="btn btn-brassdark" hidden>Approve</button></td>
-                <td><button class="btn btn-blackolive">View -></button></td>
-            </tr>
-            <tr>
-                <td>Courtney Ellis</td>
-                <td>test@gmail.com</td>
-                <td>netid</td>
-                <td>4/7/2021</td>
-                <td>Yes</td>
-                <td><button class="btn btn-brassdark">Approve</button></td>
-                <td><button class="btn btn-blackolive">View -></button></td>
-            </tr>
+            }
         </tbody>
     </table>
 </div>
