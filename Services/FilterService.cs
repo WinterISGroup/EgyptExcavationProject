@@ -224,10 +224,10 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
-        public List<Burial> FilterTextile(List<Burial> list, bool? textile)
-        {
-            return list.Where(b => b.TextileTaken == textile).ToList();
-        }
+        //public List<Burial> FilterTextile(List<Burial> list, bool? textile)
+        //{
+        //    return list.Where(b => b.TextileTaken == textile).ToList();
+        //}
 
         //Will it need to reference the locations table?
         //public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow)
@@ -296,10 +296,10 @@ namespace EgyptExcavationProject.Services
             {
                 results = FilterRemainLength(results, form["remain-length-filter"]);
             }
-            if (form["textile-taken-filter"].ToString() != null)
-            {
-                results = FilterTextile(results, Boolean.Parse(form["textile-taken-filter"].ToString()));
-            }
+            //if (form["textile-taken-filter"].ToString() != null)
+            //{
+            //    results = FilterTextile(results, Boolean.Parse(form["textile-taken-filter"].ToString()));
+            //}
             //if (form["NS-square-filter"].ToString() != null && form["low-pair-NS-filter"].ToString() != null && form["EW-square-filter"].ToString() != null && form["low-pair-EW-filter"].ToString() != null)
             //{
             //    results = FilterSquare(results, Convert.ToChar(form["NS-square-filter"]), Int32.Parse(form["low-pair-NS-filter"].ToString()), Convert.ToChar(form["EW-square-filter"]), Int32.Parse(form["low-pair-EW-filter"].ToString()));
