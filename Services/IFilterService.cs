@@ -20,7 +20,7 @@ namespace EgyptExcavationProject.Services
         public List<Burial> FilterItemFound(List<Burial> list, string? item);
         public List<Burial> FilterRemainLength(List<Burial> list, string length);
         public List<Burial> FilterTextile(List<Burial> list, bool? textile);
-        //public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow);
+        public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow);
         public List<Burial> FilterArea(List<Burial> list, string area);
         public List<Burial> FilterHeadDirection(List<Burial> list, string direction);
         //public List<Burial> FilterTimeOfBurial(List<Burial> list, string burial);
