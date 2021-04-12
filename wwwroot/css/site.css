@@ -342,3 +342,8 @@ a {
     background-color: var(--antique-brass-dark) !important;
     border-color: var(--antique-brass-dark) !important;
 }
+
+/*------------------------------------------------------------*/
+input[type="file"] {
+    display: none;
+}

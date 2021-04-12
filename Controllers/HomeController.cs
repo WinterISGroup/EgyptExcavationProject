@@ -85,40 +85,7 @@ namespace EgyptExcavationProject.Controllers
         }
 
 
-        // File uploading
-        public IActionResult FileUploadForm()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                await FileUpload.FormFile.CopyToAsync(memoryStream);
-
-                // Upload the file if less than 2 MB
-                if (memoryStream.Length < 2097152)
-                {
-
-                    string fileName = FileUpload.FormFile.FileName;
-
-                    await S3Upload.UploadFileAsync(memoryStream, "egyptexcavation", "photos/" + fileName);
-
-                    string uploadUrl = "https://egyptexcavation.s3.amazonaws.com/photos/" + fileName;
-
-                    // TODO: Add uploadUrl to the burial
-                }
-                else
-                {
-                    ModelState.AddModelError("File", "The file is too large.");
-                }
-            }
-
-            return View();
-        }
+        
 
         public IActionResult Privacy()
         {

@@ -213,6 +213,13 @@
 
 </div>
 
+<div>
+    <button id="add-photo-btn" class="btn btn-brassdark" onclick="ShowPhotoUpload()">+ Add Photos</button>
+</div>
+<div id="photo-upload" style="display: none;">
+    @await Html.PartialAsync("FileUploadForm", new FileUploadFormModal {BurialID = Model.BurialId }, new ViewDataDictionary(ViewData) { { "BurialID", Model.BurialId } })
+</div>
+
 <hr class="form-divide" />
 @if (User.IsInRole("Admin") || User.IsInRole("Researcher"))
 {
@@ -222,3 +229,4 @@
 }
 <br />
 <br />
+

@@ -12,5 +12,7 @@ namespace EgyptExcavationProject.Data
         [Required]
         [Display(Name ="File")]
         public IFormFile FormFile { get; set; }
+
+        public Guid BurialID { get; set; }
     }
 }
