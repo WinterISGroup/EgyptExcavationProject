@@ -231,31 +231,81 @@ namespace EgyptExcavationProject.Services
         }
 
         //Will it need to reference the locations table?
-        //public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow)
-        //{
-        //    return list.Where(b => b.Location.LocationNs == NS && b.Location.LowPairNs == NSlow &&
-        //                           b.Location.LocationEw == EW && b.Location.LowPairEw == EWlow).ToList();
-        //}
+        public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow)
+        {
+            List<Guid> loc2 = _context.Location.Where(b => b.LocationNs == NS && b.LowPairNs == NSlow &&
+            b.LocationEw == EW && b.LowPairEw == EWlow).Select(l => l.LocationId).ToList();
+
+            List < Burial> results = new List<Burial>();
+
+            foreach (var burial in list)
+            {
+                if (burial.LocationId != null)
+                {
+                    if (loc2.Contains(burial.LocationId.Value))
+                    {
+                        results.Add(burial);
+                    }
+                }
+            }
+
+            return (results);
+
+            //return list.Where(b => b.Location.LocationNs == NS && b.Location.LowPairNs == NSlow &&
+            //b.Location.LocationEw == EW && b.Location.LowPairEw == EWlow).ToList();
+        }
 
         //Reference to locations table
         public List<Burial> FilterArea(List<Burial> list, string area)
         {
-            List<Location> loc = _context.Location.Where(l => l.BurialSubplot == area).ToList();
-            List<Guid> loc2 = _context.Location.Select(l => l.LocationId).ToList();
+            List<Guid> loc2 = _context.Location.Where(l => l.BurialSubplot == area).Select(l => l.LocationId).ToList();
 
-            List<Guid> stuff = new List<Guid>();
+            List<Burial> results = new List<Burial>();
 
-            foreach(Location l in loc)
+            foreach (var burial in list)
             {
-                stuff = loc2.Where(x => x == l.LocationId).ToList();
+                if (burial.LocationId != null)
+                {
+                    if (loc2.Contains(burial.LocationId.Value))
+                    {
+                        results.Add(burial);
+                    }
+                }
             }
 
-            foreach(Guid g in stuff)
-            {
-                list.Where(b => b.LocationId == g).ToList();
-            }
+            return (results);
 
-            return list;
+            //foreach(var burial in list)
+            //{
+            //    if(burial.LocationId != null)
+            //    {
+            //        if(_context.Location.Where(l => l.LocationId == burial.LocationId).FirstOrDefault().BurialSubplot == area)
+            //        {
+            //            results.Add(burial);
+            //        }
+            //    }
+            //}
+
+            //return (results);
+
+
+
+            //List<Location> loc = _context.Location.Where(l => l.BurialSubplot == area).ToList();
+            //List<Guid> loc2 = _context.Location.Select(l => l.LocationId).ToList();
+
+            //List<Guid> stuff = new List<Guid>();
+
+            //foreach(Location l in loc)
+            //{
+            //    stuff.Add(loc2.Where(x => x == l.LocationId));
+            //}
+
+            //foreach(Guid g in stuff)
+            //{
+            //    list.Where(b => b.LocationId == g).ToList();
+            //}
+
+            //return list;
         }
 
         public List<Burial> FilterHeadDirection(List<Burial> list, string direction)
@@ -348,10 +398,10 @@ namespace EgyptExcavationProject.Services
             {
                 results = FilterTextile(results, Boolean.Parse(form["textile-taken-filter"].ToString()));
             }
-            //if (form["NS-square-filter"].ToString() != null && form["low-pair-NS-filter"].ToString() != null && form["EW-square-filter"].ToString() != null && form["low-pair-EW-filter"].ToString() != null)
-            //{
-            //    results = FilterSquare(results, Convert.ToChar(form["NS-square-filter"]), Int32.Parse(form["low-pair-NS-filter"].ToString()), Convert.ToChar(form["EW-square-filter"]), Int32.Parse(form["low-pair-EW-filter"].ToString()));
-            //}
+            if (form["NS-square-filter"].ToString() != "" && form["low-pair-NS-filter"].ToString() != "" && form["EW-square-filter"].ToString() != "" && form["low-pair-EW-filter"].ToString() != "")
+            {
+                results = FilterSquare(results, Convert.ToChar(form["NS-square-filter"]), Int32.Parse(form["low-pair-NS-filter"].ToString()), Convert.ToChar(form["EW-square-filter"]), Int32.Parse(form["low-pair-EW-filter"].ToString()));
+            }
             if (form["area-filter"].ToString() != "")
             {
                 results = FilterArea(results, form["area-filter"]);
