@@ -15,7 +15,7 @@
                     <div class="col">
                         <label name="gender-filter">Gender</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="Male" name="gender-filter" value="Male"/>
+                            <input class="form-check-input" type="radio" id="Male" name="gender-filter" value="Male" />
                             <label class="form-check-label" for="Male">Male</label>
                         </div>
                         <div class="form-check">
@@ -82,26 +82,48 @@
                     </div>
                 </div>
                 <hr />
-                <div class="row" id="middlerow" style="display:none;">
-                    <div class="col">
-                        <label>Burial Depth (m)</label>
-                        <div class="dropdown">
-                            <select class="btn btn-ebony dropdown-toggle" name="burial-depth-filter">
-                                <div class="dropdown-menu">
-                                    <option class="dropdown-item" value="">Select One</option>
-                                    <option class="dropdown-item" value="0-.5">0 - 0.5 (0-59 cm)</option>
-                                    <option class="dropdown-item" value=".6-1">0.6 - 1.0 (60-109 cm)</option>
-                                    <option class="dropdown-item" value="1.1-1.5">1.1 - 1.5 (110-159 cm)</option>
-                                    <option class="dropdown-item" value="1.6-2">1.6 - 2.0 (160-209 cm)</option>
-                                    <option class="dropdown-item" value="2.1-2.5">2.1 - 2.5 (210-259 cm)</option>
-                                    <option class="dropdown-item" value="2.6-3">2.6 - 3.0 (260-309 cm)</option>
-                                    <option class="dropdown-item" value="3.1-3.5">3.1 - 3.5 (310-359 cm)</option>
-                                    <option class="dropdown-item" value="3.6-4">3.6 - 4.0 (360-400 cm)</option>
-                                </div>
-                            </select>
+                <div class="filter-middle-row" id="middlerow" style="display:none;">
+                    <div class="filter-middle-top">
+                        <div>
+                            <label>Burial Depth (m)</label>
+                            <div class="dropdown">
+                                <select class="btn btn-ebony dropdown-toggle" name="burial-depth-filter">
+                                    <div class="dropdown-menu">
+                                        <option class="dropdown-item" value="">Select One</option>
+                                        <option class="dropdown-item" value="0-.5">0 - 0.5 (0-59 cm)</option>
+                                        <option class="dropdown-item" value=".6-1">0.6 - 1.0 (60-109 cm)</option>
+                                        <option class="dropdown-item" value="1.1-1.5">1.1 - 1.5 (110-159 cm)</option>
+                                        <option class="dropdown-item" value="1.6-2">1.6 - 2.0 (160-209 cm)</option>
+                                        <option class="dropdown-item" value="2.1-2.5">2.1 - 2.5 (210-259 cm)</option>
+                                        <option class="dropdown-item" value="2.6-3">2.6 - 3.0 (260-309 cm)</option>
+                                        <option class="dropdown-item" value="3.1-3.5">3.1 - 3.5 (310-359 cm)</option>
+                                        <option class="dropdown-item" value="3.6-4">3.6 - 4.0 (360-400 cm)</option>
+                                    </div>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="">
+                            <label>Length of Remains (m)</label>
+                            <div class="dropdown">
+                                <select class="btn btn-ebony dropdown-toggle" name="remain-length-filter">
+                                    <div class="dropdown-menu">
+                                        <option class="dropdown-item" value="">Select One</option>
+                                        <option class="dropdown-item" value="0-1">0 - 1 (0- 100 cm)</option>
+                                        <option class="dropdown-item" value="1-2">1 - 2 (101-200 cm)</option>
+                                        <option class="dropdown-item" value="2-3">2 - 3 (201-300 cm)</option>
+                                        <option class="dropdown-item" value="3-4">3 - 4 (301-400 cm)</option>
+                                        <option class="dropdown-item" value="4-5">4 - 5 (401-500 cm)</option>
+                                        <option class="dropdown-item" value="5-6">5 - 6 (501-600 cm)</option>
+                                        <option class="dropdown-item" value="6-7">6 - 7(601-700 cm)</option>
+                                        <option class="dropdown-item" value="7-8">7 - 8 (701-800 cm)</option>
+                                        <option class="dropdown-item" value="8-9">8 - 9 (801-900 cm)</option>
+                                        <option class="dropdown-item" value="9-10">9 - 10 (901-1000 cm)</option>
+                                    </div>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="">
                         <label>Date Found- Year</label>
                         <div class="dropdown">
                             <select class="btn btn-ebony dropdown-toggle" name="date-found-year-filter">
@@ -144,7 +166,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="">
                         <label name="item-found-filter">Item Found</label>
                         <div class="form-check">
                             <div class="form-check-inline">
@@ -169,7 +191,7 @@
                         <div class="form-check">
                             <div class="form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="bead" value="bead" name="item-found-filter" />
-                                <label  class="form-check-label" for="bead">Beads</label>
+                                <label class="form-check-label" for="bead">Beads</label>
                             </div>
                             <div class="form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="bracelet" value="bracelet" name="item-found-filter" />
@@ -187,70 +209,82 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <label>Length of Remains (m)</label>
-                        <div class="dropdown">
-                            <select class="btn btn-ebony dropdown-toggle" name="remain-length-filter">
-                                <div class="dropdown-menu">
-                                    <option class="dropdown-item" value="">Select One</option>
-                                    <option class="dropdown-item" value="0-1">0 - 1 (0- 100 cm)</option>
-                                    <option class="dropdown-item" value="1-2">1 - 2 (101-200 cm)</option>
-                                    <option class="dropdown-item" value="2-3">2 - 3 (201-300 cm)</option>
-                                    <option class="dropdown-item" value="3-4">3 - 4 (301-400 cm)</option>
-                                    <option class="dropdown-item" value="4-5">4 - 5 (401-500 cm)</option>
-                                    <option class="dropdown-item" value="5-6">5 - 6 (501-600 cm)</option>
-                                    <option class="dropdown-item" value="6-7">6 - 7(601-700 cm)</option>
-                                    <option class="dropdown-item" value="7-8">7 - 8 (701-800 cm)</option>
-                                    <option class="dropdown-item" value="8-9">8 - 9 (801-900 cm)</option>
-                                    <option class="dropdown-item" value="9-10">9 - 10 (901-1000 cm)</option>
-                                </div>
-                            </select>
-                        </div>
-                    </div>
+
                 </div>
                 <hr />
-                <div class="row" id="lastrow" style="display:none;">
-                    <div class="col">
-                        <label name="textile-taken-filter">Textile Taken</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" id="takenTrue" name="textile-taken-filter" value=true />
-                            <label class="form-check-label" for="takenTrue">Yes</label>
+                <div class="filter-last-row" id="lastrow" style="display:none;">
+
+                    <div class="last-row-child">
+                        <div>
+                            <label name="textile-taken-filter">Textile Taken</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="takenTrue" name="textile-taken-filter" value=true />
+                                <label class="form-check-label" for="takenTrue">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="takenFalse" name="textile-taken-filter" value=false />
+                                <label class="form-check-label" for="takenFalse">No</label>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" id="takenFalse" name="textile-taken-filter" value=false />
-                            <label class="form-check-label" for="takenFalse">No</label>
+                        <div class="">
+                            <label>Time of Burial</label>
+                            <div class="dropdown">
+                                <select class="btn btn-ebony dropdown-toggle" name="burial-time-filter">
+                                    <div class="dropdown-menu">
+                                        <option class="dropdown-item" value="">Select One</option>
+                                        <option class="dropdown-item" value="">850 B.C. - 450 B.C.</option>
+                                        <option class="dropdown-item" value="">449 B.C. - 200 B.C.</option>
+                                        <option class="dropdown-item" value="">199 B.C. - 0 A.D.</option>
+                                        <option class="dropdown-item" value="">1 A.D. - 200 A.D.</option>
+                                        <option class="dropdown-item" value="">201 A.D. - 450 A.D.</option>
+                                        <option class="dropdown-item" value="">451 A.D. - 850 A.D.</option>
+                                    </div>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <span>Square:</span><br />
+                    <div class="last-row-child">
+                        <span>Square</span><br />
                         <label>North</label>
                         <input class="form-radio" name="NS-square-filter" type="radio" value="N" />
                         <label>South</label>
                         <input class="form-radio" name="NS-square-filter" type="radio" value="S" />
                         <br />
-                        <label>High/Low Pair:</label>
-                        <input name="high-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;"/>/<input name="low-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;"/>
-                        <br />
+                        <div class="filter-high-low">
+                            <label>High/Low Pair:</label>
+                            <div><input name="high-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" />/<input name="low-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" /></div>
+                        </div>
                         <label>East</label>
                         <input class="form-radio" name="EW-square-filter" type="radio" value="E" />
                         <label>West</label>
                         <input class="form-radio" name="EW-square-filter" type="radio" value="W" />
                         <br />
-                        <label>High/Low Pair:</label>
-                        <input name="high-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;"/>/<input name="low-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;"/>
-                        <br /><br />
-                        <span>Area: </span>
-                        <br />
-                        <label>NW</label>
-                        <input type="radio" name="area-filter" class="form-radio" value="NW" />
-                        <label>NE</label>
-                        <input type="radio" name="area-filter" class="form-radio" value="NE" />
-                        <label>SW</label>
-                        <input type="radio" name="area-filter" class="form-radio" value="SW" />
-                        <label>SE</label>
-                        <input type="radio" name="area-filter" class="form-radio" value="SE" />
+                        <div class="filter-high-low">
+                            <label>High/Low Pair:</label>
+                            <div><input name="high-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" />/<input name="low-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" /></div>
+                        </div>
                     </div>
-                    <div class="col">
+
+                    <div class="last-row-child">
+                        <span>Area </span>
+                        <div class="d-flex flex-row flex-wrap">
+                            <div>
+                                <label for="area-filter">NW</label>
+                                <input type="radio" name="area-filter" class="form-radio" value="NW" />
+                            </div>
+                            <div>
+                                <label for="area-filter">NE</label>
+                                <input type="radio" name="area-filter" class="form-radio" value="NE" />
+                            </div>
+                            <div>
+                                <label for="area-filter">SW</label>
+                                <input type="radio" name="area-filter" class="form-radio" value="SW" />
+                            </div>
+                            <div>
+                                <label for="area-filter">SE</label>
+                                <input type="radio" name="area-filter" class="form-radio" value="SE" />
+                            </div>
+                        </div>
                         <label name="head-dir-filter">Head Direction</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="head-dir-filter" id="East" value="East" />
@@ -265,33 +299,22 @@
                             <label class="form-check-label" for="Undefined">Undefined</label>
                         </div>
                     </div>
-                    <div class="col">
-                        <label>Time of Burial</label>
-                        <div class="dropdown">
-                            <select class="btn btn-ebony dropdown-toggle" name="burial-time-filter">
-                                <div class="dropdown-menu">
-                                    <option class="dropdown-item" value="">Select One</option>
-                                    <option class="dropdown-item" value="">850 B.C. - 450 B.C.</option>
-                                    <option class="dropdown-item" value="">449 B.C. - 200 B.C.</option>
-                                    <option class="dropdown-item" value="">199 B.C. - 0 A.D.</option>
-                                    <option class="dropdown-item" value="">1 A.D. - 200 A.D.</option>
-                                    <option class="dropdown-item" value="">201 A.D. - 450 A.D.</option>
-                                    <option class="dropdown-item" value="">451 A.D. - 850 A.D.</option>
-                                </div>
-                            </select>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
-            <button type="submit" class="btn btn-blackolive max-auto" name="filterBurial">Filter</button>
+            <div class="filter-buttons">
+                <button type="submit" class="btn btn-blackolive max-auto" name="filterBurial">Filter</button>
+                <button type="button" class="btn btn-sm" style="float:right;" onclick="ExpandFilter()">More</button>
+                <button type="button" class="btn btn-sm" style="float:right;" onclick="ShrinkFilter()">Less</button>
+            </div>
         </form>
-        <button class="btn btn-sm" style="float:right;" onclick="ExpandFilter()">More</button>
-        <button class="btn btn-sm" style="float:right;" onclick="ShrinkFilter()">Less</button>
+        
     </div>
 
     <div class="d-flex align-items-center justify-content-end w-100">
         <div page-info="@Model.PageNumInfo" page-classes-enabled="true" page-class="btn"
-             page-class-normal="btn-outline-light btn-pag-artichoke" page-class-selected="btn-blackolive" class="btn-group m-1">
+             page-class-normal="btn-outline-light btn-pag-artichoke" page-class-selected="btn-blackolive" class="btn-group btn-pagination m-1">
 
         </div>
     </div>

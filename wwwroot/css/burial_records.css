@@ -22,14 +22,14 @@
 }
 
 .filter-main {
-    height: 290px;
+    height: auto;
     width: 98%;
     color: var(--champagne-pink);
     border-radius:0.25rem;
 }
 
 .filter-main-expanded {
-    height: 700px !important;
+    height: auto !important;
 }
 
 .filter-header {
@@ -53,4 +53,71 @@
 
 .card-text-bkg {
     background-color: var(--black-olive);
+}
+
+.filter-middle-row {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.filter-last-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.filter-row-top {
+    width:50% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.filter-row-bottom {
+    width: 50% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.filter-high-low{
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-buttons{
+
+}
+
+@media (max-width: 770px) {
+    .filter-middle-top{
+        margin-right: 20px !important;
+    }
+    .filter-middle-row {
+        justify-content: initial;
+    }
+    .filter-row-top {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    .filter-row-bottom {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    .last-row-child {
+        margin: 10px 0px 10px 0px;
+    }
+}
+
+@media (max-width: 400px){
+    .filter-last-row {
+        flex-direction:column;
+    }
+}
+
+@media (max-width: 490px){
+    .btn-pagination{
+        display: block !important;
+    }
 }
