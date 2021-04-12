@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -224,40 +225,87 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
-        //public List<Burial> FilterTextile(List<Burial> list, bool? textile)
-        //{
-        //    return list.Where(b => b.TextileTaken == textile).ToList();
-        //}
+        public List<Burial> FilterTextile(List<Burial> list, bool? textile)
+        {
+            return list.Where(b => b.TextileTaken == textile).ToList();
+        }
 
         //Will it need to reference the locations table?
         //public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow)
         //{
         //    return list.Where(b => b.Location.LocationNs == NS && b.Location.LowPairNs == NSlow &&
-        //                           b.Location.LocationEw == EW && b.Location.LowPairEw == EWlow);
+        //                           b.Location.LocationEw == EW && b.Location.LowPairEw == EWlow).ToList();
         //}
 
         //Reference to locations table
-        //public List<Burial> FilterArea(List<Burial> list, string area)
-        //{
-        //    return list.Where(b => b.Location.BurialSubplot == area);
-        //}
+        public List<Burial> FilterArea(List<Burial> list, string area)
+        {
+            List<Location> loc = _context.Location.Where(l => l.BurialSubplot == area).ToList();
+            List<Guid> loc2 = _context.Location.Select(l => l.LocationId).ToList();
 
-        //public List<Burial> FilterHeadDirection(List<Burial> list, string direction)
-        //{
-        //    return list.Where(b => b.HeadDirection == direction);
-        //}
+            List<Guid> stuff = new List<Guid>();
 
-        //Uses carbon dating analyses. May need to loop if multiple biosamples or 
-        //public IEnumerable<Burial> FilterTimeOfBurial(IEnumerable<Burial> list, string burial)
+            foreach(Location l in loc)
+            {
+                stuff = loc2.Where(x => x == l.LocationId).ToList();
+            }
+
+            foreach(Guid g in stuff)
+            {
+                list.Where(b => b.LocationId == g).ToList();
+            }
+
+            return list;
+        }
+
+        public List<Burial> FilterHeadDirection(List<Burial> list, string direction)
+        {
+            return list.Where(b => b.HeadDirection == direction).ToList();
+        }
+
+        //Uses carbon dating analyses.May need to loop if multiple biosamples or
+        //public List<Burial> FilterTimeOfBurial(List<Burial> list, string burial)
         //{
-        //    return list.Where(b => b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate ==
+        //    List<Burial> listFilter = new List<Burial>();
+
+        //    if (burial == "850-450")
+        //    {
+        //        listFilter = list.Where(b => Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) >= -850 &&
+        //            Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) <= -450).ToList();
+        //    }
+        //    else if (burial == "449-200")
+        //    {
+        //        listFilter = list.Where(b => Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) >= -449 &&
+        //            Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) <= -200).ToList();
+        //    }
+        //    else if (burial == "199-0")
+        //    {
+        //        listFilter = list.Where(b => Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) >= -199 &&
+        //            Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) <= 0).ToList();
+        //    }
+        //    else if (burial == "1-200")
+        //    {
+        //        listFilter = list.Where(b => Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) >= 1 &&
+        //            Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) <= 200).ToList();
+        //    }
+        //    else if (burial == "201-450")
+        //    {
+        //        listFilter = list.Where(b => Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) >= 201 &&
+        //            Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) <= 450).ToList();
+        //    }
+        //    else if (burial == "451-850")
+        //    {
+        //        listFilter = list.Where(b => Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) >= 451 &&
+        //            Int32.Parse(b.BioSample.FirstOrDefault().CarbonDatingAnalysis.FirstOrDefault().C14CalendarDate) <= 850).ToList();
+        //    }
+        //    else
+        //    {
+        //        return list;
+        //    }
+        //    return listFilter;
         //}
 
         //Main function to utilize all the individual functions.Will be called in controller
-        //string gender = "", string hair = "", string age = "", string height = "",
-        //string depth = "", int year = 0, int month = 0, string item = "", string length = "",
-        //bool? textile = null, char? NS = null, int? NSlow = null, char? EW = null,
-        //int? EWlow = null, string area = "", string hDirection = "", string burialTime = ""
         public List<Burial> FilterAllData(IFormCollection form)
         {
             List<Burial> results = _context.Burial.ToList();
@@ -296,25 +344,25 @@ namespace EgyptExcavationProject.Services
             {
                 results = FilterRemainLength(results, form["remain-length-filter"]);
             }
-            //if (form["textile-taken-filter"].ToString() != null)
-            //{
-            //    results = FilterTextile(results, Boolean.Parse(form["textile-taken-filter"].ToString()));
-            //}
+            if (form["textile-taken-filter"].ToString() != "")
+            {
+                results = FilterTextile(results, Boolean.Parse(form["textile-taken-filter"].ToString()));
+            }
             //if (form["NS-square-filter"].ToString() != null && form["low-pair-NS-filter"].ToString() != null && form["EW-square-filter"].ToString() != null && form["low-pair-EW-filter"].ToString() != null)
             //{
             //    results = FilterSquare(results, Convert.ToChar(form["NS-square-filter"]), Int32.Parse(form["low-pair-NS-filter"].ToString()), Convert.ToChar(form["EW-square-filter"]), Int32.Parse(form["low-pair-EW-filter"].ToString()));
             //}
-            //if (form["area-filter"] != "")
+            if (form["area-filter"].ToString() != "")
+            {
+                results = FilterArea(results, form["area-filter"]);
+            }
+            if (form["head-dir-filter"].ToString() != "")
+            {
+                results = FilterHeadDirection(results, form["head-dir-filter"]);
+            }
+            //if (form["burial-time-filter"].ToString() != "")
             //{
-            //    results = FilterArea(results, form["area-filter"]);
-            //}
-            //if (form["head-dir-filter"] != "")
-            //{
-            //    results = FilterHeadDirection(results, form["head-dir-filter"]);
-            //}
-            //if (form["burial-time-filter"] != "")
-            //{
-            //    results = FilterTimeOfBurial(results, form["burial-tim-filter"]);
+            //    results = FilterTimeOfBurial(results, form["burial-time-filter"]);
             //}
 
             return results;
