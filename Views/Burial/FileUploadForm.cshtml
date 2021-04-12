@@ -2,7 +2,7 @@
 
 <hr class="form-divide" />
 <h2 class="text-center text-brass-dark font-weight-bold">Upload Photos</h2>
-<form enctype="multipart/form-data" method="post" class="text-center">
+<form class="text-center" asp-action="FileUploadForm" asp-controller="Burial">
     <input type="hidden" asp-for="BurialID" />
     @*<dl>
         <dt>

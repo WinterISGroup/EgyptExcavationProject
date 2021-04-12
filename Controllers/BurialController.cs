@@ -135,7 +135,11 @@ namespace EgyptExcavationProject.Controllers
                 if (memoryStream.Length < 2097152)
                 {
 
-                    string fileName = FileUpload.FormFile.FileName;
+                    string fileExtension = FileUpload.FormFile.FileName.Split(".")[1];
+
+                    string randomId = Guid.NewGuid().ToString();
+
+                    string fileName = randomId + "." + fileExtension;
 
                     await S3Upload.UploadFileAsync(memoryStream, "egyptexcavation", "photos/" + fileName);
 
