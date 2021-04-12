@@ -13,21 +13,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <label name="gender">Gender</label>
+                        <label name="gender-filter">Gender</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="male" name="gender" value="male" />
-                            <label class="form-check-label" for="male">Male</label>
+                            <input class="form-check-input" type="radio" id="Male" name="gender-filter" value="Male"/>
+                            <label class="form-check-label" for="Male">Male</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="female" name="gender" value="female" />
-                            <label class="form-check-label" for="female">Female</label>
+                            <input class="form-check-input" type="radio" id="Female" name="gender-filter" value="Female" />
+                            <label class="form-check-label" for="Female">Female</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="subadult" name="gender" value="subadult" />
-                            <label class="form-check-label" for="subadult">Subadult</label>
+                            <input class="form-check-input" type="radio" id="Subadult" name="gender-filter" value="Subadult" />
+                            <label class="form-check-label" for="Subadult">Subadult</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="undetermined" name="gender" value="undetermined" />
+                            <input class="form-check-input" type="radio" id="undetermined" name="gender-filter" value="Undetermined" />
                             <label class="form-check-label" for="undetermined">Undetermined</label>
                         </div>
                     </div>
@@ -106,20 +106,20 @@
                         <div class="dropdown">
                             <select class="btn btn-ebony dropdown-toggle" name="date-found-year-filter">
                                 <div class="dropdown-menu"></div>
-                                <option class="dropdown-item" value="">Select Year</option>
-                                <option class="dropdown-item" value="1987">1987</option>
-                                <option class="dropdown-item" value="1992">1992</option>
-                                <option class="dropdown-item" value="1994">1994</option>
-                                <option class="dropdown-item" value="1997">1997</option>
-                                <option class="dropdown-item" value="1998">1998</option>
-                                <option class="dropdown-item" value="2000">2000</option>
-                                <option class="dropdown-item" value="2002">2002</option>
-                                <option class="dropdown-item" value="2003">2003</option>
-                                <option class="dropdown-item" value="2005">2005</option>
-                                <option class="dropdown-item" value="2007">2007</option>
-                                <option class="dropdown-item" value="2009">2009</option>
-                                <option class="dropdown-item" value="2010">2010</option>
-                                <option class="dropdown-item" value="2013">2013</option>
+                                <option class="dropdown-item" value=null>Select Year</option>
+                                <option class="dropdown-item" value=1987>1987</option>
+                                <option class="dropdown-item" value=1992>1992</option>
+                                <option class="dropdown-item" value=1994>1994</option>
+                                <option class="dropdown-item" value=1997>1997</option>
+                                <option class="dropdown-item" value=1998>1998</option>
+                                <option class="dropdown-item" value=2000>2000</option>
+                                <option class="dropdown-item" value=2002>2002</option>
+                                <option class="dropdown-item" value=2003>2003</option>
+                                <option class="dropdown-item" value=2005>2005</option>
+                                <option class="dropdown-item" value=2007>2007</option>
+                                <option class="dropdown-item" value=2009>2009</option>
+                                <option class="dropdown-item" value=2010>2010</option>
+                                <option class="dropdown-item" value=2013>2013</option>
                             </select>
                         </div>
                         <br />
@@ -145,44 +145,44 @@
                         </div>
                     </div>
                     <div class="col">
-                        <label name="itemFound">Item Found</label>
+                        <label name="item-found-filter">Item Found</label>
                         <div class="form-check">
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="dice" value="dice" name="dice" />
+                                <input class="form-check-input" type="checkbox" id="dice" value="dice" name="item-found-filter" />
                                 <label class="form-check-label" for="dice">Dice</label>
                             </div>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="hairpin" value="hairpin" name="hairpin" />
+                                <input class="form-check-input" type="checkbox" id="hairpin" value="hairpin" name="item-found-filter" />
                                 <label class="form-check-label" for="hairpin">Hairpin</label>
                             </div>
                         </div>
                         <div class="form-check">
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="bronze" value="bronze" name="bronze" />
+                                <input class="form-check-input" type="checkbox" id="bronze" value="bronze" name="item-found-filter" />
                                 <label class="form-check-label" for="bronze">Bronze</label>
                             </div>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="necklace" value="necklace" name="necklace" />
+                                <input class="form-check-input" type="checkbox" id="necklace" value="necklace" name="item-found-filter" />
                                 <label class="form-check-label" for="necklace">Necklace</label>
                             </div>
                         </div>
                         <div class="form-check">
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="bead" value="bead" name="bead" />
-                                <label class="form-check-label" for="bead">Beads</label>
+                                <input class="form-check-input" type="checkbox" id="bead" value="bead" name="item-found-filter" />
+                                <label  class="form-check-label" for="bead">Beads</label>
                             </div>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="bracelet" value="bracelet" name="bracelet" />
+                                <input class="form-check-input" type="checkbox" id="bracelet" value="bracelet" name="item-found-filter" />
                                 <label class="form-check-label" for="bracelet">Bracelet</label>
                             </div>
                         </div>
                         <div class="form-check">
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="wood" value="wood" name="wood" />
+                                <input class="form-check-input" type="checkbox" id="wood" value="wood" name="item-found-filter" />
                                 <label class="form-check-label" for="wood">Wood</label>
                             </div>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="pottery" value="pottery" name="pottery" />
+                                <input class="form-check-input" type="checkbox" id="pottery" value="pottery" name="item-found-filter" />
                                 <label class="form-check-label" for="pottery">Pottery</label>
                             </div>
                         </div>
@@ -211,58 +211,58 @@
                 <hr />
                 <div class="row" id="lastrow" style="display:none;">
                     <div class="col">
-                        <label>Textile Taken</label>
+                        <label name="textile-taken-filter">Textile Taken</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="takenTrue" name="taken" value="True" />
-                            <label class="form-check-label" for="taken">Yes</label>
+                            <input class="form-check-input" type="radio" id="takenTrue" name="textile-taken-filter" value=true />
+                            <label class="form-check-label" for="takenTrue">Yes</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="takenFalse" name="taken" value="False" />
-                            <label class="form-check-label" for="taken">No</label>
+                            <input class="form-check-input" type="radio" id="takenFalse" name="textile-taken-filter" value=false />
+                            <label class="form-check-label" for="takenFalse">No</label>
                         </div>
                     </div>
                     <div class="col">
                         <span>Square:</span><br />
                         <label>North</label>
-                        <input class="form-radio" name="location-ns" type="radio" value="N" />
+                        <input class="form-radio" name="NS-square-filter" type="radio" value="N" />
                         <label>South</label>
-                        <input class="form-radio" name="location-ns" type="radio" value="S" />
+                        <input class="form-radio" name="NS-square-filter" type="radio" value="S" />
                         <br />
                         <label>High/Low Pair:</label>
-                        <input name="high-pair-ns" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;" />/<input name="sq-ns-low" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;" />
+                        <input name="high-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;"/>/<input name="low-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;"/>
                         <br />
                         <label>East</label>
-                        <input class="form-radio" name="location-ew" type="radio" value="E" />
+                        <input class="form-radio" name="EW-square-filter" type="radio" value="E" />
                         <label>West</label>
-                        <input class="form-radio" name="location-ew" type="radio" value="W" />
+                        <input class="form-radio" name="EW-square-filter" type="radio" value="W" />
                         <br />
                         <label>High/Low Pair:</label>
-                        <input name="high-pair-ew" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;" />/<input name="sq-ew-low" type="text" class="form-control form-control-sm form-short" style="background-color:var(--ebony); color:white;" />
+                        <input name="high-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;"/>/<input name="low-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;"/>
                         <br /><br />
                         <span>Area: </span>
                         <br />
                         <label>NW</label>
-                        <input type="radio" name="area" class="form-radio" value="NW" />
+                        <input type="radio" name="area-filter" class="form-radio" value="NW" />
                         <label>NE</label>
-                        <input type="radio" name="area" class="form-radio" value="NE" />
+                        <input type="radio" name="area-filter" class="form-radio" value="NE" />
                         <label>SW</label>
-                        <input type="radio" name="area" class="form-radio" value="SW" />
+                        <input type="radio" name="area-filter" class="form-radio" value="SW" />
                         <label>SE</label>
-                        <input type="radio" name="area" class="form-radio" value="SE" />
+                        <input type="radio" name="area-filter" class="form-radio" value="SE" />
                     </div>
                     <div class="col">
-                        <label>Head Direction</label>
+                        <label name="head-dir-filter">Head Direction</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="dir" id="dirEast" value="East" />
-                            <label class="form-check-label" for="dir">East</label>
+                            <input class="form-check-input" type="radio" name="head-dir-filter" id="East" value="East" />
+                            <label class="form-check-label" for="East">East</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="dir" id="dirWest" value="West" />
-                            <label class="form-check-label" for="dir">West</label>
+                            <input class="form-check-input" type="radio" name="head-dir-filter" id="West" value="West" />
+                            <label class="form-check-label" for="West">West</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="dir" id="dirUndefined" value="Undefined" />
-                            <label class="form-check-label" for="dir">Undefined</label>
+                            <input class="form-check-input" type="radio" name="head-dir-filter" id="Undefined" value="Undefined" />
+                            <label class="form-check-label" for="Undefined">Undefined</label>
                         </div>
                     </div>
                     <div class="col">
