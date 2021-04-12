@@ -299,7 +299,7 @@ namespace EgyptExcavationProject.Services
             //    results = FilterTimeOfBurial(results, form["burial-tim-filter"]);
             //}
 
-            return results;
+        //    return results;
         }
     }
 }

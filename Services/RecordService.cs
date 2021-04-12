@@ -16,9 +16,9 @@ namespace EgyptExcavationProject.Services
 
         public IEnumerable<Burial> GetAllBurials()
         {
-            DateTime jan01 = new DateTime(2021, 01, 01);
-            return _context.Burial.Where(b => b.DateFound > jan01 ).OrderBy(b => b.BurialId);
-            //return _context.Burial.OrderBy(b => b.BurialId);
+            //DateTime jan01 = new DateTime(2021, 01, 01);
+            //return _context.Burial.Where(b => b.DateFound > jan01 ).OrderBy(b => b.BurialId);
+            return _context.Burial.OrderBy(b => b.BurialId);
         }
 
         //FIXME: return type change to BurialModel
@@ -84,6 +84,12 @@ namespace EgyptExcavationProject.Services
         public void DeleteRecord(Guid burialID)
         {
             _context.Remove(_context.Burial.Where(b => b.BurialId == burialID).FirstOrDefault());
+            _context.SaveChanges();
+        }
+
+        public void DeleteLocation(Guid locationID)
+        {
+            _context.Remove(_context.Location.Where(l => l.LocationId == locationID).FirstOrDefault());
             _context.SaveChanges();
         }
     }

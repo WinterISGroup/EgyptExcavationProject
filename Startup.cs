@@ -1,3 +1,4 @@
+using EgyptExcavationProject.Areas.Identity.Data;
 using EgyptExcavationProject.Data;
 using EgyptExcavationProject.Models;
 using EgyptExcavationProject.Services;
@@ -80,7 +81,9 @@ namespace EgyptExcavationProject
                 options.SlidingExpiration = true;
             });
 
-            services.AddDefaultIdentity<IdentityUser>()
+            // Add identity services
+            // This uses the Application User instead of the identity user
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
         }
@@ -112,6 +115,12 @@ namespace EgyptExcavationProject
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute("pagenum",
+                    "All/{pageNum}",
+                    new { Controller = "Burials", action = "BurialRecords" }
+                    );
+
                 endpoints.MapRazorPages();
             });
         }

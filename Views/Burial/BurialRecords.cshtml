@@ -2,7 +2,7 @@
     ViewData["Title"] = "Burial Records Summary";
 }
 
-@model IEnumerable<Burial>
+@model BurialViewModel
 
 <h2 class="text-center">Burial Records List</h2>
 <br />
@@ -56,7 +56,7 @@
                                     <option class="dropdown-item" value="0-10">0-10</option>
                                     <option class="dropdown-item" value="11-20">11-20</option>
                                     <option class="dropdown-item" value="21-30">21-30</option>
-                                    <option  class="dropdown-item" value="31-40">31-40</option>
+                                    <option class="dropdown-item" value="31-40">31-40</option>
                                     <option class="dropdown-item" value="41-50">41-50</option>
                                     <option class="dropdown-item" value="51-60">51-60</option>
                                     <option class="dropdown-item" value="61-70">61-70</option>
@@ -288,8 +288,15 @@
         <button class="btn btn-sm" style="float:right;" onclick="ExpandFilter()">More</button>
         <button class="btn btn-sm" style="float:right;" onclick="ShrinkFilter()">Less</button>
     </div>
+
+    <div class="d-flex align-items-center justify-content-end w-100">
+        <div page-info="@Model.PageNumInfo" page-classes-enabled="true" page-class="btn"
+             page-class-normal="btn-outline-light btn-pag-artichoke" page-class-selected="btn-blackolive" class="btn-group m-1">
+
+        </div>
+    </div>
     <div class="card-holder">
-        @foreach (Burial burial in Model)
+        @foreach (Burial burial in Model.Burials)
         {
             <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new {burialID = burial.BurialId })');">
                 <img class="card-img-top" src="~/mummy.jpg" />
@@ -300,10 +307,17 @@
                         Age: @burial.AgeCode<br />
                         Gender: @burial.GenderGe<br />
                     </p>
-                    @Html.ActionLink("Remove", "DeleteRecord", "Burial", null, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick="confirm('Are you sure you want to delete this record?');"})
+                    @Html.ActionLink("Remove", "DeleteRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick = "var result = confirm('Are you sure you want to delete this record?'); if(!result){event.stopPropagation(); return false;}" })
                     @Html.ActionLink("Edit", "EditRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })
                 </div>
             </div>
         }
+    </div>
+</div>
+
+<div class="d-flex align-items-center justify-content-end w-100">
+    <div page-info="@Model.PageNumInfo" page-classes-enabled="true" page-class="btn"
+         page-class-normal="btn-outline-light btn-pag-artichoke" page-class-selected="btn-blackolive" class="btn-group m-1">
+
     </div>
 </div>

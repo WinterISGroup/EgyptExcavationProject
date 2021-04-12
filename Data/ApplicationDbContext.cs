@@ -6,11 +6,12 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-
+using EgyptExcavationProject.Areas.Identity.Data;
 
 namespace EgyptExcavationProject.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    // Getting identity context from Application User
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
