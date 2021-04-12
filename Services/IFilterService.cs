@@ -10,12 +10,12 @@ namespace EgyptExcavationProject.Services
     public interface IFilterService
     {
         public IEnumerable<Burial> FilterAllData(IFormCollection form);
-        public List<Burial> FilterGender(string gender);
-        public List<Burial> FilterHairColor(string color);
+        public List<Burial> FilterGender(List<Burial> list, string gender);
+        public List<Burial> FilterHairColor(List<Burial> list, string color);
         //public IEnumerable<Burial> FilterAge(IEnumerable<Burial> list, string age);
-        public List<Burial> FilterHeight(string height);
-        public IEnumerable<Burial> FilterBurialDepth(IEnumerable<Burial> list, string depth);
-        public IEnumerable<Burial> FilterFoundYear(IEnumerable<Burial> list, int year);
+        public List<Burial> FilterHeight(List<Burial> list, string height);
+        public List<Burial> FilterBurialDepth(List<Burial> list, string depth);
+        public List<Burial> FilterFoundYear(List<Burial> list, int? year);
         public IEnumerable<Burial> FilterFoundMonth(IEnumerable<Burial> list, int month);
         public IEnumerable<Burial> FilterItemFound(IEnumerable<Burial> list, string item);
         public IEnumerable<Burial> FilterRemainLength(IEnumerable<Burial> list, string length);

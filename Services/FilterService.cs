@@ -17,26 +17,20 @@ namespace EgyptExcavationProject.Services
         }
         
         //Ask about the gender columns.
-        public List<Burial> FilterGender(string gender)
+        public List<Burial> FilterGender(List<Burial> list, string gender)
         {
-            List<Burial> listFilter = new List<Burial>();
-
             if (gender == null)
-            {
-                return listFilter;
-            }
+                return list;
             else
             {
-                listFilter = (_context.Burial.Where(b => b.GenderGe == gender)).ToList();
-                return listFilter;
+                list = list.Where(b => b.GenderGe == gender).ToList();
+                return list;
             }
         }
 
-        public List<Burial> FilterHairColor(string color)
+        public List<Burial> FilterHairColor(List<Burial> list, string color)
         {
-            List<Burial> listFilter = (_context.Burial.Where(b => b.HairColor.Contains(color))).ToList();
-
-            return listFilter;
+            return list.Where(b => b.HairColor.Contains(color)).ToList();
         }
 
         //Age is first filter.Starts the initial filter from the context
@@ -77,81 +71,81 @@ namespace EgyptExcavationProject.Services
         //    }
         //}
 
-        public List<Burial> FilterHeight(string height)
+        public List<Burial> FilterHeight(List<Burial> list, string height)
         {
             List<Burial> listFilter = new List<Burial>();
 
             if (height == "0-.5")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 0 && b.EstimateLivingStature <= 0.59)).ToList();
+                listFilter = (list.Where(b => b.EstimateLivingStature > 0 && b.EstimateLivingStature <= 0.59)).ToList();
             }
             else if (height == ".6-1")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 0.59 && b.EstimateLivingStature <= 1.09)).ToList();
+                listFilter = (list.Where(b => b.EstimateLivingStature > 0.59 && b.EstimateLivingStature <= 1.09)).ToList();
             }
             else if (height == "1.1-1.5")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 1.09 && b.EstimateLivingStature <= 1.59)).ToList();
+                listFilter = (list.Where(b => b.EstimateLivingStature > 1.09 && b.EstimateLivingStature <= 1.59)).ToList();
             }
             else if (height == "1.6-2.0")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 1.59 && b.EstimateLivingStature <= 2.09)).ToList();
+                listFilter = (list.Where(b => b.EstimateLivingStature > 1.59 && b.EstimateLivingStature <= 2.09)).ToList();
             }
             else if (height == "2.1-2.5")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 2.09 && b.EstimateLivingStature <= 2.59)).ToList();
+                listFilter = (list.Where(b => b.EstimateLivingStature > 2.09 && b.EstimateLivingStature <= 2.59)).ToList();
             }
             else if (height == "2.6-3")
             {
-                listFilter = (_context.Burial.Where(b => b.EstimateLivingStature > 2.59 && b.EstimateLivingStature <= 3.09)).ToList();
+                listFilter = (list.Where(b => b.EstimateLivingStature > 2.59 && b.EstimateLivingStature <= 3.09)).ToList();
             }
 
-            return listFilter;
+            return list;
         }
 
-        public IEnumerable<Burial> FilterBurialDepth(IEnumerable<Burial> list, string depth) 
+        public List<Burial> FilterBurialDepth(List<Burial> list, string depth) 
         {
+            List<Burial> listFilter = new List<Burial>();
+
             if (depth == "0-.5")
             {
-                return list.Where(b => b.BurialDepth > 0 && b.BurialDepth <= 0.59);
+                listFilter = (list.Where(b => b.BurialDepth > 0 && b.BurialDepth <= 0.59)).ToList();
             }
             else if (depth == ".6-1")
             {
-                return list.Where(b => b.BurialDepth > 0.59 && b.BurialDepth <= 1.09);
+                listFilter = (list.Where(b => b.BurialDepth > 0.59 && b.BurialDepth <= 1.09)).ToList();
             }
             else if (depth == "1.1-1.5")
             {
-                return list.Where(b => b.BurialDepth > 1.09 && b.BurialDepth <= 1.59);
+                listFilter = (list.Where(b => b.BurialDepth > 1.09 && b.BurialDepth <= 1.59)).ToList();
             }
             else if (depth == "1.6-2.0")
             {
-                return list.Where(b => b.BurialDepth > 1.59 && b.BurialDepth <= 2.09);
+                listFilter = (list.Where(b => b.BurialDepth > 1.59 && b.BurialDepth <= 2.09)).ToList();
             }
             else if (depth == "2.1-2.5")
             {
-                return list.Where(b => b.BurialDepth > 2.09 && b.BurialDepth <= 2.59);
+                listFilter = (list.Where(b => b.BurialDepth > 2.09 && b.BurialDepth <= 2.59)).ToList();
             }
             else if (depth == "2.6-3")
             {
-                return list.Where(b => b.BurialDepth > 2.59 && b.BurialDepth <= 3.09);
+                listFilter = (list.Where(b => b.BurialDepth > 2.59 && b.BurialDepth <= 3.09)).ToList();
             }
             else if (depth == "3.1-3.5")
             {
-                return list.Where(b => b.BurialDepth > 3.09 && b.BurialDepth <= 3.59);
+                listFilter = (list.Where(b => b.BurialDepth > 3.09 && b.BurialDepth <= 3.59)).ToList();
             }
             else if (depth == "3.6-4")
             {
-                return list.Where(b => b.BurialDepth > 3.59 && b.BurialDepth <= 4.09);
+                listFilter = (list.Where(b => b.BurialDepth > 3.59 && b.BurialDepth <= 4.09)).ToList();
             }
-            else
-            {
-                return list;
-            }
+
+            return list;
         }
 
-        public IEnumerable<Burial> FilterFoundYear(IEnumerable<Burial> list, int year)
+        public List<Burial> FilterFoundYear(List<Burial> list, int? year)
         {
-            return list.Where(b => b.DateFound.Value.Year == year); //.Year should automatically pull the year from the datetime?
+            return (list.Where(b => b.DateFound.Value.Year == year)).ToList(); //.Year should automatically pull the year from the datetime?
         }
         
         public IEnumerable<Burial> FilterFoundMonth(IEnumerable<Burial> list, int month)
@@ -248,37 +242,26 @@ namespace EgyptExcavationProject.Services
         //int? EWlow = null, string area = "", string hDirection = "", string burialTime = ""
         public IEnumerable<Burial> FilterAllData(IFormCollection form)
         {
-            List<Burial> results = new List<Burial>();
+            List<Burial> results = _context.Burial.ToList();
 
-            results = FilterGender(form["gender-filter"]);
+            results = FilterGender(results, form["gender-filter"]);
 
             if (form["hair-filter"] != "")
             {
-                List<Burial> newFilter = FilterHairColor(form["hair-filter"]);
-
-                foreach(Burial b in newFilter)
-                {
-                    results.Add(b);
-                }
-                
+                results = FilterHairColor(results, form["hair-filter"]);
             }
-            ////if (form["age-filter"] != "")
-            ////{
-            ////    results = FilterAge(results, form["age-filter"]);
-            ////}
+            //if (form["age-filter"] != "")
+            //{
+            //    results = FilterAge(results, form["age-filter"]);
+            //}
             if (form["height-filter"] != "")
             {
-                List<Burial> newFilter = FilterHeight(form["heigh-filter"]);
-
-                foreach(Burial b in newFilter)
-                {
-                    results.Add(b);
-                }
+                results = FilterHeight(results, form["heigh-filter"]);
             }
-            //if (form["burial-depth-filter"] != "")
-            //{
-            //    results = FilterBurialDepth(results, form["burial-depth-filter"]);
-            //}
+            if (form["burial-depth-filter"] != "")
+            {
+                results = FilterBurialDepth(results, form["burial-depth-filter"]);
+            }
             //if (form["date-found-year-filter"] != 0)
             //{
             //    results = FilterFoundYear(results, Int32.Parse(form["date-found-year-filter"].ToString()));
