@@ -49,9 +49,34 @@ namespace EgyptExcavationProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult BurialRecords(IFormCollection form)
+        public IActionResult BurialRecords(IFormCollection form, int pageNum = 1)
         {
-            return View(_filterService.FilterAllData(form));
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.Admin = true;
+            }
+            if (User.IsInRole("Researcher"))
+            {
+                ViewBag.Researcher = true;
+            }
+            int pageSize = 12;
+
+            List<Burial> returnList = new List<Burial>();
+            returnList = _filterService.FilterAllData(form);
+
+            BurialViewModel bvm = new BurialViewModel
+            {
+                Burials = returnList.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(),
+
+                PageNumInfo = new PageNumInfo
+                {
+                    NumItemsPerPage = pageSize,
+                    CurrentPage = pageNum,
+                    TotalNumItems = returnList.Count()
+                }
+            };
+
+            return View(bvm);
         }
 
         public IActionResult ViewRecord(Guid burialID)
