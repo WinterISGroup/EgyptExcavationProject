@@ -6,6 +6,7 @@
 }
 
 .homepage-img {
+    object-fit:cover;
     padding: 20px;
     height: auto;
     width: auto;
