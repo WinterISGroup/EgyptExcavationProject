@@ -23,6 +23,14 @@ namespace EgyptExcavationProject.Controllers
         }
         public IActionResult BurialRecords(int pageNum = 1)
         {
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.Admin = true;
+            }
+            if (User.IsInRole("Researcher"))
+            {
+                ViewBag.Researcher = true;
+            }
             int pageSize = 12;
 
             BurialViewModel bvm = new BurialViewModel

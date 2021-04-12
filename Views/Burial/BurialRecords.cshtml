@@ -307,8 +307,14 @@
                         Age: @burial.AgeCode<br />
                         Gender: @burial.GenderGe<br />
                     </p>
-                    @Html.ActionLink("Remove", "DeleteRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick = "var result = confirm('Are you sure you want to delete this record?'); if(!result){event.stopPropagation(); return false;}" })
-                    @Html.ActionLink("Edit", "EditRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })
+                    @if (ViewBag.Admin != null)
+                    {
+                        @Html.ActionLink("Remove", "DeleteRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick = "var result = confirm('Are you sure you want to delete this record?'); if(!result){event.stopPropagation(); return false;}" })
+                    }
+                    @if (ViewBag.Admin != null || ViewBag.Researcher != null)
+                    {
+                        @Html.ActionLink("Edit", "EditRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })
+                    }
                 </div>
             </div>
         }

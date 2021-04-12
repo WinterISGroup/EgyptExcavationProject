@@ -214,5 +214,11 @@
 </div>
 
 <hr class="form-divide" />
+@if (User.IsInRole("Admin") || User.IsInRole("Researcher"))
+{
+<div class="text-center">
+    @Html.ActionLink("Edit Record", "EditRecord", "Burial", new { burialID = Model.BurialId }, new { @class = "btn btn-brassdark" })
+</div>
+}
 <br />
 <br />
