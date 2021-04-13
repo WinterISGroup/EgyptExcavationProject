@@ -12,7 +12,7 @@ namespace EgyptExcavationProject.Services
         public List<Burial> FilterAllData(IFormCollection form);
         public List<Burial> FilterGender(List<Burial> list, string gender);
         public List<Burial> FilterHairColor(List<Burial> list, string color);
-        //public IEnumerable<Burial> FilterAge(IEnumerable<Burial> list, string age);
+        public List<Burial> FilterAge(List<Burial> list, string age);
         public List<Burial> FilterHeight(List<Burial> list, string height);
         public List<Burial> FilterBurialDepth(List<Burial> list, string depth);
         public List<Burial> FilterFoundYear(List<Burial> list, int? year);
@@ -23,6 +23,6 @@ namespace EgyptExcavationProject.Services
         public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow);
         public List<Burial> FilterArea(List<Burial> list, string area);
         public List<Burial> FilterHeadDirection(List<Burial> list, string direction);
-        //public List<Burial> FilterTimeOfBurial(List<Burial> list, string burial);
+        public List<Burial> FilterTimeOfBurial(List<Burial> list, string burial);
     }
 }
