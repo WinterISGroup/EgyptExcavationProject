@@ -424,5 +424,32 @@ namespace EgyptExcavationProject.Services
 
             return filterData;
         }
+
+        public string GetActiveFilterDisplay(FilterData filterData)
+        {
+            string result = "<br/><span class='text-black-olive' style='font-size:12pt;'>";
+            result += filterData.Gender != "" ? "Gender: <b>" + filterData.Gender + "</b>, " : "";
+            result += filterData.HairColor != "" ? "Hair Color: <b>" + filterData.HairColor + "</b>, " : "";
+            result += filterData.AgeCode != "" ? "Age Code: <b>" + filterData.AgeCode + "</b>, " : "";
+            result += filterData.Height != "" ? "Height: <b>" + filterData.Height + "</b>, " : "";
+            result += filterData.BurialDepth != "" ? "Burial Depth: <b>" + filterData.BurialDepth + "</b>, " : "";
+            result += filterData.LengthOfRemains != "" ? "Length Of Remains: <b>" + filterData.LengthOfRemains + "</b>, " : "";
+            result += filterData.DateFoundYear != 0 ? "Date Found-Year: <b>" + filterData.DateFoundYear.ToString() + "</b>, " : "";
+            result += filterData.DateFoundMonth != 0 ? "Date Found-Month: <b>" + filterData.DateFoundMonth.ToString() + "</b>, " : "";
+            result += filterData.ItemFound != "" ? "Item Found: <b>" + filterData.ItemFound + "</b>, " : "";
+            result += filterData.TextileFound != "" ? "Textile Taken: <b>" + filterData.TextileFound + "</b>, " : "";
+            result += filterData.BurialTime != "" ? "Burial Time: <b>" + filterData.BurialTime + "</b>, " : "";
+            result += filterData.SquareNS != '\0' ? "Square NS: <b>" + filterData.SquareNS.ToString() + "</b>, " : "";
+            result += filterData.NSLowPair != 0 ? "NS Low Pair: <b>" + filterData.NSLowPair.ToString() + "</b>, " : "";
+            result += filterData.SquareEW != '\0' ? "Square EW: <b>" + filterData.SquareEW.ToString() + "</b>, " : "";
+            result += filterData.EWLowPair != 0 ? "EW Low Pair: <b>" + filterData.ItemFound + "</b>, " : "";
+            result += filterData.SubPlot != "" ? "Area: <b>" + filterData.SubPlot + "</b>, " : "";
+            result += filterData.HeadDirection != "" ? "Head Direction: <b>" + filterData.HeadDirection + "</b>, " : "";
+            result = result.Substring(0, result.Length - 2);
+            result += "</span>";
+           
+
+            return result;
+        }
     }
 }

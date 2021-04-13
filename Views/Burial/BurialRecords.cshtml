@@ -5,16 +5,23 @@
 @model BurialViewModel
 
 <h2 class="text-center">Burial Records List</h2>
+<div class="text-center w-100"><span style="font-size:10pt;">* represents a value that is not present in the database</span></div>
 <br />
 <div class="item-holder">
-    @{ string hidden = "";}
+    @{ string hidden = "";
+        string filterText = "Select Filter:";
+        }
     @if (ViewBag.FilterSubmitted == true)
     {
         hidden = "hidden";
+        filterText = "Filters Active: " + ViewBag.FilterDisplay;
     }
-    <div id="filter-main" class="filter-main filter-main-collapsed filter-bkg p-2" style="display:block;" >
-        <span class="filter-header">Select Filter:</span>
-
+    <div id="filter-main" class="filter-main filter-main-collapsed filter-bkg p-2" style="display:block;">
+        <span class="filter-header">@Html.Raw(filterText)</span>
+        @if (ViewBag.FilterSubmitted == true)
+        {
+            <a class="btn btn-blackolive float-right" href="@Url.Action("BurialRecords", "Burial")">Clear Filter</a>
+        }
         <div id="formDiv" @hidden>
             <form asp-action="BurialRecords" method="post" id="filterForm">
                 <div class="container">
@@ -216,7 +223,6 @@
                     </div>
                     <hr />
                     <div class="filter-last-row" id="lastrow" style="display:none;">
-
                         <div class="last-row-child">
                             <div>
                                 <label name="textile-taken-filter">Textile Taken</label>
@@ -266,8 +272,6 @@
                                 <label>High/Low Pair:</label>
                                 <div><input name="high-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" />/<input name="low-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" /></div>
                             </div>
-                        </div>
-                        <div class="last-row-child">
                             <span>Area </span>
                             <div class="d-flex flex-row flex-wrap" id="subplot">
                                 <div>
@@ -287,6 +291,9 @@
                                     <input type="radio" name="area-filter" class="form-radio" value="SE" />
                                 </div>
                             </div>
+                        </div>
+                        <div class="last-row-child">
+
                             <label name="head-dir-filter">Head Direction</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="head-dir-filter" id="East" value="East" onchange="RequiredLocationInput()" />
@@ -320,7 +327,7 @@
     <div class="card-holder">
         @foreach (Burial burial in Model.Burials)
         {
-            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new {burialID = burial.BurialId })');">
+            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { burialID = burial.BurialId })');">
                 @if (burial.Photo != null && burial.Photo.Contains("egyptexcavation.s3.amazonaws.com"))
                 {
                     <img class="card-img-top" src="@burial.Photo" alt="" />
@@ -331,10 +338,28 @@
                 }
                 <div class="card-body card-text-bkg mt-2">
                     <p class="card-text text-white">
-                        Burial Number: @burial.BurialNumber<br />
-                        Burial ID: @burial.BurialId<br />
-                        Age: @burial.AgeCode<br />
-                        Gender: @burial.GenderGe<br />
+                        @if (burial.LocationId != null)
+                        {
+                            Location location = Model.Locations.Where(x => x.LocationId == burial.LocationId).FirstOrDefault();
+
+                            string locNS = location.LocationNs.ToString() != "" ? location.LocationNs.ToString() : "*";
+                            string locHPNS = location.HighPairNs.ToString() != "" ? location.HighPairNs.ToString() : "***";
+                            string locLPNS = location.LowPairNs.ToString() != "" ? location.LowPairNs.ToString() : "***";
+                            string locEW = location.LocationEw.ToString() != "" ? location.LocationEw.ToString() : "*";
+                            string locHPEW = location.HighPairEw.ToString() != "" ? location.HighPairEw.ToString() : "***";
+                            string locLPEW = location.LowPairEw.ToString() != "" ? location.LowPairEw.ToString() : "***";
+                            string subPlot = location.BurialSubplot.ToString() != "" ? location.BurialSubplot.ToString() : "**";
+                            string burialNum = burial.BurialNumber.ToString() != "" ? burial.BurialNumber.ToString() : "**";
+
+                        <span>Location: @locNS @locHPNS / @locLPNS @locEW @locHPEW / @locLPEW @subPlot #@burialNum</span> <br />
+                        }
+                        else
+                        {
+                            <span>Location: Not found</span><br />
+                        }
+                        Age: @{string age = burial.AgeCode != "" ? burial.AgeCode : "*";} @age<br />
+                        Gender:@{string gender = burial.GenderGe != "" ? burial.GenderGe : "*";} @gender<br />
+                        Head Direction:@{string headDir = burial.HeadDirection != "" ? burial.HeadDirection : "*"; } @headDir<br />
                     </p>
                     @if (ViewBag.Admin != null)
                     {
