@@ -22,7 +22,7 @@ namespace EgyptExcavationProject.Services
         //Ask about the gender columns.
         public List<Burial> FilterGender(List<Burial> list, string gender)
         {
-            if (gender == null)
+            if (gender == "")
                 return list;
             else
             {
@@ -33,7 +33,7 @@ namespace EgyptExcavationProject.Services
 
         public List<Burial> FilterHairColor(List<Burial> list, string color)
         {
-            list = list.Where(b => b.HairColor != null).ToList();
+            list = list.Where(b => b.HairColor != "").ToList();
 
             return list.Where(b => b.HairColor.ToLower().Contains(color)).ToList();
         }
@@ -64,39 +64,6 @@ namespace EgyptExcavationProject.Services
             {
                 return list;
             }
-
-            //if (age == "0-10")
-            //{
-            //    listFilter = list.Where(b => Int32.Parse(b.EstimateAge) > 0 && Int32.Parse(b.EstimateAge) <= 10).ToList();
-            //}
-            //else if (age == "11-20")
-            //{
-            //    listFilter = list.Where(b => Int32.Parse(b.EstimateAge) > 10 && Int32.Parse(b.EstimateAge) <= 20).ToList();
-            //}
-            //else if (age == "21-30")
-            //{
-            //    listFilter = list.Where(b => Int32.Parse(b.EstimateAge) > 20 && Int32.Parse(b.EstimateAge) <= 30).ToList();
-            //}
-            //else if (age == "31-40")
-            //{
-            //    listFilter = list.Where(b => Int32.Parse(b.EstimateAge) > 30 && Int32.Parse(b.EstimateAge) <= 40).ToList();
-            //}
-            //else if (age == "41-50")
-            //{
-            //    listFilter = list.Where(b => Int32.Parse(b.EstimateAge) > 40 && Int32.Parse(b.EstimateAge) <= 50).ToList();
-            //}
-            //else if (age == "51-60")
-            //{
-            //    listFilter = list.Where(b => Int32.Parse(b.EstimateAge) > 50 && Int32.Parse(b.EstimateAge) <= 60).ToList();
-            //}
-            //else if (age == "61-70")
-            //{
-            //    listFilter = list.Where(b => Int32.Parse(b.EstimateAge) > 60 && Int32.Parse(b.EstimateAge) <= 70).ToList();
-            //}
-            //else
-            //{
-            //    return list;
-            //}
 
             return listFilter;
         }
