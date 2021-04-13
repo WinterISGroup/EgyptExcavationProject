@@ -30,11 +30,15 @@ namespace EgyptExcavationProject.Infrastructure
 
         public char? SquareNS { get; set; }
 
-        public int? NSLowPair { get; set; }
+        public string NSLowPair { get; set; }
+
+        public string NSHighPair { get; set; }
 
         public char? SquareEW { get; set; }
 
-        public int? EWLowPair { get; set; }
+        public string EWLowPair { get; set; }
+        
+        public string EWHighPair { get; set; }
 
         public string SubPlot { get; set; }
 
