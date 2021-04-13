@@ -112,7 +112,7 @@
         <table class="w-100">
             <tr>
                 <td><label>Head Direction: </label></td>
-                <td class="text-right"><input asp-for="HeadDirection" class="form-control form-control-sm form-short" required /></td>
+                <td class="text-right"><input asp-for="HeadDirection" id="head-direction" class="form-control form-control-sm form-short" pattern="[a-zA-Z]*" required /><span style="font-size:10pt;">Please enter letters only</span></td>
                 <td></td>
             </tr>
             <tr>
@@ -233,7 +233,9 @@
 <hr class="form-divide" />
 <br />
 <div class="form-bottom">
+    <div asp-validation-summary="All"></div>
     <input type="submit" class="btn btn-blackolive mx-auto" name="submitBurialForm" value="Save Record" />
 </div>
 <br />
+
 }
