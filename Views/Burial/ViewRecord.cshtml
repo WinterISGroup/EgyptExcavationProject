@@ -212,10 +212,21 @@
     </div>
 
 </div>
-
-<div>
-    <button id="add-photo-btn" class="btn btn-brassdark" onclick="ShowPhotoUpload()">+ Add Photos</button>
+<hr class="form-divide" />
+<h3 class="text-center text-brass-dark font-weight-bold">Photos</h3>
+<div class="text-center">
+    @if (Model.Photo == "Yes" || Model.Photo == "No" || Model.Photo == null)
+    {
+        <div>
+            <button id="add-photo-btn" class="btn btn-brassdark" onclick="ShowPhotoUpload()">+ Add Photos</button>
+        </div>
+    }
+    else
+    {
+        <img src="@Model.Photo" alt="No photo found." />
+    }
 </div>
+
 <div id="photo-upload" style="display: none;">
     @await Html.PartialAsync("FileUploadForm", new FileUploadFormModal {BurialID = Model.BurialId }, new ViewDataDictionary(ViewData) { { "BurialID", Model.BurialId } })
 </div>

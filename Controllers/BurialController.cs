@@ -56,9 +56,44 @@ namespace EgyptExcavationProject.Controllers
             return View(_filterService.FilterAllData(form));
         }
 
+        [HttpGet]
         public IActionResult ViewRecord(Guid burialID)
         {
             return View(_recordService.GetRecord(burialID));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ViewRecord(FileUploadFormModal FileUpload)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await FileUpload.FormFile.CopyToAsync(memoryStream);
+
+                // Upload the file if less than 2 MB
+                if (memoryStream.Length < 2097152)
+                {
+
+                    string fileExtension = FileUpload.FormFile.FileName.Split(".")[1];
+
+                    string randomId = Guid.NewGuid().ToString();
+
+                    string fileName = randomId + "." + fileExtension;
+
+                    await S3Upload.UploadFileAsync(memoryStream, "egyptexcavation", "photos/" + fileName);
+
+                    string uploadUrl = "https://egyptexcavation.s3.amazonaws.com/photos/" + fileName;
+
+                    _recordService.SavePhotoUrl(FileUpload.BurialID, uploadUrl);
+                }
+                else
+                {
+                    ModelState.AddModelError("File", "The file is too large.");
+                    return View(FileUpload);
+                }
+            }
+
+            return RedirectToAction("ViewRecord", new { burialID = FileUpload.BurialID });
+            //return View();
         }
 
         [HttpGet]
@@ -145,7 +180,7 @@ namespace EgyptExcavationProject.Controllers
 
                     string uploadUrl = "https://egyptexcavation.s3.amazonaws.com/photos/" + fileName;
 
-                    _recordService.SavePhotoUrl(FileUpload.BurialID, uploadUrl);
+                    //_recordService.SavePhotoUrl(FileUpload.BurialID, uploadUrl);
                 }
                 else
                 {
@@ -154,7 +189,8 @@ namespace EgyptExcavationProject.Controllers
                 }
             }
 
-            return RedirectToAction("ViewRecord", new { burialID = FileUpload.BurialID });
+            //return RedirectToAction("ViewRecord", new { burialID = FileUpload.BurialID });
+            return View();
         }
     }
 }

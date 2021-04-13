@@ -1,8 +1,6 @@
 ﻿@model FileUploadFormModal
-
-<hr class="form-divide" />
 <h2 class="text-center text-brass-dark font-weight-bold">Upload Photos</h2>
-<form class="text-center" asp-action="FileUploadForm" asp-controller="Burial">
+<form class="text-center" enctype="multipart/form-data" method="post">
     <input type="hidden" asp-for="BurialID" />
     @*<dl>
         <dt>
@@ -14,8 +12,10 @@
     </dl>*@
 
     <label id="photo-btn" for="file-upload" asp-for="@Model.FormFile" class="btn btn-brassdark">Add Photo</label>
-    <span id="fileName"></span>
-    <input id="file-upload" asp-for="@Model.FormFile" type="file" onchange="getFileName(this)"/>
-    <br /><br />
-    <input id="upload-btn" style="display:none;" asp-page-handler="Upload" class="btn btn-brassdark" type="submit" value="Upload">
+        <span id="fileName"></span>
+        <input id="file-upload" asp-for="@Model.FormFile" type="file" onchange="getFileName(this)"/>
+        <br /><br />
+
+    <input id="upload-btn" asp-page-handler="Upload" class="btn btn-brassdark" type="submit" value="Upload">
+
 </form>
