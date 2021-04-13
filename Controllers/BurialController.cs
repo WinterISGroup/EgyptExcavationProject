@@ -1,4 +1,5 @@
 ﻿using EgyptExcavationProject.Data;
+using EgyptExcavationProject.Infrastructure;
 using EgyptExcavationProject.Models;
 using EgyptExcavationProject.Models.ViewModels;
 using EgyptExcavationProject.Services;
@@ -35,15 +36,30 @@ namespace EgyptExcavationProject.Controllers
             }
             int pageSize = 12;
 
+            List<Burial> listToView = new List<Burial>();
+
+            if (TempData["isObjStored"] != null)
+            {
+                //listToView = _filterService.FilterAllData(TempData.Get<IFormCollection>("form"));
+                PageNumInfo test = TempData.Get<PageNumInfo>("test");
+                TempData.Keep("isObjStored");
+                TempData.Keep("test");
+            }
+            else
+            {
+                listToView = _recordService.GetAllBurials().ToList();
+            }
+            listToView = _recordService.GetAllBurials().ToList();
+
             BurialViewModel bvm = new BurialViewModel
             {
-                Burials = _recordService.GetAllBurials().Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(),
+                Burials = listToView.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(),
 
                 PageNumInfo = new PageNumInfo
                 {
                     NumItemsPerPage = pageSize,
                     CurrentPage = pageNum,
-                    TotalNumItems = _recordService.GetAllBurials().Count()
+                    TotalNumItems = listToView.Count()
                 }
             };
 
@@ -77,6 +93,16 @@ namespace EgyptExcavationProject.Controllers
                     TotalNumItems = returnList.Count()
                 }
             };
+
+            PageNumInfo test = new PageNumInfo
+            {
+                NumItemsPerPage = pageSize,
+                CurrentPage = pageNum,
+                TotalNumItems = returnList.Count()
+            };
+
+            TempData["isObjStored"] = "true";
+            TempData.Put("test", test);
 
             return View(bvm);
         }
