@@ -47,10 +47,15 @@ namespace EgyptExcavationProject.Infrastructure
                 int pageNow = pageInfo.CurrentPage;
                 int numsShown = 4;
 
+                if (pageInfo.NumPages < 10)
+                {
+                    numsShown = 3;
+                }
+
 
                 IUrlHelper urlHelp = urlInfo.GetUrlHelper(viewContext);
 
-                if ((i <= (pageNow + numsShown) && i >= pageNow) || (i < numsShown) || (i > (pageInfo.NumPages - 3)))
+                if ((i <= (pageNow + numsShown) && i >= pageNow) || (i < numsShown) || (i > (pageInfo.NumPages - (numsShown - 1))))
                 {
                     TagBuilder individualTag = new TagBuilder("a"); //build an new a tag each time for each page number
 
@@ -71,16 +76,26 @@ namespace EgyptExcavationProject.Infrastructure
                     //Put the a tag to the div
                     finishedTag.InnerHtml.AppendHtml(individualTag);
 
-                    if ((i == numsShown - 1) || (i == (pageNow + numsShown)))
+                    if ((i == numsShown - 1) || ((i == (pageNow + numsShown)) && (i != pageInfo.NumPages)))
                     {
-                        TagBuilder spaceTag = new TagBuilder("span");
+                        if (pageInfo.NumPages <= 5)
+                        {
+                            
+                        }
 
-                        spaceTag.InnerHtml.Append("...");
+                        else
+                        {
+                            TagBuilder spaceTag = new TagBuilder("span");
 
-                        spaceTag.AddCssClass(PageClass);
-                        spaceTag.AddCssClass(PageClassNormal);
+                            spaceTag.InnerHtml.Append("...");
 
-                        finishedTag.InnerHtml.AppendHtml(spaceTag);
+                            spaceTag.AddCssClass(PageClass);
+                            spaceTag.AddCssClass(PageClassNormal);
+
+                            finishedTag.InnerHtml.AppendHtml(spaceTag);
+                        }
+
+                        
                     }
                 }
 

@@ -34,10 +34,24 @@ namespace EgyptExcavationProject.Services
             return burial;
         }
 
+        public double CalculateLength(double SouthToHead, double WestToHead, double SouthToFeet, double WestToFeet)
+        {
+            var xpair = Math.Pow(SouthToHead - SouthToFeet, 2);
+            var ypair = Math.Pow(WestToHead - WestToFeet, 2);
+            var results = Math.Sqrt(xpair + ypair);
+            results = Math.Round(results, 2);
+
+            return results;
+        }
+
         public void AddBurial(Burial newBurial)
         {
             try
             {
+
+                newBurial.CalculatedLengthOfRemains = CalculateLength(newBurial.SouthToHead.Value, newBurial.WestToHead.Value,
+                                                                      newBurial.SouthToFeet.Value, newBurial.WestToFeet.Value);
+                
                 _context.Burial.Add(newBurial);
                 _context.SaveChanges();
             }
