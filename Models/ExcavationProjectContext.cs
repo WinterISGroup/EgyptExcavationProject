@@ -29,13 +29,14 @@ namespace EgyptExcavationProject.Models
         public virtual DbSet<Skull> Skull { get; set; }
         public virtual DbSet<Tibia> Tibia { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseNpgsql("Host=byu-egypt-excavation.cetfe812kvky.us-east-1.rds.amazonaws.com;Database=postgres;Username=postgres;Password=g4rexUU3I6FVeLq60iZYyY");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        // Environemnt variable
+        //        optionsBuilder.UseNpgsql(Configuration.GetConnectionString("postgres_connection"));
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
