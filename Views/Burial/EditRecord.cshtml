@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("EditRecord", "Burial", FormMethod.Post, new { id = "EditBurialForm" }))
 {
+    <input type="hidden" asp-for="BurialId"/>
     <div class="form-top-holder">
         <div class="">
             <label for="date-found" class="text-ebony">Date:</label>
