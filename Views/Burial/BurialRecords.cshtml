@@ -260,8 +260,8 @@
                             <input class="form-radio" name="NS-square-filter" type="radio" value="S" id="South" />
                             <br />
                             <div class="filter-high-low">
-                                <label>High/Low Pair:</label>
-                                <div><input name="high-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" id="High-NS" />/<input name="low-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" id="Low-NS" /></div>
+                                <label>Low/High Pair:</label>
+                                <div><input name="low-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" id="High-NS" />/<input name="high-pair-NS-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" id="Low-NS" /></div>
                             </div>
                             <label>East</label>
                             <input class="form-radio" name="EW-square-filter" type="radio" value="E" id="East" />
@@ -269,8 +269,8 @@
                             <input class="form-radio" name="EW-square-filter" type="radio" value="W" />
                             <br />
                             <div class="filter-high-low">
-                                <label>High/Low Pair:</label>
-                                <div><input name="high-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" />/<input name="low-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" /></div>
+                                <label>Low/High Pair:</label>
+                                <div><input name="low-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" />/<input name="high-pair-EW-filter" type="text" class="form-control form-control-sm form-ex-short" style="background-color:var(--ebony); color:white;" /></div>
                             </div>
                             <span>Area </span>
                             <div class="d-flex flex-row flex-wrap" id="subplot">
@@ -356,7 +356,7 @@
                             string subPlot = location.BurialSubplot.ToString() != "" ? location.BurialSubplot.ToString() : "**";
                             string burialNum = burial.BurialNumber.ToString() != "" ? burial.BurialNumber.ToString() : "**";
 
-                        <span>Location: @locNS @locHPNS / @locLPNS @locEW @locHPEW / @locLPEW @subPlot #@burialNum</span> <br />
+                        <span>Location: @locNS @locLPNS / @locHPNS @locEW @locLPEW / @locHPEW @subPlot #@burialNum</span> <br />
                         }
                         else
                         {
