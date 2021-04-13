@@ -88,3 +88,9 @@ $(document).ready(function () {
     document.getElementById("burial-notes").style.height = 'auto';
     document.getElementById("burial-notes").style.height = document.getElementById("burial-notes").scrollHeight + 'px';
 });
+
+//$(function () {
+//    $("input[name=HeadDirection]").oninvalid = function () {
+//        this.setCustomValidity("Please do not include numbers");
+//    };
+//});
