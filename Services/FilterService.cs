@@ -120,7 +120,7 @@ namespace EgyptExcavationProject.Services
             {
                 listFilter = (list.Where(b => b.BurialDepth > 1.09 && b.BurialDepth <= 1.59)).ToList();
             }
-            else if (depth == "1.6-2.0")
+            else if (depth == "1.6-2")
             {
                 listFilter = (list.Where(b => b.BurialDepth > 1.59 && b.BurialDepth <= 2.09)).ToList();
             }
@@ -140,8 +140,12 @@ namespace EgyptExcavationProject.Services
             {
                 listFilter = (list.Where(b => b.BurialDepth > 3.59 && b.BurialDepth <= 4.09)).ToList();
             }
+            else
+            {
+                return list;
+            }
 
-            return list;
+            return listFilter;
         }
 
         public List<Burial> FilterFoundYear(List<Burial> list, int? year)
