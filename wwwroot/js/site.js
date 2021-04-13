@@ -73,3 +73,8 @@ function getFileName(obj) {
     $("#upload-btn").show();
     $("#photo-btn").hide();
 }
+
+$(document).ready(function () {
+    document.getElementById("burial-notes").style.height = 'auto';
+    document.getElementById("burial-notes").style.height = document.getElementById("burial-notes").scrollHeight + 'px';
+});
