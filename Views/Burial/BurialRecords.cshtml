@@ -326,7 +326,14 @@
         @foreach (Burial burial in Model.Burials)
         {
             <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new {burialID = burial.BurialId })');">
-                <img class="card-img-top" src="~/mummy.jpg" />
+                @if (burial.Photo != null && burial.Photo.Contains("egyptexcavation.s3.amazonaws.com"))
+                {
+                <img class="card-img-top" src="@burial.Photo" alt="" />
+                }
+                else
+                {
+                <img class="card-img-top" src="~/notfound.jpg" alt="" />
+                }
                 <div class="card-body card-text-bkg mt-2">
                     <p class="card-text text-white">
                         Burial Number: @burial.BurialNumber<br />

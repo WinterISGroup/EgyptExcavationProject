@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -82,6 +83,9 @@ namespace EgyptExcavationProject.Controllers
             // Find the user with the id and pass it to the view
             return View(_userManager.Users.Where(u => u.Id == userID).FirstOrDefault());
         }
+
+
+        
 
         public IActionResult Privacy()
         {
