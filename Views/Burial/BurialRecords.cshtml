@@ -311,7 +311,7 @@
                     </div>
                 </div>
                 <div class="filter-buttons">
-                    <button type="submit" class="btn btn-blackolive max-auto" name="filterBurial">Filter</button>
+                    <button id="filterSubmitBtn" type="submit" class="btn btn-blackolive max-auto" name="filterBurial" disabled>Filter</button>
                     <button type="button" class="btn btn-sm" style="float:right;" onclick="ExpandFilter()">More</button>
                     <button type="button" class="btn btn-sm" style="float:right;" onclick="ShrinkFilter()">Less</button>
                 </div>
@@ -356,7 +356,8 @@
                             string subPlot = location.BurialSubplot.ToString() != "" ? location.BurialSubplot.ToString() : "**";
                             string burialNum = burial.BurialNumber.ToString() != "" ? burial.BurialNumber.ToString() : "**";
 
-                        <span>Location: @locNS @locLPNS / @locHPNS @locEW @locLPEW / @locHPEW @subPlot #@burialNum</span> <br />
+                        <span>Location: @locNS @locLPNS / @locHPNS @locEW @locLPEW / @locHPEW @subPlot </span> <br />
+                        <span>Burial Number: #@burialNum</span><br />
                         }
                         else
                         {
