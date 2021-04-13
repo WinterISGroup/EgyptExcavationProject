@@ -16,7 +16,7 @@ namespace EgyptExcavationProject.Controllers
 {
     public class BurialController : Controller
     {
-        private IRecordService _recordService;
+        private IRecordService _recordService; 
         private IFilterService _filterService;
        
         public BurialController(IRecordService recordService, IFilterService filterService)
@@ -25,11 +25,12 @@ namespace EgyptExcavationProject.Controllers
             _filterService = filterService;
         }
 
+        //Main controller to pull all the burial records.
         public IActionResult BurialRecords(int pageNum = 1, bool isPagination = false)
         {
             ViewBag.FilterSubmitted = false;
 
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin")) //Checks the role
             {
                 ViewBag.Admin = true;
             }
@@ -37,7 +38,7 @@ namespace EgyptExcavationProject.Controllers
             {
                 ViewBag.Researcher = true;
             }
-            int pageSize = 12;
+            int pageSize = 12; //numebr of cards on a page
 
             List<Burial> listToView = new List<Burial>();
 
@@ -187,6 +188,7 @@ namespace EgyptExcavationProject.Controllers
             return View(burial);
         }
 
+
         [HttpPost]
         [Authorize(Roles = "Admin, Researcher")]
         public IActionResult EditRecord(Burial burial)
@@ -202,6 +204,7 @@ namespace EgyptExcavationProject.Controllers
             }
         }
 
+        //Only Admin's have permission to Delete records
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteRecord(Guid burialID)
         {

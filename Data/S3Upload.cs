@@ -7,6 +7,7 @@ using Amazon.S3;
 using Amazon.S3.Transfer;
 using System.IO;
 
+//Data class to work with photo uploading to S3
 namespace EgyptExcavationProject.Data
 {
     public class S3Upload

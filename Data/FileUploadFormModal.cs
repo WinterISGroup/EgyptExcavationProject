@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Modal to work with photo uploading to S3
 namespace EgyptExcavationProject.Data
 {
     public class FileUploadFormModal

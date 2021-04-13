@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Service to handle the bulk of the logic neccessary for the controller in adding records to the database, editing, and deleting
 namespace EgyptExcavationProject.Services
 {
     public class RecordService : IRecordService
@@ -34,6 +35,7 @@ namespace EgyptExcavationProject.Services
             return burial;
         }
 
+        //Function used to calculate the length of the remains based on the coordinates of the head and feet from the south and west border
         public double CalculateLength(double SouthToHead, double WestToHead, double SouthToFeet, double WestToFeet)
         {
             var xpair = Math.Pow(SouthToHead - SouthToFeet, 2);
@@ -44,6 +46,7 @@ namespace EgyptExcavationProject.Services
             return results;
         }
 
+        //Adds burial to database. Takes all the data from the new burial from the input form, adds the calculated length, and adds to burial context
         public void AddBurial(Burial newBurial)
         {
             try
@@ -61,6 +64,7 @@ namespace EgyptExcavationProject.Services
             }
 
         }
+
 
         public void AddLocation(Location location)
         {
@@ -111,6 +115,7 @@ namespace EgyptExcavationProject.Services
             _context.Remove(_context.Location.Where(l => l.LocationId == locationID).FirstOrDefault());
             _context.SaveChanges();
         }
+
 
         public void SavePhotoUrl(Guid burialID, string url)
         {
