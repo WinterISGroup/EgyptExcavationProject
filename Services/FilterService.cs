@@ -433,7 +433,7 @@ namespace EgyptExcavationProject.Services
 
         public string GetActiveFilterDisplay(FilterData filterData)
         {
-            string result = "<br/><span class='text-black-olive' style='font-size:12pt;'>";
+            string result = "<br/><span class=\"text-black-olive\" style=\"font-size:12pt;\">  ";
             result += filterData.Gender != "" ? "Gender: <b>" + filterData.Gender + "</b>, " : "";
             result += filterData.HairColor != "" ? "Hair Color: <b>" + filterData.HairColor + "</b>, " : "";
             result += filterData.AgeCode != "" ? "Age Code: <b>" + filterData.AgeCode + "</b>, " : "";

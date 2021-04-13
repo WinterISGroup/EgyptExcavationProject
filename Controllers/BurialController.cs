@@ -104,13 +104,6 @@ namespace EgyptExcavationProject.Controllers
                 }
             };
 
-            PageNumInfo test = new PageNumInfo
-            {
-                NumItemsPerPage = pageSize,
-                CurrentPage = pageNum,
-                TotalNumItems = returnList.Count()
-            };
-
             TempData["isDataStored"] = "true";
             TempData.Put("filterData", filterData);
 
@@ -121,8 +114,9 @@ namespace EgyptExcavationProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewRecord(Guid burialID)
+        public IActionResult ViewRecord(Guid burialID, int currentPage = 1)
         {
+            ViewBag.CurrentPage = currentPage;
             return View(_recordService.GetRecord(burialID));
         }
 

@@ -327,7 +327,7 @@
     <div class="card-holder">
         @foreach (Burial burial in Model.Burials)
         {
-            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { burialID = burial.BurialId })');">
+            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { burialID = burial.BurialId, currentPage = Model.PageNumInfo.CurrentPage })');">
                 <div style="width: 100%; height: 250px; object-fit: cover;">
                     @if (burial.Photo != null && burial.Photo.Contains("egyptexcavation.s3.amazonaws.com"))
                     {
