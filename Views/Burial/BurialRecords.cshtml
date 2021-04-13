@@ -326,7 +326,7 @@
     <div class="card-holder">
         @foreach (Burial burial in Model.Burials)
         {
-            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new {burialID = burial.BurialId })');">
+            <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { burialID = burial.BurialId })');">
                 @if (burial.Photo != null && burial.Photo.Contains("egyptexcavation.s3.amazonaws.com"))
                 {
                     <img class="card-img-top" src="@burial.Photo" alt="" />
@@ -337,8 +337,23 @@
                 }
                 <div class="card-body card-text-bkg mt-2">
                     <p class="card-text text-white">
-                        Burial Number: @burial.BurialNumber<br />
-                        Burial ID: @burial.BurialId<br />
+                        @if (burial.Location != null)
+                        {
+                            string locNS = burial.Location.LocationNs.ToString() != "" ? burial.Location.LocationNs.ToString() : "";
+                            string locHPNS = burial.Location.HighPairNs.ToString() != "" ? burial.Location.HighPairNs.ToString() : "";
+                            string locLPNS = burial.Location.LowPairNs.ToString() != "" ? burial.Location.LowPairNs.ToString() : "";
+                            string locEW = burial.Location.LocationEw.ToString() != "" ? burial.Location.LocationEw.ToString() : "";
+                            string locHPEW = burial.Location.HighPairEw.ToString() != "" ? burial.Location.HighPairEw.ToString() : "";
+                            string locLPEW = burial.Location.LowPairEw.ToString() != "" ? burial.Location.LowPairEw.ToString() : "";
+                            string subPlot = burial.Location.BurialSubplot.ToString() != "" ? burial.Location.BurialSubplot.ToString() : "";
+                            string burialNum = burial.BurialNumber.ToString() != "" ? burial.BurialNumber.ToString() : "";
+                            
+                        <span>Location: @locNS @locHPNS / @locLPNS @locEW @locHPEW / @locLPEW @subPlot #@burialNum</span> <br />
+                        }
+                        else
+                        {
+                            <span>Location: Not found</span><br />
+                        }
                         Age: @burial.AgeCode<br />
                         Gender: @burial.GenderGe<br />
                     </p>
