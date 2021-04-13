@@ -25,7 +25,7 @@ namespace EgyptExcavationProject.Infrastructure
 
         public string LengthOfRemains { get; set; }
 
-        public bool? TextileFound { get; set; }
+        public string TextileFound { get; set; }
 
         public char? SquareNS { get; set; }
 
