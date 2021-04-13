@@ -51,7 +51,7 @@ namespace EgyptExcavationProject.Services
             {
                 listFilter = list.Where(b => b.AgeCode == "A").ToList();
             }
-            else if (age == "U")
+            else if (age == "N/I")
             {
                 listFilter = list.Where(b => b.AgeCode == "N/I").ToList();
             }
