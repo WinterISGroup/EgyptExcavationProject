@@ -84,7 +84,7 @@ namespace EgyptExcavationProject.Services
             {
                 listFilter = (list.Where(b => b.EstimateLivingStature > 1.09 && b.EstimateLivingStature <= 1.59)).ToList();
             }
-            else if (height == "1.6-2.0")
+            else if (height == "1.6-2")
             {
                 listFilter = (list.Where(b => b.EstimateLivingStature > 1.59 && b.EstimateLivingStature <= 2.09)).ToList();
             }
@@ -164,9 +164,9 @@ namespace EgyptExcavationProject.Services
 
         public List<Burial> FilterItemFound(List<Burial> list, string? item)
         {
-            //List<Burial> listFilter = list.Where(b => b.ArtifactsDescription != null).ToList();
+            List<Burial> listFilter = list.Where(b => b.ArtifactsDescription != null).ToList();
 
-            List<Burial> listFilter = list.Where(b => b.ArtifactsDescription.ToLower().Contains(item)).ToList();
+            listFilter = listFilter.Where(b => b.ArtifactsDescription.ToLower().Contains(item)).ToList();
 
             return listFilter;
         }
