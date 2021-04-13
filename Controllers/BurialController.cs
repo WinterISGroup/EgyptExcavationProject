@@ -24,6 +24,7 @@ namespace EgyptExcavationProject.Controllers
             _recordService = recordService;
             _filterService = filterService;
         }
+
         public IActionResult BurialRecords(int pageNum = 1)
         {
             if (User.IsInRole("Admin"))
@@ -62,6 +63,8 @@ namespace EgyptExcavationProject.Controllers
                     TotalNumItems = listToView.Count()
                 }
             };
+
+            ViewBag.FilterSubmitted = false;
 
             return View(bvm);
         }
@@ -106,6 +109,8 @@ namespace EgyptExcavationProject.Controllers
 
             TempData["isDataStored"] = "true";
             TempData.Put("filterData", filterData);
+
+            ViewBag.FilterSubmitted = true;
 
             return View(bvm);
         }
