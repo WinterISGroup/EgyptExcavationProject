@@ -384,9 +384,9 @@ namespace EgyptExcavationProject.Services
             {
                 results = FilterTextile(results, data.TextileFound);
             }
-            if (data.SquareNS != '\0' && data.NSLowPair != 0 && data.SquareEW != '\0' && data.EWLowPair != 0)
+            if (data.SquareNS != '\0' && data.NSLowPair != "" && data.SquareEW != '\0' && data.EWLowPair != "")
             {
-                results = FilterSquare(results, data.SquareNS, data.NSLowPair, data.SquareEW, data.EWLowPair);
+                results = FilterSquare(results, data.SquareNS, Convert.ToInt32(data.NSLowPair), data.SquareEW, Convert.ToInt32(data.EWLowPair));
             }
             if (data.SubPlot != "")
             {
@@ -420,9 +420,11 @@ namespace EgyptExcavationProject.Services
             filterData.TextileFound = form["textile-taken-filter"].ToString();
             filterData.BurialTime = form["burial-time-filter"].ToString();
             filterData.SquareNS = form["NS-square-filter"].ToString() != "" ? Convert.ToChar(form["NS-square-filter"].ToString()) : '\0';
-            filterData.NSLowPair = form["low-pair-NS-filter"].ToString() != "" ? Int32.Parse(form["low-pair-NS-filter"].ToString()) : 0;
+            filterData.NSLowPair = form["low-pair-NS-filter"].ToString() != "" ? form["low-pair-NS-filter"].ToString() : "";
+            filterData.NSHighPair = form["high-pair-NS-filter"].ToString() != "" ? form["high-pair-NS-filter"].ToString() : "";
             filterData.SquareEW = form["EW-square-filter"].ToString() != "" ? Convert.ToChar(form["EW-square-filter"].ToString()) : '\0';
-            filterData.EWLowPair = form["low-pair-EW-filter"].ToString() != "" ? Int32.Parse(form["low-pair-EW-filter"].ToString()) : 0;
+            filterData.EWLowPair = form["low-pair-EW-filter"].ToString() != "" ? form["low-pair-EW-filter"].ToString() : "";
+            filterData.EWHighPair = form["high-pair-EW-filter"].ToString() != "" ? form["high-pair-EW-filter"].ToString() : "";
             filterData.SubPlot = form["area-filter"].ToString();
             filterData.HeadDirection = form["head-dir-filter"].ToString();
 
@@ -444,9 +446,10 @@ namespace EgyptExcavationProject.Services
             result += filterData.TextileFound != "" ? "Textile Taken: <b>" + filterData.TextileFound + "</b>, " : "";
             result += filterData.BurialTime != "" ? "Burial Time: <b>" + filterData.BurialTime + "</b>, " : "";
             result += filterData.SquareNS != '\0' ? "Square NS: <b>" + filterData.SquareNS.ToString() + "</b>, " : "";
-            result += filterData.NSLowPair != 0 ? "NS Low Pair: <b>" + filterData.NSLowPair.ToString() + "</b>, " : "";
+            result += filterData.NSLowPair != "" && filterData.NSHighPair != "" ? "NS Low/High Pair: <b>" + filterData.NSLowPair.ToString() + "/" + filterData.NSHighPair.ToString() + "</b>, " : "";
+            
             result += filterData.SquareEW != '\0' ? "Square EW: <b>" + filterData.SquareEW.ToString() + "</b>, " : "";
-            result += filterData.EWLowPair != 0 ? "EW Low Pair: <b>" + filterData.ItemFound + "</b>, " : "";
+            result += filterData.EWLowPair != "" && filterData.EWHighPair != "" ? "EW Low/High Pair: <b>" + filterData.EWLowPair + "/" + filterData.EWHighPair.ToString() + "</b>, " : "";
             result += filterData.SubPlot != "" ? "Area: <b>" + filterData.SubPlot + "</b>, " : "";
             result += filterData.HeadDirection != "" ? "Head Direction: <b>" + filterData.HeadDirection + "</b>, " : "";
             result = result.Substring(0, result.Length - 2);

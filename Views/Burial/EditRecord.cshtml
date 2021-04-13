@@ -31,8 +31,8 @@
 
                 <br />
 
-                <label>High/Low Pair:</label>
-                <input asp-for="Location.HighPairNs" class="form-control form-control-sm form-short" />/<input asp-for="Location.LowPairNs" class="form-control form-control-sm form-short" />
+                <label>Low/High Pair:</label>
+                <input asp-for="Location.LowPairNs" class="form-control form-control-sm form-short" />/<input asp-for="Location.HighPairNs" class="form-control form-control-sm form-short" />
                 <br />
 
                 <label>East</label>
@@ -41,8 +41,8 @@
                 @Html.RadioButtonFor(m => m.Location.LocationEw, 'W', new { @class = "form-radio" })
                 <br />
 
-                <label>High/Low Pair:</label>
-                <input asp-for="Location.HighPairEw" class="form-control form-control-sm form-short" />/<input asp-for="Location.LowPairEw" class="form-control form-control-sm form-short" />
+                <label>Low/High Pair:</label>
+                <input asp-for="Location.LowPairEw" class="form-control form-control-sm form-short" />/<input asp-for="Location.HighPairEw" class="form-control form-control-sm form-short" />
                 <br />
             </div>
             <span>Area: </span>

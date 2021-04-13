@@ -120,3 +120,12 @@ $(document).ready(function () {
     document.getElementById("burial-notes").style.height = 'auto';
     document.getElementById("burial-notes").style.height = document.getElementById("burial-notes").scrollHeight + 'px';
 });
+
+var form = document.getElementById("filterForm");
+
+/**
+ * puts an event listener so the user cannot click the filter button if a filter has not been selected
+ */
+form.addEventListener("input", function () {
+    document.getElementById("filterSubmitBtn").removeAttribute("disabled");
+});
