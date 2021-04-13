@@ -78,7 +78,7 @@ namespace EgyptExcavationProject.Infrastructure
 
                     if ((i == numsShown - 1) || ((i == (pageNow + numsShown)) && (i != pageInfo.NumPages)))
                     {
-                        if (pageInfo.NumPages <= 5)
+                        if (pageInfo.NumPages <= 8)
                         {
                             
                         }
