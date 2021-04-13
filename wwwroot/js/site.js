@@ -35,6 +35,10 @@ function ShrinkFilter() {
     }
 }
 
+function HideFilter() {
+    $("#filter-main").hide();
+}
+
 function ShowOrHideShafts(selected) {
     if (selected == "Y") {
         $("#shaft_nums").show();
@@ -60,6 +64,12 @@ function ShowOrHideClusters(selected) {
         $("#cluster_data").hide();
     }
 }
+
+//function RequiredLocationInput() {
+//    alert("ALTERTEDSKFSDJKFsjdhg");
+//    $("#square").filter(":input").prop('required', true);
+//    $("#subplot").filter(":input").prop('required', true);
+//}
 
 function ShowPhotoUpload() {
     $("#add-photo-btn").hide();
