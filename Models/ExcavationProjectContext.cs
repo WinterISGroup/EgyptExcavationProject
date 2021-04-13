@@ -29,17 +29,19 @@ namespace EgyptExcavationProject.Models
         public virtual DbSet<Skull> Skull { get; set; }
         public virtual DbSet<Tibia> Tibia { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        // Environemnt variable
-        //        optionsBuilder.UseNpgsql(Configuration.GetConnectionString("postgres_connection"));
-        //    }
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Environemnt variable
+                string postgresConnection = Environment.GetEnvironmentVariable("postgres");
+                optionsBuilder.UseNpgsql(postgresConnection);
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.HasPostgresExtension("uuid-ossp");
 
             modelBuilder.Entity<BioSample>(entity =>

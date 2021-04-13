@@ -1,3 +1,5 @@
+using Amazon;
+using Amazon.Runtime.CredentialManagement;
 using EgyptExcavationProject.Areas.Identity.Data;
 using EgyptExcavationProject.Data;
 using EgyptExcavationProject.Infrastructure;
@@ -30,12 +32,11 @@ namespace EgyptExcavationProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var thing = Configuration.GetConnectionString("PostgresConnection");
+
             // Setup context for the excavation project data
             services.AddDbContext<ExcavationProjectContext>(options =>
             {
                 // Connection setup in the context file
-                options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection"));
             });
 
             // Setup a context for the authentication
@@ -90,6 +91,7 @@ namespace EgyptExcavationProject
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

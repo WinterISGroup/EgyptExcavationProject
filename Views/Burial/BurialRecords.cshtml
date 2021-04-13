@@ -328,15 +328,20 @@
         @foreach (Burial burial in Model.Burials)
         {
             <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { burialID = burial.BurialId })');">
-                @if (burial.Photo != null && burial.Photo.Contains("egyptexcavation.s3.amazonaws.com"))
-                {
-                    <img class="card-img-top" src="@burial.Photo" alt="" />
-                }
-                else
-                {
-                    <img class="card-img-top" src="~/NoImageAvailable.png" alt="" />
-                }
-                <div class="card-body card-text-bkg mt-2">
+                <div style="width: 100%; height: 250px; object-fit: cover;">
+                    @if (burial.Photo != null && burial.Photo.Contains("egyptexcavation.s3.amazonaws.com"))
+                    {
+                            <img class="card-img-top" src="@burial.Photo" alt="" />
+                    
+                    }
+                    else
+                    {
+    
+                        <img class="card-img-top" src="~/NoImageAvailable.png" alt="" />
+                        
+                    }
+                </div>
+                <div class="card-body card-text-bkg mt-2 d-flex flex-column justify-content-between" style="height:@(ViewBag.Admin == null ? "180px" : "225px")">
                     <p class="card-text text-white">
                         @if (burial.LocationId != null)
                         {
@@ -361,14 +366,16 @@
                         Gender:@{string gender = burial.GenderGe != "" ? burial.GenderGe : "*";} @gender<br />
                         Head Direction:@{string headDir = burial.HeadDirection != "" ? burial.HeadDirection : "*"; } @headDir<br />
                     </p>
-                    @if (ViewBag.Admin != null)
-                    {
-                        @Html.ActionLink("Remove", "DeleteRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick = "var result = confirm('Are you sure you want to delete this record?'); if(!result){event.stopPropagation(); return false;}" })
-                    }
-                    @if (ViewBag.Admin != null || ViewBag.Researcher != null)
-                    {
-                        @Html.ActionLink("Edit", "EditRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })
-                    }
+                    <div class="d-flex flex-row justify-content-end align-items-center w-100">
+                        @if (ViewBag.Admin != null)
+                        {
+                            @Html.ActionLink("Remove", "DeleteRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1", @onclick = "var result = confirm('Are you sure you want to delete this record?'); if(!result){event.stopPropagation(); return false;}" })
+                        }
+                        @if (ViewBag.Admin != null || ViewBag.Researcher != null)
+                        {
+                            @Html.ActionLink("Edit", "EditRecord", "Burial", new { burialID = burial.BurialId }, new { @class = "btn btn-brassdark float-right mr-1 ml-1" })
+                        }
+                    </div>
                 </div>
             </div>
         }
