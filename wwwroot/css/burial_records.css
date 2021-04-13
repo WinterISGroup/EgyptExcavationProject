@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+card-img-top{
+
+}
+
 .card-holder {
     display: flex;
     flex-direction: row;

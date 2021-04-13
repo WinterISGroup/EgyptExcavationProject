@@ -1,4 +1,5 @@
-﻿using EgyptExcavationProject.Models;
+﻿using EgyptExcavationProject.Infrastructure;
+using EgyptExcavationProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -50,6 +51,10 @@ namespace EgyptExcavationProject.Services
             else if (age == "A")
             {
                 listFilter = list.Where(b => b.AgeCode == "A").ToList();
+            }
+            else if (age == "N/I")
+            {
+                listFilter = list.Where(b => b.AgeCode == "N/I").ToList();
             }
             else if (age == "U")
             {
@@ -247,16 +252,16 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
-        public List<Burial> FilterTextile(List<Burial> list, bool? textile)
+        public List<Burial> FilterTextile(List<Burial> list, string textile)
         {
-            return list.Where(b => b.TextileTaken == textile).ToList();
+            return list.Where(b => b.TextileTaken == Boolean.Parse(textile)).ToList();
         }
 
         //Will it need to reference the locations table?
         public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow)
         {
-            List<Guid> loc2 = _context.Location.Where(b => b.LocationNs == NS && b.LowPairNs == NSlow &&
-            b.LocationEw == EW && b.LowPairEw == EWlow).Select(l => l.LocationId).ToList();
+            List<Guid> loc2 = _context.Location.Where(b => b.LocationNs == NS.Value && b.LowPairNs == NSlow.Value &&
+            b.LocationEw == EW.Value && b.LowPairEw == EWlow.Value).Select(l => l.LocationId).ToList();
 
             List < Burial> results = new List<Burial>();
 
@@ -366,66 +371,91 @@ namespace EgyptExcavationProject.Services
         }
 
         //Main function to utilize all the individual functions.Will be called in controller
-        public List<Burial> FilterAllData(IFormCollection form)
+        public List<Burial> FilterAllData(FilterData data)
         {
             List<Burial> results = _context.Burial.ToList();
 
-            results = FilterGender(results, form["gender-filter"]);
+            results = FilterGender(results, data.Gender);
 
-            if (form["hair-filter"] != "")
+            if (data.HairColor != "")
             {
-                results = FilterHairColor(results, form["hair-filter"]);
+                results = FilterHairColor(results, data.HairColor);
             }
-            if (form["age-filter"].ToString() != "")
+            if (data.AgeCode != "")
             {
-                results = FilterAge(results, form["age-filter"]);
+                results = FilterAge(results, data.AgeCode);
             }
-            if (form["height-filter"] != "")
+            if (data.Height != "")
             {
-                results = FilterHeight(results, form["heigh-filter"]);
+                results = FilterHeight(results, data.Height);
             }
-            if (form["burial-depth-filter"] != "")
+            if (data.BurialDepth != "")
             {
-                results = FilterBurialDepth(results, form["burial-depth-filter"]);
+                results = FilterBurialDepth(results, data.BurialDepth);
             }
-            if (Int32.Parse(form["date-found-year-filter"].ToString()) != 0)
+            if (data.DateFoundYear != 0)
             {
-                results = FilterFoundYear(results, Int32.Parse(form["date-found-year-filter"].ToString()));
+                results = FilterFoundYear(results, data.DateFoundYear);
             }
-            if (Int32.Parse(form["date-found-month-filter"].ToString()) != 0)
+            if (data.DateFoundMonth != 0)
             {
-                results = FilterFoundMonth(results, Int32.Parse(form["date-found-month-filter"].ToString()));
+                results = FilterFoundMonth(results, data.DateFoundMonth);
             }
-            if (form["item-found-filter"].ToString() != "")
+            if (data.ItemFound != "")
             {
-                results = FilterItemFound(results, form["item-found-filter"]);
+                results = FilterItemFound(results, data.ItemFound);
             }
-            if (form["remain-length-filter"] != "")
+            if (data.LengthOfRemains != "")
             {
-                results = FilterRemainLength(results, form["remain-length-filter"]);
+                results = FilterRemainLength(results, data.LengthOfRemains);
             }
-            if (form["textile-taken-filter"].ToString() != "")
+            if (data.TextileFound != "")
             {
-                results = FilterTextile(results, Boolean.Parse(form["textile-taken-filter"].ToString()));
+                results = FilterTextile(results, data.TextileFound);
             }
-            if (form["NS-square-filter"].ToString() != "" && form["low-pair-NS-filter"].ToString() != "" && form["EW-square-filter"].ToString() != "" && form["low-pair-EW-filter"].ToString() != "")
+            if (data.SquareNS != '\0' && data.NSLowPair != 0 && data.SquareEW != '\0' && data.EWLowPair != 0)
             {
-                results = FilterSquare(results, Convert.ToChar(form["NS-square-filter"]), Int32.Parse(form["low-pair-NS-filter"].ToString()), Convert.ToChar(form["EW-square-filter"]), Int32.Parse(form["low-pair-EW-filter"].ToString()));
+                results = FilterSquare(results, data.SquareNS, data.NSLowPair, data.SquareEW, data.EWLowPair);
             }
-            if (form["area-filter"].ToString() != "")
+            if (data.SubPlot != "")
             {
-                results = FilterArea(results, form["area-filter"]);
+                results = FilterArea(results, data.SubPlot);
             }
-            if (form["head-dir-filter"].ToString() != "")
+            if (data.HeadDirection != "")
             {
-                results = FilterHeadDirection(results, form["head-dir-filter"]);
+                results = FilterHeadDirection(results, data.HeadDirection);
             }
-            if (form["burial-time-filter"].ToString() != "")
+            if (data.BurialTime != "")
             {
-                results = FilterTimeOfBurial(results, form["burial-time-filter"]);
+                results = FilterTimeOfBurial(results, data.BurialTime);
             }
 
             return results;
+        }
+
+        public FilterData ParseFormData(IFormCollection form)
+        {
+            FilterData filterData = new FilterData();
+
+            filterData.Gender = form["gender-filter"].ToString();
+            filterData.HairColor = form["hair-filter"].ToString();
+            filterData.AgeCode = form["age-filter"].ToString();
+            filterData.Height = form["height-filter"].ToString();
+            filterData.BurialDepth = form["burial-depth-filter"].ToString();
+            filterData.LengthOfRemains = form["remain-length-filter"].ToString();
+            filterData.DateFoundYear = form["date-found-year-filter"].ToString() != "" ? int.Parse(form["date-found-year-filter"].ToString()) : 0;
+            filterData.DateFoundMonth = form["date-found-year-filter"].ToString() != "" ? int.Parse(form["date-found-month-filter"].ToString()) : 0;
+            filterData.ItemFound = form["item-found-filter"].ToString();
+            filterData.TextileFound = form["textile-taken-filter"].ToString();
+            filterData.BurialTime = form["burial-time-filter"].ToString();
+            filterData.SquareNS = form["NS-square-filter"].ToString() != "" ? Convert.ToChar(form["NS-square-filter"].ToString()) : '\0';
+            filterData.NSLowPair = form["low-pair-NS-filter"].ToString() != "" ? Int32.Parse(form["low-pair-NS-filter"].ToString()) : 0;
+            filterData.SquareEW = form["EW-square-filter"].ToString() != "" ? Convert.ToChar(form["EW-square-filter"].ToString()) : '\0';
+            filterData.EWLowPair = form["low-pair-EW-filter"].ToString() != "" ? Int32.Parse(form["low-pair-EW-filter"].ToString()) : 0;
+            filterData.SubPlot = form["area-filter"].ToString();
+            filterData.HeadDirection = form["head-dir-filter"].ToString();
+
+            return filterData;
         }
     }
 }

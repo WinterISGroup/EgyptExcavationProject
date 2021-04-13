@@ -92,5 +92,16 @@ namespace EgyptExcavationProject.Services
             _context.Remove(_context.Location.Where(l => l.LocationId == locationID).FirstOrDefault());
             _context.SaveChanges();
         }
+
+        public void SavePhotoUrl(Guid burialID, string url)
+        {
+            if(url != "" && url != null)
+            {
+                Burial burial = new Burial { BurialId = burialID, Photo = url };
+
+                _context.Burial.Attach(burial).Property(p => p.Photo).IsModified = true;
+                _context.SaveChanges();
+            }
+        }
     }
 }

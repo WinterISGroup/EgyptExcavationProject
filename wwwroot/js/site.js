@@ -60,3 +60,16 @@ function ShowOrHideClusters(selected) {
         $("#cluster_data").hide();
     }
 }
+
+function ShowPhotoUpload() {
+    $("#add-photo-btn").hide();
+    $("#photo-upload").show();
+}
+
+function getFileName(obj) {
+    var file = obj.value;
+    var fileName = file.split("\\");
+    document.getElementById("fileName").innerHTML = "<b>Uploaded Image: </b> " + fileName[fileName.length - 1];
+    $("#upload-btn").show();
+    $("#photo-btn").hide();
+}
