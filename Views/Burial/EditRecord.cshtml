@@ -112,37 +112,37 @@
             <table class="w-100">
                 <tr>
                     <td><label>Head Direction: </label></td>
-                    <td class="text-right"><input asp-for="HeadDirection" class="form-control form-control-sm form-short" /></td>
-                    <td></td>
+                    <td class="text-right"><input asp-for="HeadDirection" id="head-direction" class="form-control form-control-sm form-short" pattern="[a-zA-Z]*" required/></td>
+                    <td><span style="font-size:10pt;">Please enter letters only</span></td>
                 </tr>
                 <tr>
                     <td><label>Burial Depth: </label></td>
-                    <td class="text-right"><input asp-for="BurialDepth" class="form-control form-control-sm form-short" /></td>
+                    <td class="text-right"><input asp-for="BurialDepth" class="form-control form-control-sm form-short" required/></td>
                     <td>m</td>
                 </tr>
                 <tr>
                     <td><label>South to Head: </label></td>
-                    <td class="text-right"><input asp-for="SouthToHead" class="form-control form-control-sm form-short" /></td>
+                    <td class="text-right"><input asp-for="SouthToHead" class="form-control form-control-sm form-short" required/></td>
                     <td>m</td>
                 </tr>
                 <tr>
                     <td><label>South to Feet: </label></td>
-                    <td class="text-right"><input asp-for="SouthToFeet" class="form-control form-control-sm form-short" /></td>
+                    <td class="text-right"><input asp-for="SouthToFeet" class="form-control form-control-sm form-short" required/></td>
                     <td>m</td>
                 </tr>
                 <tr>
                     <td><label>West to Head: </label></td>
-                    <td class="text-right"><input asp-for="WestToHead" class="form-control form-control-sm form-short" /></td>
+                    <td class="text-right"><input asp-for="WestToHead" class="form-control form-control-sm form-short" required/></td>
                     <td>m</td>
                 </tr>
                 <tr>
                     <td><label>West to Feet: </label></td>
-                    <td class="text-right"><input asp-for="WestToFeet" class="form-control form-control-sm form-short" /></td>
+                    <td class="text-right"><input asp-for="WestToFeet" class="form-control form-control-sm form-short" required/></td>
                     <td>m</td>
                 </tr>
                 <tr>
                     <td><label>Measured Length: </label></td>
-                    <td class="text-right"><input asp-for="LengthOfRemains" class="form-control form-control-sm form-short" /></td>
+                    <td class="text-right"><input asp-for="LengthOfRemains" class="form-control form-control-sm form-short" required/></td>
                     <td>m</td>
                 </tr>
                 <tr>
@@ -231,6 +231,7 @@
         </div>
     </div>
     <div class="form-bottom">
+        <div asp-validation-summary="All"></div>
         <input type="submit" class="btn btn-blackolive mx-auto" name="submitBurialForm" value="Save Record" />
     </div>
     <hr class="form-divide" />
