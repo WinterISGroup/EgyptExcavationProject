@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Object FilterData to hold the variables to be used in the record service, and pass the values for filtering and pagination.
 namespace EgyptExcavationProject.Infrastructure
 {
     public class FilterData
