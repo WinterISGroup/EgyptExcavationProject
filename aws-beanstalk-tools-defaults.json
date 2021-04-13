@@ -4,13 +4,8 @@
     "configuration" : "Debug",
     "framework"     : "netcoreapp3.1",
     "self-contained" : false,
-<<<<<<< HEAD
     "application"    : "EgyptExcavation",
     "environment"    : "Egyptexcavation-env",
-=======
-    "application"    : "BYUEgyptExcavationProject",
-    "environment"    : "Byuegyptexcavationproject-env",
->>>>>>> 8bf66657a3ee882268232b262051ce06f63974e0
     "enable-xray"    : false,
     "enhanced-health-type" : "enhanced",
     "additional-options"   : "",
