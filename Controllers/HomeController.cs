@@ -22,6 +22,7 @@ namespace EgyptExcavationProject.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
+        //Constructor
         public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
