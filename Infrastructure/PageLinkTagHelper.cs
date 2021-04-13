@@ -70,7 +70,7 @@ namespace EgyptExcavationProject.Infrastructure
                     //Put the a tag to the div
                     finishedTag.InnerHtml.AppendHtml(individualTag);
 
-                    if ((i == numsShown - 1) || (i == (pageNow + numsShown)))
+                    if ((i == numsShown - 1) || (i == (pageNow + numsShown)) && (i != pageInfo.NumPages))
                     {
                         TagBuilder spaceTag = new TagBuilder("span");
 
