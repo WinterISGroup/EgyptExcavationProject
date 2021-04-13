@@ -9,6 +9,7 @@ namespace EgyptExcavationProject.Services
     public interface IRecordService
     {
         IEnumerable<Burial> GetAllBurials();
+        IEnumerable<Location> GetAllLocations();
         Burial GetRecord(Guid burialID);
         void AddBurial(Burial newBurial);
         void AddLocation(Location location);

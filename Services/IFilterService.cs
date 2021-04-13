@@ -27,5 +27,6 @@ namespace EgyptExcavationProject.Services
         public List<Burial> FilterTimeOfBurial(List<Burial> list, string burial);
 
         FilterData ParseFormData(IFormCollection form);
+        string GetActiveFilterDisplay(FilterData filterData);
     }
 }
