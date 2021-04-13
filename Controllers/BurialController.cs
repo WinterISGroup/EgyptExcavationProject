@@ -25,8 +25,10 @@ namespace EgyptExcavationProject.Controllers
             _filterService = filterService;
         }
 
-        public IActionResult BurialRecords(int pageNum = 1)
+        public IActionResult BurialRecords(int pageNum = 1, bool isPagination = false)
         {
+            ViewBag.FilterSubmitted = false;
+
             if (User.IsInRole("Admin"))
             {
                 ViewBag.Admin = true;
@@ -39,13 +41,15 @@ namespace EgyptExcavationProject.Controllers
 
             List<Burial> listToView = new List<Burial>();
 
-            if (TempData["isDataStored"] != null)
+            if (TempData["isDataStored"] != null && isPagination == true)
             {
                 FilterData filterData = TempData.Get<FilterData>("filterData");
                 listToView = _filterService.FilterAllData(filterData);
 
                 TempData.Keep("isDataStored");
                 TempData.Keep("filterData");
+                ViewBag.FilterSubmitted = true;
+                ViewBag.FilterDisplay = _filterService.GetActiveFilterDisplay(filterData);
             }
             else
             {
@@ -64,7 +68,7 @@ namespace EgyptExcavationProject.Controllers
                 }
             };
 
-            ViewBag.FilterSubmitted = false;
+            
 
             return View(bvm);
         }
@@ -111,6 +115,7 @@ namespace EgyptExcavationProject.Controllers
             TempData.Put("filterData", filterData);
 
             ViewBag.FilterSubmitted = true;
+            ViewBag.FilterDisplay = _filterService.GetActiveFilterDisplay(filterData);
 
             return View(bvm);
         }

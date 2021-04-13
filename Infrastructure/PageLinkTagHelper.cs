@@ -55,6 +55,7 @@ namespace EgyptExcavationProject.Infrastructure
                     TagBuilder individualTag = new TagBuilder("a"); //build an new a tag each time for each page number
 
                     KeyValuePairs["pageNum"] = i;
+                    KeyValuePairs["isPagination"] = true;
 
                     //Set up info for each a tag
                     individualTag.Attributes["href"] = urlHelp.Action("BurialRecords", KeyValuePairs);
