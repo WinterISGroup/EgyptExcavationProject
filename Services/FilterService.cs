@@ -450,7 +450,6 @@ namespace EgyptExcavationProject.Services
             
             result += filterData.SquareEW != '\0' ? "Square EW: <b>" + filterData.SquareEW.ToString() + "</b>, " : "";
             result += filterData.EWLowPair != "" && filterData.EWHighPair != "" ? "EW Low/High Pair: <b>" + filterData.EWLowPair + "/" + filterData.EWHighPair.ToString() + "</b>, " : "";
-            result += filterData.EWHighPair != "" ? "EW High Pair: <b>" + filterData.EWHighPair + "</b>, " : "";
             result += filterData.SubPlot != "" ? "Area: <b>" + filterData.SubPlot + "</b>, " : "";
             result += filterData.HeadDirection != "" ? "Head Direction: <b>" + filterData.HeadDirection + "</b>, " : "";
             result = result.Substring(0, result.Length - 2);
