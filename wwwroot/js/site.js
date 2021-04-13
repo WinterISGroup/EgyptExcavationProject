@@ -89,8 +89,19 @@ $(document).ready(function () {
     document.getElementById("burial-notes").style.height = document.getElementById("burial-notes").scrollHeight + 'px';
 });
 
+var form = document.getElementById("filterForm");
+
+form.addEventListener("input", function () {
+    document.getElementById("filterSubmitBtn").removeAttribute("disabled");
+});
+
+//$("#filterForm").on("submit", function () {
+//    alert("test");
+//});
+
 //$(function () {
 //    $("input[name=HeadDirection]").oninvalid = function () {
 //        this.setCustomValidity("Please do not include numbers");
 //    };
 //});
+
