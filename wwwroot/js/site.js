@@ -3,10 +3,19 @@
 
 // Write your JavaScript code.
 
+/**
+ * ViewRecord function:
+ * passes in a url as the parameter to allow you to click on a card to route to the home controller
+ */
 function ViewRecord(url) {
     location.href = url;
 }
 
+/**
+ * ExpandFilter function:
+ * when the more button is clicked, the div that contains the filter form expands so the user can fill out
+ * the rest of the form
+ * */
 function ExpandFilter() {
     var filterBox = $("#filter-main");
 
@@ -21,6 +30,11 @@ function ExpandFilter() {
     }
 }
 
+/**
+ * ShrinkFilter function:
+ * when the less button is clicked, the div that contains the filter form shrinks if the user doesn't
+ * want to see part of the form
+ * */
 function ShrinkFilter() {
     var filterBox = $("#filter-main");
 
@@ -35,10 +49,19 @@ function ShrinkFilter() {
     }
 }
 
+/**
+ * HideFilter function:
+ * hides the filter form from the user
+ * */
 function HideFilter() {
     $("#filter-main").hide();
 }
 
+/**
+ * ShowOrHideShafts function:
+ * if user clicks yes on the shared shaft radio button, then other inputs are shown for the user to put in
+ * if the user clicks no, then the inputs do not appear
+ */
 function ShowOrHideShafts(selected) {
     if (selected == "Y") {
         $("#shaft_nums").show();
@@ -51,6 +74,10 @@ function ShowOrHideShafts(selected) {
     }
 }
 
+/**
+ * ShowOrHideClusters function:
+ * if user clicks yes on the cluster radio button, then other radio buttons appear and the user is required to input
+ */
 function ShowOrHideClusters(selected) {
     if (selected == "Y") {
         $("#cluster_data").show();
@@ -65,17 +92,19 @@ function ShowOrHideClusters(selected) {
     }
 }
 
-//function RequiredLocationInput() {
-//    alert("ALTERTEDSKFSDJKFsjdhg");
-//    $("#square").filter(":input").prop('required', true);
-//    $("#subplot").filter(":input").prop('required', true);
-//}
-
+/**
+ * ShowPhotoUpload function:
+ * this hides the add photo button and displays the photo upload
+ * */
 function ShowPhotoUpload() {
     $("#add-photo-btn").hide();
     $("#photo-upload").show();
 }
 
+/**
+ * getFileName function:
+ * inserts html into a b tag of the filename and then shows the upload button and hides the photo button
+ */
 function getFileName(obj) {
     var file = obj.value;
     var fileName = file.split("\\");
@@ -84,13 +113,10 @@ function getFileName(obj) {
     $("#photo-btn").hide();
 }
 
+/**
+ * the textbox auto resizes to the length of the text of the burial notes
+ */
 $(document).ready(function () {
     document.getElementById("burial-notes").style.height = 'auto';
     document.getElementById("burial-notes").style.height = document.getElementById("burial-notes").scrollHeight + 'px';
 });
-
-//$(function () {
-//    $("input[name=HeadDirection]").oninvalid = function () {
-//        this.setCustomValidity("Please do not include numbers");
-//    };
-//});
