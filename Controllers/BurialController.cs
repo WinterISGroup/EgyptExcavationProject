@@ -38,18 +38,18 @@ namespace EgyptExcavationProject.Controllers
 
             List<Burial> listToView = new List<Burial>();
 
-            if (TempData["isObjStored"] != null)
+            if (TempData["isDataStored"] != null)
             {
-                //listToView = _filterService.FilterAllData(TempData.Get<IFormCollection>("form"));
-                PageNumInfo test = TempData.Get<PageNumInfo>("test");
-                TempData.Keep("isObjStored");
-                TempData.Keep("test");
+                FilterData filterData = TempData.Get<FilterData>("filterData");
+                listToView = _filterService.FilterAllData(filterData);
+
+                TempData.Keep("isDataStored");
+                TempData.Keep("filterData");
             }
             else
             {
                 listToView = _recordService.GetAllBurials().ToList();
             }
-            listToView = _recordService.GetAllBurials().ToList();
 
             BurialViewModel bvm = new BurialViewModel
             {
@@ -78,30 +78,12 @@ namespace EgyptExcavationProject.Controllers
                 ViewBag.Researcher = true;
             }
 
-            FilterData filterData = new FilterData();
-            filterData.Gender = form["gender-filter"].ToString();
-            filterData.HairColor = form["hair-filter"].ToString();
-            filterData.AgeCode = form["age-filter"].ToString();
-            filterData.Height = form["height-filter"].ToString();
-            filterData.BurialDepth = form["burial-depth-filter"].ToString();
-            filterData.LengthOfRemains = form["remain-length-filter"].ToString();
-            filterData.DateFoundYear = Int32.Parse(form["date-found-year-filter"].ToString());
-            filterData.DateFoundMonth = Int32.Parse(form["date-found-month-filter"].ToString());
-            filterData.ItemFound = form["item-found-filter"].ToString();
-            filterData.TextileFound = Boolean.Parse(form["textile-taken-filter"].ToString());
-            filterData.BurialTime = form["burial-time-filter"].ToString();
-            filterData.SquareNS = Convert.ToChar(form["NS-square-filter"].ToString());
-            filterData.NSLowPair = Int32.Parse(form["low-pair-NS-filter"].ToString());
-            filterData.SquareEW = Convert.ToChar(form["EW-square-filter"].ToString());
-            filterData.EWLowPair = Int32.Parse(form["low-pair-EW-filter"].ToString());
-            filterData.SubPlot = form["area-filter"].ToString();
-            filterData.HeadDirection = form["head-dir-filter"].ToString();
-
+            FilterData filterData = _filterService.ParseFormData(form);
 
             int pageSize = 12;
 
             List<Burial> returnList = new List<Burial>();
-            returnList = _filterService.FilterAllData(form);
+            returnList = _filterService.FilterAllData(filterData);
 
             BurialViewModel bvm = new BurialViewModel
             {
@@ -122,8 +104,8 @@ namespace EgyptExcavationProject.Controllers
                 TotalNumItems = returnList.Count()
             };
 
-            TempData["isObjStored"] = "true";
-            TempData.Put("test", test);
+            TempData["isDataStored"] = "true";
+            TempData.Put("filterData", filterData);
 
             return View(bvm);
         }
