@@ -5,6 +5,7 @@
 @model BurialViewModel
 
 <h2 class="text-center">Burial Records List</h2>
+<div class="text-center w-100"><span style="font-size:10pt;">* represents a value that is not present in the database</span></div>
 <br />
 <div class="item-holder">
     @{ string hidden = "";
@@ -337,25 +338,28 @@
                 }
                 <div class="card-body card-text-bkg mt-2">
                     <p class="card-text text-white">
-                        @if (burial.Location != null)
+                        @if (burial.LocationId != null)
                         {
-                            string locNS = burial.Location.LocationNs.ToString() != "" ? burial.Location.LocationNs.ToString() : "";
-                            string locHPNS = burial.Location.HighPairNs.ToString() != "" ? burial.Location.HighPairNs.ToString() : "";
-                            string locLPNS = burial.Location.LowPairNs.ToString() != "" ? burial.Location.LowPairNs.ToString() : "";
-                            string locEW = burial.Location.LocationEw.ToString() != "" ? burial.Location.LocationEw.ToString() : "";
-                            string locHPEW = burial.Location.HighPairEw.ToString() != "" ? burial.Location.HighPairEw.ToString() : "";
-                            string locLPEW = burial.Location.LowPairEw.ToString() != "" ? burial.Location.LowPairEw.ToString() : "";
-                            string subPlot = burial.Location.BurialSubplot.ToString() != "" ? burial.Location.BurialSubplot.ToString() : "";
-                            string burialNum = burial.BurialNumber.ToString() != "" ? burial.BurialNumber.ToString() : "";
-                            
+                            Location location = Model.Locations.Where(x => x.LocationId == burial.LocationId).FirstOrDefault();
+
+                            string locNS = location.LocationNs.ToString() != "" ? location.LocationNs.ToString() : "*";
+                            string locHPNS = location.HighPairNs.ToString() != "" ? location.HighPairNs.ToString() : "***";
+                            string locLPNS = location.LowPairNs.ToString() != "" ? location.LowPairNs.ToString() : "***";
+                            string locEW = location.LocationEw.ToString() != "" ? location.LocationEw.ToString() : "*";
+                            string locHPEW = location.HighPairEw.ToString() != "" ? location.HighPairEw.ToString() : "***";
+                            string locLPEW = location.LowPairEw.ToString() != "" ? location.LowPairEw.ToString() : "***";
+                            string subPlot = location.BurialSubplot.ToString() != "" ? location.BurialSubplot.ToString() : "**";
+                            string burialNum = burial.BurialNumber.ToString() != "" ? burial.BurialNumber.ToString() : "**";
+
                         <span>Location: @locNS @locHPNS / @locLPNS @locEW @locHPEW / @locLPEW @subPlot #@burialNum</span> <br />
                         }
                         else
                         {
                             <span>Location: Not found</span><br />
                         }
-                        Age: @burial.AgeCode<br />
-                        Gender: @burial.GenderGe<br />
+                        Age: @{string age = burial.AgeCode != "" ? burial.AgeCode : "*";} @age<br />
+                        Gender:@{string gender = burial.GenderGe != "" ? burial.GenderGe : "*";} @gender<br />
+                        Head Direction:@{string headDir = burial.HeadDirection != "" ? burial.HeadDirection : "*"; } @headDir<br />
                     </p>
                     @if (ViewBag.Admin != null)
                     {

@@ -21,6 +21,11 @@ namespace EgyptExcavationProject.Services
             return _context.Burial.OrderBy(b => b.BurialId);
         }
 
+        public IEnumerable<Location> GetAllLocations()
+        {
+            return _context.Location.OrderBy(l => l.LocationId);
+        }
+
         //FIXME: return type change to BurialModel
         public Burial GetRecord(Guid burialID)
         {

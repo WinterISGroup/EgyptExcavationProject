@@ -59,6 +59,7 @@ namespace EgyptExcavationProject.Controllers
             BurialViewModel bvm = new BurialViewModel
             {
                 Burials = listToView.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(),
+                Locations = _recordService.GetAllLocations().ToList(),
 
                 PageNumInfo = new PageNumInfo
                 {
@@ -67,8 +68,6 @@ namespace EgyptExcavationProject.Controllers
                     TotalNumItems = listToView.Count()
                 }
             };
-
-            
 
             return View(bvm);
         }
@@ -95,6 +94,7 @@ namespace EgyptExcavationProject.Controllers
             BurialViewModel bvm = new BurialViewModel
             {
                 Burials = returnList.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(),
+                Locations = _recordService.GetAllLocations().ToList(),
 
                 PageNumInfo = new PageNumInfo
                 {
