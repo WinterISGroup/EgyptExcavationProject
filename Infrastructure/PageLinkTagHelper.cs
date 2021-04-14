@@ -59,7 +59,7 @@ namespace EgyptExcavationProject.Infrastructure
                 //large number of page number buttons shown on the page.
                 //Dynamically changes what numbers are shown based on what page number is selected and how many
                 //total pages there are
-                if ((i <= (pageNow + numsShown) && i >= pageNow) || (i < numsShown) || (i > (pageInfo.NumPages - (numsShown - 1))))
+                if ((i <= (pageNow + numsShown) && i >= pageNow) || (i < numsShown) || (i > (pageInfo.NumPages - (numsShown -1))))
                 {
                     TagBuilder individualTag = new TagBuilder("a"); //build an new a tag each time for each page number
 
@@ -103,7 +103,7 @@ namespace EgyptExcavationProject.Infrastructure
                             i++;
                             i++;
                         }
-
+                        
                     }
                 }
 
