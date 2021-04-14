@@ -446,7 +446,7 @@ namespace EgyptExcavationProject.Services
         //Data for the filters that are currently active for a query. Wil ldisplay the filters and their values for a search.
         public string GetActiveFilterDisplay(FilterData filterData)
         {
-            string result = "<br/><span class='text-black-olive' style='font-size:12pt;'>";
+            string result = "<br/><span class=\"text-black-olive\" style=\"font-size:12pt;\">  ";
             result += filterData.Gender != "" ? "Gender: <b>" + filterData.Gender + "</b>, " : "";
             result += filterData.HairColor != "" ? "Hair Color: <b>" + filterData.HairColor + "</b>, " : "";
             result += filterData.AgeCode != "" ? "Age Code: <b>" + filterData.AgeCode + "</b>, " : "";
@@ -455,7 +455,7 @@ namespace EgyptExcavationProject.Services
             result += filterData.LengthOfRemains != "" ? "Length Of Remains: <b>" + filterData.LengthOfRemains + "</b>, " : "";
             result += filterData.DateFoundYear != 0 ? "Date Found-Year: <b>" + filterData.DateFoundYear.ToString() + "</b>, " : "";
             result += filterData.DateFoundMonth != 0 ? "Date Found-Month: <b>" + filterData.DateFoundMonth.ToString() + "</b>, " : "";
-            result += filterData.ItemFound != "" ? "Item Found: <b>" + filterData.ItemFound + "</b>, " : "";
+            result += filterData.ItemFound != "" ? "Item Found: <b>" + filterData.ItemFound.Replace(",",", ") + "</b>, " : "";
             result += filterData.TextileFound != "" ? "Textile Taken: <b>" + filterData.TextileFound + "</b>, " : "";
             result += filterData.BurialTime != "" ? "Burial Time: <b>" + filterData.BurialTime + "</b>, " : "";
             result += filterData.SquareNS != '\0' ? "Square NS: <b>" + filterData.SquareNS.ToString() + "</b>, " : "";
