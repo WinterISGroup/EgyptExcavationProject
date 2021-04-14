@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -454,7 +455,7 @@ namespace EgyptExcavationProject.Services
             result += filterData.BurialDepth != "" ? "Burial Depth: <b>" + filterData.BurialDepth + "</b>, " : "";
             result += filterData.LengthOfRemains != "" ? "Length Of Remains: <b>" + filterData.LengthOfRemains + "</b>, " : "";
             result += filterData.DateFoundYear != 0 ? "Date Found-Year: <b>" + filterData.DateFoundYear.ToString() + "</b>, " : "";
-            result += filterData.DateFoundMonth != 0 ? "Date Found-Month: <b>" + filterData.DateFoundMonth.ToString() + "</b>, " : "";
+            result += filterData.DateFoundMonth != 0 ? "Date Found-Month: <b>" + DateTimeFormatInfo.CurrentInfo.GetMonthName(filterData.DateFoundMonth.Value) + "</b>, " : "";
             result += filterData.ItemFound != "" ? "Item Found: <b>" + filterData.ItemFound + "</b>, " : "";
             result += filterData.TextileFound != "" ? "Textile Taken: <b>" + filterData.TextileFound + "</b>, " : "";
             result += filterData.BurialTime != "" ? "Burial Time: <b>" + filterData.BurialTime + "</b>, " : "";
