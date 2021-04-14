@@ -8,6 +8,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
+//This is a service to handle the heavy logic neccessary for filtering. This takes the bulk out of the controller and will run through multiple
+//functions to query the data to be returned.
 namespace EgyptExcavationProject.Services
 {
     public class FilterService : IFilterService
@@ -31,6 +33,7 @@ namespace EgyptExcavationProject.Services
             }
         }
 
+        //Filters by hair color. Designed to search if string even contains the keyword
         public List<Burial> FilterHairColor(List<Burial> list, string color)
         {
             list = list.Where(b => b.HairColor != "").ToList();
@@ -68,6 +71,7 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
+        //Living stature. Searches a range of values (in meters).
         public List<Burial> FilterHeight(List<Burial> list, string height)
         {
             List<Burial> listFilter = new List<Burial>();
@@ -104,6 +108,7 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
+        //Depth of burial. Searches range of values (in meters).
         public List<Burial> FilterBurialDepth(List<Burial> list, string depth) 
         {
             List<Burial> listFilter = new List<Burial>();
@@ -148,6 +153,7 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
+        //Year found
         public List<Burial> FilterFoundYear(List<Burial> list, int? year)
         {
             var notNullList = (list.Where(b => b.DateFound != null)).ToList();
@@ -155,6 +161,7 @@ namespace EgyptExcavationProject.Services
             return (notNullList.Where(b => b.DateFound.Value.Year == year)).ToList(); //.Year should automatically pull the year from the datetime?
         }
 
+        //Month found 1-12
         public List<Burial> FilterFoundMonth(List<Burial> list, int? month)
         {
             var notNullList = (list.Where(b => b.DateFound != null)).ToList();
@@ -162,6 +169,7 @@ namespace EgyptExcavationProject.Services
             return (notNullList.Where(b => b.DateFound.Value.Month == month)).ToList();
         }
 
+        //Pulls from a list of common items found. Will search the artifacts description if it contains the string
         public List<Burial> FilterItemFound(List<Burial> list, string? item)
         {
             List<Burial> listFilter = list.Where(b => b.ArtifactsDescription != null).ToList();
@@ -171,6 +179,7 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
+        //The length of the remains laying in the ground
         public List<Burial> FilterRemainLength(List<Burial> list, string length)
         {
             List<Burial> listFilter = new List<Burial>();
@@ -223,12 +232,13 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
+        //Boolean to see if textiles were found with burial
         public List<Burial> FilterTextile(List<Burial> list, string textile)
         {
             return list.Where(b => b.TextileTaken == Boolean.Parse(textile)).ToList();
         }
 
-        //Will it need to reference the locations table?
+        //Filters the location block. Pulls data from location table through burials.
         public List<Burial> FilterSquare(List<Burial> list, char? NS, int? NSlow, char? EW, int? EWlow)
         {
             List<Guid> loc2 = _context.Location.Where(b => b.LocationNs == NS.Value && b.LowPairNs == NSlow.Value &&
@@ -271,6 +281,7 @@ namespace EgyptExcavationProject.Services
             return (results);
         }
 
+        //Head direction filter. East or West
         public List<Burial> FilterHeadDirection(List<Burial> list, string direction)
         {
             return list.Where(b => b.HeadDirection == direction).ToList();
@@ -341,7 +352,7 @@ namespace EgyptExcavationProject.Services
             return listFilter;
         }
 
-        //Main function to utilize all the individual functions.Will be called in controller
+        //Main function to utilize all the individual functions. Will be called in controller
         public List<Burial> FilterAllData(FilterData data)
         {
             List<Burial> results = _context.Burial.ToList();
@@ -384,9 +395,9 @@ namespace EgyptExcavationProject.Services
             {
                 results = FilterTextile(results, data.TextileFound);
             }
-            if (data.SquareNS != '\0' && data.NSLowPair != 0 && data.SquareEW != '\0' && data.EWLowPair != 0)
+            if (data.SquareNS != '\0' && data.NSLowPair != "" && data.SquareEW != '\0' && data.EWLowPair != "")
             {
-                results = FilterSquare(results, data.SquareNS, data.NSLowPair, data.SquareEW, data.EWLowPair);
+                results = FilterSquare(results, data.SquareNS, Convert.ToInt32(data.NSLowPair), data.SquareEW, Convert.ToInt32(data.EWLowPair));
             }
             if (data.SubPlot != "")
             {
@@ -404,6 +415,7 @@ namespace EgyptExcavationProject.Services
             return results;
         }
 
+        //Filter data object. This will assist in passing values to for pagination isntead of through
         public FilterData ParseFormData(IFormCollection form)
         {
             FilterData filterData = new FilterData();
@@ -420,15 +432,18 @@ namespace EgyptExcavationProject.Services
             filterData.TextileFound = form["textile-taken-filter"].ToString();
             filterData.BurialTime = form["burial-time-filter"].ToString();
             filterData.SquareNS = form["NS-square-filter"].ToString() != "" ? Convert.ToChar(form["NS-square-filter"].ToString()) : '\0';
-            filterData.NSLowPair = form["low-pair-NS-filter"].ToString() != "" ? Int32.Parse(form["low-pair-NS-filter"].ToString()) : 0;
+            filterData.NSLowPair = form["low-pair-NS-filter"].ToString() != "" ? form["low-pair-NS-filter"].ToString() : "";
+            filterData.NSHighPair = form["high-pair-NS-filter"].ToString() != "" ? form["high-pair-NS-filter"].ToString() : "";
             filterData.SquareEW = form["EW-square-filter"].ToString() != "" ? Convert.ToChar(form["EW-square-filter"].ToString()) : '\0';
-            filterData.EWLowPair = form["low-pair-EW-filter"].ToString() != "" ? Int32.Parse(form["low-pair-EW-filter"].ToString()) : 0;
+            filterData.EWLowPair = form["low-pair-EW-filter"].ToString() != "" ? form["low-pair-EW-filter"].ToString() : "";
+            filterData.EWHighPair = form["high-pair-EW-filter"].ToString() != "" ? form["high-pair-EW-filter"].ToString() : "";
             filterData.SubPlot = form["area-filter"].ToString();
             filterData.HeadDirection = form["head-dir-filter"].ToString();
 
             return filterData;
         }
 
+        //Data for the filters that are currently active for a query. Wil ldisplay the filters and their values for a search.
         public string GetActiveFilterDisplay(FilterData filterData)
         {
             string result = "<br/><span class='text-black-olive' style='font-size:12pt;'>";
@@ -444,9 +459,10 @@ namespace EgyptExcavationProject.Services
             result += filterData.TextileFound != "" ? "Textile Taken: <b>" + filterData.TextileFound + "</b>, " : "";
             result += filterData.BurialTime != "" ? "Burial Time: <b>" + filterData.BurialTime + "</b>, " : "";
             result += filterData.SquareNS != '\0' ? "Square NS: <b>" + filterData.SquareNS.ToString() + "</b>, " : "";
-            result += filterData.NSLowPair != 0 ? "NS Low Pair: <b>" + filterData.NSLowPair.ToString() + "</b>, " : "";
+            result += filterData.NSLowPair != "" && filterData.NSHighPair != "" ? "NS Low/High Pair: <b>" + filterData.NSLowPair.ToString() + "/" + filterData.NSHighPair.ToString() + "</b>, " : "";
+            
             result += filterData.SquareEW != '\0' ? "Square EW: <b>" + filterData.SquareEW.ToString() + "</b>, " : "";
-            result += filterData.EWLowPair != 0 ? "EW Low Pair: <b>" + filterData.ItemFound + "</b>, " : "";
+            result += filterData.EWLowPair != "" && filterData.EWHighPair != "" ? "EW Low/High Pair: <b>" + filterData.EWLowPair + "/" + filterData.EWHighPair.ToString() + "</b>, " : "";
             result += filterData.SubPlot != "" ? "Area: <b>" + filterData.SubPlot + "</b>, " : "";
             result += filterData.HeadDirection != "" ? "Head Direction: <b>" + filterData.HeadDirection + "</b>, " : "";
             result = result.Substring(0, result.Length - 2);

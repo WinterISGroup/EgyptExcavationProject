@@ -42,12 +42,12 @@ namespace EgyptExcavationProject.Infrastructure
         {
             TagBuilder finishedTag = new TagBuilder("div"); //build a div tag to hold the page numbers
 
-            for (int i = 1; i <= pageInfo.NumPages; i++)
+            for (int i = 1; i <= pageInfo.NumPages; i++) //For loop to make a tag for each page
             {
                 int pageNow = pageInfo.CurrentPage;
-                int numsShown = 4;
+                int numsShown = 4;                      //How many page numbers to show in a section
 
-                if (pageInfo.NumPages < 10)
+                if (pageInfo.NumPages < 10) //Make numsShown less if there are less than 10 pages
                 {
                     numsShown = 3;
                 }
@@ -55,30 +55,37 @@ namespace EgyptExcavationProject.Infrastructure
 
                 IUrlHelper urlHelp = urlInfo.GetUrlHelper(viewContext);
 
+                //An if statement to only make a certain portion of the overall pages number buttons, so that there aren't a
+                //large number of page number buttons shown on the page.
+                //Dynamically changes what numbers are shown based on what page number is selected and how many
+                //total pages there are
                 if ((i <= (pageNow + numsShown) && i >= pageNow) || (i < numsShown) || (i > (pageInfo.NumPages - (numsShown - 1))))
                 {
                     TagBuilder individualTag = new TagBuilder("a"); //build an new a tag each time for each page number
 
+                    //Create dictionaries to hold page numbers and if pagination info
                     KeyValuePairs["pageNum"] = i;
                     KeyValuePairs["isPagination"] = true;
 
                     //Set up info for each a tag
                     individualTag.Attributes["href"] = urlHelp.Action("BurialRecords", KeyValuePairs);
 
-                    //Highlighting the page numbers
                     if (PageClassesEnabled)
                     {
-                        individualTag.AddCssClass(PageClass);
+                        individualTag.AddCssClass(PageClass);                                       //Highlighting the page numbers
                         individualTag.AddCssClass(i == pageInfo.CurrentPage ? PageClassSelected : PageClassNormal);
                     }
 
                     individualTag.InnerHtml.Append(i.ToString());
-                    //Put the a tag to the div
+
+                    //Put the finished individual a tag to the div
                     finishedTag.InnerHtml.AppendHtml(individualTag);
 
+                    //Creates the "..." buffer unclickable elements to seperate between non sequential numbers in the pagination list
                     if ((i == numsShown - 1) || ((i == (pageNow + numsShown)) && (i != pageInfo.NumPages)))
                     {
-                        if (pageInfo.NumPages <= 5)
+                        //Only does this if the number of pages is 8 or less
+                        if (pageInfo.NumPages <= 8)
                         {
                             
                         }
@@ -100,7 +107,7 @@ namespace EgyptExcavationProject.Infrastructure
                 }
 
             }
-
+            //Put the finished div tag of all the page buttons onto the page
             output.Content.AppendHtml(finishedTag.InnerHtml);
         }
     }
