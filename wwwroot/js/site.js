@@ -110,9 +110,14 @@ function getFileName(obj) {
     var fileName = file.split("\\");
     document.getElementById("fileName").innerHTML = "<b>Uploaded Image: </b> " + fileName[fileName.length - 1];
     $("#upload-btn").show();
-    $("#photo-btn").hide();
+    $("#clear-photo").show();
+    //$("#photo-btn").hide();
 }
+function clearPhoto() {
+    document.getElementById("fileName").innerHTML = "Choose another file";
+    document.getElementById("file-upload").value = "";
 
+}
 /**
  * the textbox auto resizes to the length of the text of the burial notes
  */
@@ -121,11 +126,14 @@ $(document).ready(function () {
     document.getElementById("burial-notes").style.height = document.getElementById("burial-notes").scrollHeight + 'px';
 });
 
-var form = document.getElementById("filterForm");
-
 /**
  * puts an event listener so the user cannot click the filter button if a filter has not been selected
  */
-form.addEventListener("input", function () {
-    document.getElementById("filterSubmitBtn").removeAttribute("disabled");
-});
+var form = document.getElementById("filterForm");
+if (form != null) {
+    form.addEventListener("input", function () {
+        document.getElementById("filterSubmitBtn").removeAttribute("disabled");
+    });
+}
+
+
