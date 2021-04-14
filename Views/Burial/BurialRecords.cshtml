@@ -327,6 +327,8 @@
     <div class="card-holder">
         @foreach (Burial burial in Model.Burials)
         {
+            if(burial != null)
+            {
             <div class="card card-burial m-1 p-3 card-bkg hover-pointer" onclick="ViewRecord('@Url.Action("ViewRecord", "Burial", new { burialID = burial.BurialId })');">
                 
                 @if (burial.Photo != null && burial.Photo.Contains("egyptexcavation.s3.amazonaws.com"))
@@ -380,6 +382,7 @@
                     </div>
                 </div>
             </div>
+            }
         }
     </div>
 </div>
