@@ -162,14 +162,13 @@ namespace EgyptExcavationProject.Controllers
             return View();
         }
 
+        //Authorization of the Admin and Researcher
         [HttpPost]
         [Authorize(Roles = "Admin, Researcher")]
         public IActionResult AddRecord(Burial burial)
         {
             if (ModelState.IsValid)
             {
-                //_recordService.AddLocation(newRecord.Location);
-                //newRecord.Burial.Location = newRecord.Location;
                 _recordService.AddBurial(burial);
                 return RedirectToAction("ViewRecord", new { burialID = burial.BurialId });
             }
@@ -250,7 +249,6 @@ namespace EgyptExcavationProject.Controllers
                 }
             }
 
-            //return RedirectToAction("ViewRecord", new { burialID = FileUpload.BurialID });
             return View();
         }
     }
