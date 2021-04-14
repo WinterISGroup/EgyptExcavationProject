@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace EgyptExcavationProject.Infrastructure
 {
+    //Allows for Temp Data to be used to pass the saved filters to the different views
     public static class TempDataExtensions
     {
         public static void Put<T>(this ITempDataDictionary tempData, string key, T value) where T : class
