@@ -31,8 +31,8 @@
     <div class="form-location form-child">
         <span class="form-section-header">Location</span>
         <div class="text-black-olive" style="font-size:large;">
-            @Html.DisplayFor(m => m.Location.LocationNs) @Html.DisplayFor(m => m.Location.LowPairNs) / @Html.DisplayFor(m => m.Location.HighPairNs)
-            @Html.DisplayFor(m => m.Location.LocationEw) @Html.DisplayFor(m => m.Location.LowPairEw) / @Html.DisplayFor(m => m.Location.HighPairEw)
+            @Html.DisplayFor(m => m.Location.LowPairNs) / @Html.DisplayFor(m => m.Location.HighPairNs) @Html.DisplayFor(m => m.Location.LocationNs)
+            @Html.DisplayFor(m => m.Location.LowPairEw) / @Html.DisplayFor(m => m.Location.HighPairEw) @Html.DisplayFor(m => m.Location.LocationEw)
             @Html.DisplayFor(m => m.Location.BurialSubplot) #@Html.DisplayFor(m => m.BurialNumber)
         </div>
         <span class="text-ebony font-weight-bold" style="text-decoration:underline;font-size:medium;">Shafts / Clusters</span>
