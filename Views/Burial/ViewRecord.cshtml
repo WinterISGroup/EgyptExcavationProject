@@ -5,7 +5,7 @@
 @model Burial
 
 <h2 class="text-center text-brass-dark font-weight-bold">Burial Record</h2>
-<a class="btn btn-brassdark" href="@Url.Action("BurialRecords", "Burial")">@Html.Raw("&larr;") Back to Burial Records</a>
+<a class="btn btn-brassdark" href="@Url.Action("BurialRecords", "Burial", new {pageNum = ViewBag.CurrentPage, isPagination = true })">@Html.Raw("&larr;") Back to Burial Records</a>
 <br />
 <br />
 <hr class="form-divide" />
@@ -223,7 +223,7 @@
 <div class="text-center">
     @if (Model.Photo != null && Model.Photo.Contains("egyptexcavation.s3.amazonaws.com"))
     {
-        <img src="@Model.Photo" alt="" />
+        <img src="@Model.Photo" alt="" class="mw-100"/>
     }
     else
     {
