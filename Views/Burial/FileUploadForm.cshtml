@@ -14,7 +14,7 @@
     <label id="photo-btn" for="file-upload" asp-for="@Model.FormFile" class="btn btn-brassdark">Add Photo</label>
         <span id="fileName"></span>
         <input id="file-upload" asp-for="@Model.FormFile" type="file" onchange="getFileName(this)"/>
-    <button type="button" class="btn btn-blackolive" onclick="clearPhoto()">Clear</button>
+    <button id="clear-photo" type="button" class="btn btn-blackolive" onclick="clearPhoto();" style="margin-bottom: .5rem; display:none;">Clear</button>
         <br /><br />
 
     <input id="upload-btn" asp-page-handler="Upload" class="btn btn-brassdark" type="submit" value="Upload">
