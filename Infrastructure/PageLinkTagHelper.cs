@@ -47,7 +47,7 @@ namespace EgyptExcavationProject.Infrastructure
                 int pageNow = pageInfo.CurrentPage;
                 int numsShown = 4;                      //How many page numbers to show in a section
 
-                if (pageInfo.NumPages < 10) //Make numsShown less if there are less than 10 pages
+                if (pageInfo.NumPages < 10)
                 {
                     numsShown = 3;
                 }
@@ -59,7 +59,7 @@ namespace EgyptExcavationProject.Infrastructure
                 //large number of page number buttons shown on the page.
                 //Dynamically changes what numbers are shown based on what page number is selected and how many
                 //total pages there are
-                if ((i <= (pageNow + numsShown) && i >= pageNow) || (i < numsShown) || (i > (pageInfo.NumPages - (numsShown - 1))))
+                if ((i <= (pageNow + numsShown) && i >= pageNow) || (i < numsShown) || (i > (pageInfo.NumPages - (numsShown -1))))
                 {
                     TagBuilder individualTag = new TagBuilder("a"); //build an new a tag each time for each page number
 
@@ -85,9 +85,9 @@ namespace EgyptExcavationProject.Infrastructure
                     if ((i == numsShown - 1) || ((i == (pageNow + numsShown)) && (i != pageInfo.NumPages)))
                     {
                         //Only does this if the number of pages is 8 or less
-                        if (pageInfo.NumPages <= 8)
+                        if (pageInfo.NumPages <= 5)
                         {
-                            
+
                         }
 
                         else
@@ -100,8 +100,9 @@ namespace EgyptExcavationProject.Infrastructure
                             spaceTag.AddCssClass(PageClassNormal);
 
                             finishedTag.InnerHtml.AppendHtml(spaceTag);
+                            i++;
+                            i++;
                         }
-
                         
                     }
                 }
